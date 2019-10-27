@@ -3,9 +3,9 @@
 
 <img width=300 src="https://user-images.githubusercontent.com/43781484/66769955-64f7c800-eef1-11e9-8003-1c7ccd7e50f6.jpg">
 
-1. License
+<h2>1. License</h2>
 	
-<h6><a href="https://opensource.org/licenses/MIT">The MIT License </a></h6>
+<font-size="30px"> <a href="https://opensource.org/licenses/MIT">The MIT License </a></font-size>
 
 
 
