@@ -5,7 +5,7 @@
 
 <h2>1. License</h2>
 	
-<font-size="30px"> <a href="https://opensource.org/licenses/MIT">The MIT License </a></font-size>
+ <a href="https://opensource.org/licenses/MIT">The MIT License </a>
 
 
 
