@@ -5,7 +5,11 @@
 
 <h2>1. License<h2>
 	
-<a href="https://opensource.org/licenses/MIT"> The MIT License </a>
+<h6><a href="https://opensource.org/licenses/MIT">The MIT License </a></h6>
+
+
+
+
 
 <h2>2. Developers</h2>
 김민식(팀장)<br>
