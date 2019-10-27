@@ -43,6 +43,13 @@
 
 <h2>5. Develope environment and IDE</h2>
 
+OS
+
+	• Windows 10, Ubuntu (Linux)
+IDE
+
+	• eclipse
+
 
 <h2>6. What Improved?</h2>
 
