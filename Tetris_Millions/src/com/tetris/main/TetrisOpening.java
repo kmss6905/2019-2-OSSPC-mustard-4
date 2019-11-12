@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -30,12 +31,12 @@ public class TetrisOpening extends JFrame {
    
    
    /** 
-    *  Ãß°¡µÈ ¹öÆ°µé
-    *  ·Î±×ÀÎ , ¼³Á¤, ÇÏ¿ìÅõÇÃ·¹ÀÌ
+    *  ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½
+    *  ï¿½Î±ï¿½ï¿½ï¿½ , ï¿½ï¿½ï¿½ï¿½, ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½
     */
-   private ImageIcon loginButtonImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/loginBtnbasic.png")); // ·Î±×ÀÎ¹öÆ°
-   private ImageIcon settingButtonImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/settingBtnBasic.png")); // ¼³Á¤¹öÆ°
-   private ImageIcon howToPlayButtonImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/howToPlayBtnBasic.png")); // howtoPlay ¹öÆ°
+   private ImageIcon loginButtonImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/loginBtnBasic.png")); // ï¿½Î±ï¿½ï¿½Î¹ï¿½Æ°
+   private ImageIcon settingButtonImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/settingBtnBasic.png")); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ°
+   private ImageIcon howToPlayButtonImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/howToPlayBtnBasic.png")); // howtoPlay ï¿½ï¿½Æ°
    
    
    
@@ -44,7 +45,7 @@ public class TetrisOpening extends JFrame {
    
    
    
-   private Image background = new ImageIcon(TetrisMain.class.getResource("../../../Images/Introbackground.jpg")).getImage();
+   private Image background = new ImageIcon(TetrisMain.class.getResource("../../../Images/IntroBackground.jpg")).getImage();
    private JLabel menuBar = new JLabel(new ImageIcon(TetrisMain.class.getResource("../../../Images/menuBar.png")));
    
    private JButton exitButton = new JButton(exitButtonBasicImage);
@@ -52,7 +53,7 @@ public class TetrisOpening extends JFrame {
    private JButton quitButton = new JButton(quitButtonBasicImage);
    
    /**
-    *  ·Î±×ÀÎ¹öÆ°, ¼³Á¤¹öÆ°, howToPlay¹öÆ°
+    *  ï¿½Î±ï¿½ï¿½Î¹ï¿½Æ°, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ°, howToPlayï¿½ï¿½Æ°
     */
    private JButton loginButton = new JButton(loginButtonImage);
    private JButton settingButton = new JButton(settingButtonImage);
@@ -77,7 +78,7 @@ public class TetrisOpening extends JFrame {
       
       
       
-      // Á¾·áÇÏ±â ¹öÆ°¿¡ ´ëÇÑ ³»¿ë
+      // ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
       exitButton.setBounds(880, 0, 30, 30);
       exitButton.setBounds(890, 0, 30, 30);
       exitButton.setBorderPainted(false);
@@ -97,44 +98,44 @@ public class TetrisOpening extends JFrame {
             exitButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
          }
          @Override
-         public void mousePressed(MouseEvent e) { // ¸¶¿ì½º ¼±ÅÃ½Ã
+         public void mousePressed(MouseEvent e) { // ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½Ã½ï¿½
         	 
             try { 
-               Thread.sleep(1000); // 1ÃÊ°£ ¸ØÃß°í
+               Thread.sleep(1000); // 1ï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ß°ï¿½
             } catch(InterruptedException ex) {
                ex.printStackTrace();
             } 
-            System.exit(0); // ½Ã½ºÅÛ Á¾·áÇÔ
+            System.exit(0); // ï¿½Ã½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
          }
       });
       
-      add(exitButton); // Á¾·á ¹öÆ° Ãß°¡
+      add(exitButton); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ß°ï¿½
       
       
-      // ½ÃÀÛÇÏ±â ¹öÆ° ³»¿ë
-      startButton.setBounds(260, 200, 400, 50); //¹öÆ° ¹üÀ§(Å©±â)
-      startButton.setBorderPainted(false); // ¸» ±×´ë·Î ¹öÆ° setBorder
+      // ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½
+      startButton.setBounds(260, 200, 400, 50); //ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½(Å©ï¿½ï¿½)
+      startButton.setBorderPainted(false); // ï¿½ï¿½ ï¿½×´ï¿½ï¿½ ï¿½ï¿½Æ° setBorder
       startButton.setContentAreaFilled(false);
-      startButton.setFocusPainted(false); // Æ÷Ä¿½º½Ã ÆäÀÎÆ® ³ë
-      startButton.addMouseListener(new MouseAdapter() { // ¸¶¿ì½º ¸®½º³Ê
+      startButton.setFocusPainted(false); // ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½
+      startButton.addMouseListener(new MouseAdapter() { // ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
          @Override
-         public void mouseEntered(MouseEvent e) { // ´ë¾úÀ» ½Ã
-        	// ´Ü¼øÈ÷ ¸¶¿ì½º °¡Á®´Ù ´ë¾úÀ» ¶§ ÀÌ¹ÌÁö°¡ ¹Ù²Ù¾î Áöµµ·Ï ÇÏ´Â °ÍÀÏ »Ó
+         public void mouseEntered(MouseEvent e) { // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+        	// ï¿½Ü¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Ù¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
             startButton.setIcon(startButtonEnteredImage);
             startButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
             
          }
          @Override
-         public void mouseExited(MouseEvent e) { // ³ª°¬À» ½Ã
+         public void mouseExited(MouseEvent e) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
             startButton.setIcon(startButtonBasicImage);
             startButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
          }
          
          @Override
-         public void mousePressed(MouseEvent e) { //¸¶¿ì½º ¸ØÃß¾úÀ» ½Ã
+         public void mousePressed(MouseEvent e) { //ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ß¾ï¿½ï¿½ï¿½ ï¿½ï¿½
             startButton.setVisible(false);
             quitButton.setVisible(false);
-            //background °¨Ãß±â
+            //background ï¿½ï¿½ï¿½ß±ï¿½
             isMainScreen = true;
             
             
@@ -142,7 +143,7 @@ public class TetrisOpening extends JFrame {
             
 
             
-            new ModeSelectionWindow(); // °ÔÀÓ ¸ðµå ¼±ÅÃ
+            new ModeSelectionWindow(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             
          }
       });
@@ -181,13 +182,13 @@ public class TetrisOpening extends JFrame {
          }
       });
       
-      add(quitButton); // Á¾·á¹öÆ° Ãß°¡
+      add(quitButton); // ï¿½ï¿½ï¿½ï¿½ï¿½Æ° ï¿½ß°ï¿½
       
       
       
       
       
-      // ·Î±×ÀÎ ¹öÆ° ¼¼ÆÃÇÏ±â
+      // ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
       loginButton.setBounds(260, 300, 400, 50);
       loginButton.setBorderPainted(false);
       loginButton.setContentAreaFilled(false);
@@ -208,7 +209,7 @@ public class TetrisOpening extends JFrame {
          public void mousePressed(MouseEvent e) {
 //        	 startButton.setVisible(false);
 //             quitButton.setVisible(false);
-             //background °¨Ãß±â
+             //background ï¿½ï¿½ï¿½ß±ï¿½
 //             isMainScreen = true;
              
         	 
@@ -219,17 +220,17 @@ public class TetrisOpening extends JFrame {
          }
       });
       
-   // ·Î±×ÀÎ ¹öÆ° Ãß°¡
+   // ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ß°ï¿½
       add(loginButton); 
       
       
       
       
      /**
-      *  how to play ¹öÆ° °ú ¼³Á¤¹öÆ° Ãß°¡
+      *  how to play ï¿½ï¿½Æ° ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ° ï¿½ß°ï¿½
       */
       
-      //how to play ¹öÆ°
+      //how to play ï¿½ï¿½Æ°
       howToPlayButton.setBounds(260, 350, 400, 50);
       howToPlayButton.setBorderPainted(false);
       howToPlayButton.setContentAreaFilled(false);
@@ -243,19 +244,19 @@ public class TetrisOpening extends JFrame {
 		}
 		
 		@Override
-		public void mousePressed(MouseEvent e) { // ¸¶¿ì½º ´­·¶À» ¶§
+		public void mousePressed(MouseEvent e) { // ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 			// TODO Auto-generated method stub
 			
 		}
 		
 		@Override
-		public void mouseExited(MouseEvent e) { // ÇØ´ç ¹öÆ°¿¡¼­ ¸¶¿ì½º¸¦ ¶ç¾úÀ» ‹š
+		public void mouseExited(MouseEvent e) { // ï¿½Ø´ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 			// TODO Auto-generated method stub
 			
 		}
 		
 		@Override
-		public void mouseEntered(MouseEvent e) { // ¸¶¿ì½º ¹öÆ°¿¡ °®´Ù ´ë¾úÀ» ‹š
+		public void mouseEntered(MouseEvent e) { // ï¿½ï¿½ï¿½ì½º ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 			howToPlayButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		}
 		
@@ -268,7 +269,7 @@ public class TetrisOpening extends JFrame {
       add(howToPlayButton);
       
       
-      // ¼³Á¤¹öÆ°
+      // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ°
       settingButton.setBounds(260, 400, 400, 50);
       settingButton.setBorderPainted(false);
       settingButton.setContentAreaFilled(false);
@@ -282,7 +283,7 @@ public class TetrisOpening extends JFrame {
 		}
 		
 		@Override
-		public void mousePressed(MouseEvent e) { // ¼³Á¤Å° ³ª
+		public void mousePressed(MouseEvent e) { // ï¿½ï¿½ï¿½ï¿½Å° ï¿½ï¿½
 			Button start = new Button();
 			start.FrameShow();			
 		}
@@ -319,22 +320,22 @@ public class TetrisOpening extends JFrame {
       
       
       
-      menuBar.setBounds(0, 0, 1280, 30); // ¸Þ´º¹Ù ¹Ù¿î´õ¸®
+      menuBar.setBounds(0, 0, 1280, 30); // ï¿½Þ´ï¿½ï¿½ï¿½ ï¿½Ù¿ï¿½ï¿½ï¿½ï¿½
       menuBar.addMouseListener(new MouseAdapter() {
          @Override
-         public void mousePressed(MouseEvent e) { //¸¶¿ì½º Å¬¸¯½Ã 
+         public void mousePressed(MouseEvent e) { //ï¿½ï¿½ï¿½ì½º Å¬ï¿½ï¿½ï¿½ï¿½ 
             mouseX = e.getX();
             mouseY = e.getY();
          }
          
       });
       
-      menuBar.addMouseMotionListener(new MouseMotionAdapter() { // Ã¢À» ¿Å±æ ¼ö ÀÖµµ·Ï ÇÔ
+      menuBar.addMouseMotionListener(new MouseMotionAdapter() { // Ã¢ï¿½ï¿½ ï¿½Å±ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½ï¿½
          @Override
          public void mouseDragged(MouseEvent e) {
             int x = e.getXOnScreen();
             int y = e.getYOnScreen();
-            setLocation(x - mouseX, y - mouseY); //À§Ä¡ ¹Ù²Ù±â , ¿Å±â±â
+            setLocation(x - mouseX, y - mouseY); //ï¿½ï¿½Ä¡ ï¿½Ù²Ù±ï¿½ , ï¿½Å±ï¿½ï¿½
          }
       });
       add(menuBar);

@@ -308,7 +308,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		this.add(checkEffect); // 효과음(millions)
 		this.add(checkBGM); /// 배경음악(millions)
 
-		icon1 = new ImageIcon(TetrisMain.class.getResource("../../../Images/GameBackground.jpg"));
+		icon1 = new ImageIcon(TetrisMain.class.getResource("../../../Images/gameBackground.jpg"));
 
 	}
 
