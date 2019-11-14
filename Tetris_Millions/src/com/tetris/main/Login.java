@@ -85,16 +85,6 @@ public class Login extends JFrame implements ActionListener{
 	          b2.addActionListener(this);
 	          
 	          
-
-
-//	          // Retrofit
-//	          Retrofit retrofit = new Retrofit.Builder()
-//	                  .baseUrl("http://" + IPClass.ServerIp + "/")
-//	                  .addConverterFactory(GsonConverterFactory.create())
-//	                  .build();
-//	          retrofitApi = retrofit.create(RetrofitApi.class);
-	          
-	          
 	          
 	          Retrofit retrofit = new Retrofit.Builder()
 	        		  .baseUrl("http://" + IPClass.ServerIp + "/")
