@@ -30,37 +30,35 @@ public class Login extends JFrame implements ActionListener{
 	 
 	    public Login()
 	    {
-	          setTitle("·Î±×ÀÎ");
+	          setTitle("ë¡œê·¸ì¸");
+  
 	          
-	          // ¾È³ç ·Î±×ÀÎÀÌ¾ß
-	         	         
-	          
-	          // FlowLayout»ç¿ë
+	          // FlowLayoutì‚¬ìš©
 	          setLayout( new FlowLayout() );
-	          // Border·Î ¿µ¿ª »ı¼º
+	          // Borderë¡œ ì˜ì—­ ìƒì„±
 	          EtchedBorder eborder =  new EtchedBorder();
-	          // ·¹ÀÌºí »ı¼º     
-	          lbl = new JLabel( "¾ÆÀÌµğ¿Í ÆĞ½º¿öµå¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä" );
-	          // ·¹ÀÌºí¿¡ ¿µ¿ª ¸¸µé±â
+	          // ë ˆì´ë¸” ìƒì„±     
+	          lbl = new JLabel( "ì•„ì´ë””ì™€ íŒ¨ìŠ¤ì›Œë“œë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”" );
+	          // ë ˆì´ë¸”ì— ì˜ì—­ ë§Œë“¤ê¸°
 	          lbl.setBorder(eborder);
-	          // ·¹ÀÌºí Ãß°¡
+	          // ë ˆì´ë¸” ì¶”ê°€
 	          add( lbl );
-	          // idÆĞ³Î°ú pw ÆĞ³Î»ı¼º
+	          // idíŒ¨ë„ê³¼ pw íŒ¨ë„ìƒì„±
 	          idPanel = new JPanel();
 	          paPanel = new JPanel();
-	          la3 = new JLabel("¾ÆÀÌµğ");
-	          la2 = new JLabel("ÆĞ½º¿öµå");
-	          // idÅØ½ºÆ®ÇÊµå¿Í pwÅØ½ºÆ® ÇÊµå ¼±¾ğ
+	          la3 = new JLabel("ì•„ì´ë””");
+	          la2 = new JLabel("íŒ¨ìŠ¤ì›Œë“œ");
+	          // idí…ìŠ¤íŠ¸í•„ë“œì™€ pwí…ìŠ¤íŠ¸ í•„ë“œ ì„ ì–¸
 	          id = new JTextField(10);
 	          passwd = new JPasswordField(10);
 	          idPanel.add(la3);
 	          idPanel.add(id);
 	          paPanel.add( la2 );
 	          paPanel.add( passwd );
-	          // ·Î±×ÀÎ°ú È¸¿ø°¡ÀÔÀ» À§ÇÑ ÆĞ³Î »ı¼º
+	          // ë¡œê·¸ì¸ê³¼ íšŒì›ê°€ì…ì„ ìœ„í•œ íŒ¨ë„ ìƒì„±
 	          loginPanel = new JPanel();
-	          b1 = new JButton("·Î±×ÀÎ");
-	          b2 = new JButton("È¸¿ø°¡ÀÔ");
+	          b1 = new JButton("ë¡œê·¸ì¸");
+	          b2 = new JButton("íšŒì›ê°€ì…");
 	          loginPanel.add( b1 );
 	          loginPanel.add( b2 );
 	          
@@ -68,7 +66,7 @@ public class Login extends JFrame implements ActionListener{
 	          add(idPanel);
 	          add(paPanel);
 	          add(loginPanel);
-	          // 3Çà 20¿­ ¿µ¿ªÀÇ ÅØ)½ºÆ®¿¡¾î¸®¾î 
+	          // 3í–‰ 20ì—´ ì˜ì—­ì˜ í…)ìŠ¤íŠ¸ì—ì–´ë¦¬ì–´ 
 	          setSize( 250, 200)  ;
 	          setVisible(true);
 	          
@@ -78,7 +76,7 @@ public class Login extends JFrame implements ActionListener{
 	          
 	          
 	          /**
-	           *  ÀÌº¥Æ® ¸®½º³Ê µî·Ï(·Î±×ÀÎ, È¸¿ø°¡ÀÔ ¹öÆ°)
+	           *  ì´ë²¤íŠ¸ ë¦¬ìŠ¤ë„ˆ ë“±ë¡(ë¡œê·¸ì¸, íšŒì›ê°€ì… ë²„íŠ¼)
 	           */
 	          
 	          b1.addActionListener(this);
@@ -101,32 +99,32 @@ public class Login extends JFrame implements ActionListener{
 	    
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(e.getSource() == b2)// È¸¿ø°¡ÀÔ ¹öÆ° ´©¸§
+			if(e.getSource() == b2)// íšŒì›ê°€ì… ë²„íŠ¼ ëˆ„ë¦„
 			{
 				new Register();
 			}
-			else { // ·Î±×ÀÎ ¹öÆ° ´©¸§
+			else { // ë¡œê·¸ì¸ ë²„íŠ¼ ëˆ„ë¦„
 				/**
-				 *  ¿¹¿ÜÃ³¸®
-				 *  ¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏÁö ¾Ê¾ÒÀ» °æ¿ì
+				 *  ì˜ˆì™¸ì²˜ë¦¬
+				 *  ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì§€ ì•Šì•˜ì„ ê²½ìš°
 				 *
 				 */
 				
-				// ¾ÆÀÌµğ°¡ ¾Æ¹«°Íµµ ÀÔ·ÂÇÏÁö ¾Ê¾ÒÀ» °æ¿ì
+				// ì•„ì´ë””ê°€ ì•„ë¬´ê²ƒë„ ì…ë ¥í•˜ì§€ ì•Šì•˜ì„ ê²½ìš°
 				if(String.valueOf(id.getText()).equalsIgnoreCase("")) {
-					JOptionPane.showMessageDialog(null,"¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+					JOptionPane.showMessageDialog(null,"ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 					return;
 					
-				// ºñ¹Ğ¹øÈ£ ÀÔ·ÂÇÏÁö ¾Ê¾ÒÀ» °æ¿ì
+				// ë¹„ë°€ë²ˆí˜¸ ì…ë ¥í•˜ì§€ ì•Šì•˜ì„ ê²½ìš°
 				}else if(String.valueOf(passwd.getPassword()).equalsIgnoreCase(""))
 				{
-					// ºñ¹Ğ¹øÈ£ ÀÔ·ÂÇÏ¶ó´Â ´ÙÀÌ¾ó·Î±× ¶ç¿ì°í
-					JOptionPane.showMessageDialog(null,"ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+					// ë¹„ë°€ë²ˆí˜¸ ì…ë ¥í•˜ë¼ëŠ” ë‹¤ì´ì–¼ë¡œê·¸ ë„ìš°ê³ 
+					JOptionPane.showMessageDialog(null,"ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 					return;
 					
-				// ¸¸¾à ¸ğµç °ªÀ» ÀÔ·ÂÇßÀ» °æ¿ì ¼­¹ö¿Í ¿¬µ¿À» ÅëÇØ ·Î±×ÀÎ °úÁ¤ ÁøÇà
+				// ë§Œì•½ ëª¨ë“  ê°’ì„ ì…ë ¥í–ˆì„ ê²½ìš° ì„œë²„ì™€ ì—°ë™ì„ í†µí•´ ë¡œê·¸ì¸ ê³¼ì • ì§„í–‰
 				}else {
-					// ¸¸µç RESTApi endpoint ·Î ÇØ´ç ¾ÆÀÌµğ¿Í ºñ¹Ğ¹øÈ£¸¦ º¸³¿
+					// ë§Œë“  RESTApi endpoint ë¡œ í•´ë‹¹ ì•„ì´ë””ì™€ ë¹„ë°€ë²ˆí˜¸ë¥¼ ë³´ëƒ„
 					LoginCheck(String.valueOf(id.getText()), String.valueOf(passwd.getPassword()));
 					
 				}
@@ -140,7 +138,7 @@ public class Login extends JFrame implements ActionListener{
 		
 		
 		/**
-		 *  Åë½Å Å×½ºÆ®
+		 *  í†µì‹  í…ŒìŠ¤íŠ¸
 		 */
 		public void LoginCheck(String id, String pwd) {
 			Call<Response> call = retrofitApi.login_call(id, pwd);
@@ -149,28 +147,28 @@ public class Login extends JFrame implements ActionListener{
 				@Override
 				public void onResponse(Call<Response> arg0, retrofit2.Response<Response> response) {
 					// TODO Auto-generated method stub
-					if(!response.isSuccessful()) { // Á¢¼Ó ½ÇÆĞ
-						System.out.println("Á¢¼Ó ½ÇÆĞ : " + response.body());
+					if(!response.isSuccessful()) { // ì ‘ì† ì‹¤íŒ¨
+						System.out.println("ì ‘ì† ì‹¤íŒ¨ : " + response.body());
 					}
 					
 					
-					System.out.println("Á¢¼Ó ¼º°ø : " + response.body());
-					System.out.println("Á¢¼Ó ¼º°ø : " + response.code());
+					System.out.println("ì ‘ì† ì„±ê³µ : " + response.body());
+					System.out.println("ì ‘ì† ì„±ê³µ : " + response.code());
 					Response response2 = response.body();
 					if(response2.getSuccess().equalsIgnoreCase("ok")) {
-						JOptionPane.showMessageDialog(null,"·Î±×ÀÎ¼º°ø");
+						JOptionPane.showMessageDialog(null,"ë¡œê·¸ì¸ì„±ê³µ");
 						new Tetris();
 						
 					}else {
 						 
-						JOptionPane.showMessageDialog(null,"Á¸ÀçÇÏÁö ¾Ê´Â È¸¿øÀÌ°Å³ª Àß¸øµÈ ¾ÆÀÌµğ¿Í ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¿´½À´Ï´Ù.");
+						JOptionPane.showMessageDialog(null,"ì¡´ì¬í•˜ì§€ ì•ŠëŠ” íšŒì›ì´ê±°ë‚˜ ì˜ëª»ëœ ì•„ì´ë””ì™€ ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì˜€ìŠµë‹ˆë‹¤.");
 							
 					}
 				}
 				
 				@Override
 				public void onFailure(Call<Response> arg0, Throwable response) {
-					System.out.println("Á¢¼Ó ½ÇÃ¤? : " + response.getMessage());
+					System.out.println("ì ‘ì† ì‹¤ì±„? : " + response.getMessage());
 				}
 			});
 		}
