@@ -297,7 +297,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		this.add(checkEffect); // 효과음(millions)
 		this.add(checkBGM); /// 배경음악(millions)
 
-		icon1 = new ImageIcon(TetrisMain.class.getResource("../../../Images/GameBackground.jpg"));
+		icon1 = new ImageIcon(TetrisMain.class.getResource("../../../Images/gameBackground.jpg"));
 
 	}
 
@@ -980,12 +980,12 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		// client.gameover();
 		this.isPlay = false;
 		if (GameMusic != null && GameMusic.isAlive()) {
-			GameMusic.close();
+			GameMusic.close(); // 게임 음악 종료한후
 		}
-		GameEndSound = new Music("GameOver.mp3", false);
-		GameEndSound.start();
-		ImageIcon popupicon = new ImageIcon(TetrisMain.class.getResource("../../../Images/GAMEOVER.PNG"));
-		JOptionPane.showMessageDialog(null, null, "The End", JOptionPane.ERROR_MESSAGE, popupicon);
+		GameEndSound = new Music("GameOver.mp3", false); // 게임 종료 사운드 세팅
+		GameEndSound.start();  // 게임 종료 사운드 시작
+		ImageIcon popupicon = new ImageIcon(TetrisMain.class.getResource("../../../Images/GAMEOVER.PNG")); // 게임 종료 이미지 띄우고
+		JOptionPane.showMessageDialog(null, null, "The End", JOptionPane.ERROR_MESSAGE, popupicon); // 종료 창 띄움
 	}
 
 	/**
