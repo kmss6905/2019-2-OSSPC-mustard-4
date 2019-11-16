@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+hello world!
+=======
 <h1>2019-2-OSSPC-mustard-4</h1>
 
 
@@ -58,3 +61,4 @@ IDE
 
 
 
+>>>>>>> upstream/master

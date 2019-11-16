@@ -72,14 +72,11 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 			BLOCK_SIZE * 5, BLOCK_SIZE * 12);
 	private MessageArea messageArea = new MessageArea(this, 0, PANEL_HEIGHT - MESSAGE_HEIGHT,
 			PANEL_WIDTH - BLOCK_SIZE * 7, MESSAGE_HEIGHT);
-	
-	
 	private JButton btnStart = new JButton("시작하기");
 	private JButton btnExit = new JButton("나가기");
 	private JButton btnSound1 = new JButton("BGM1");
 	private JButton btnSound2 = new JButton("BGM2");
 	private JButton btnSound3 = new JButton("BGM3");
-	private JButton btnSound4 = new JButton("BGM4");
 	private JCheckBox checkGhost = new JCheckBox("고스트모드", true);
 	private JCheckBox checkGrid = new JCheckBox("격자 표시", true);
 
@@ -88,11 +85,12 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 
 	private Integer[] lv = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
 	private JComboBox<Integer> comboSpeed = new JComboBox<Integer>(lv);
-
+	private int gameSpeed = 1; // hwaaad
+	private int initSpeed = 1; // hwaaad
 	private String ip;
 	private int port;
 	private String nickName;
-	private Thread th;
+	private Thread th, th2;
 	private ArrayList<Block> blockList;
 	private ArrayList<TetrisBlock> nextBlocks;
 	private TetrisBlock shap;
@@ -157,15 +155,10 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 
 		}); // 버튼 효과음 millions
 
-		
-		
 		btnExit.setBounds(PANEL_WIDTH - BLOCK_SIZE * 7, PANEL_HEIGHT - messageArea.getHeight() / 2, BLOCK_SIZE * 7,
 				messageArea.getHeight() / 2);
 		btnExit.setFocusable(false);
 		btnExit.addActionListener(this);
-		
-		
-		
 
 		btnExit.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
@@ -191,10 +184,6 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		btnSound3.setBounds(PANEL_WIDTH - BLOCK_SIZE * 7 + 35, 85, 95, 20);
 		btnSound3.setFocusable(false);
 		btnSound3.addActionListener(this);
-		
-		
-		
-		
 
 		// 버튼 효과음 millions
 
@@ -293,8 +282,8 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 	
 
 		comboSpeed.setBounds(PANEL_WIDTH - BLOCK_SIZE * 13, 5, 45, 20); // 속도 숫자 표시 왼쪽으로 이동.(millions)
-		
 		this.add(comboSpeed);
+
 		this.add(systemMsg);
 		this.add(messageArea);
 		this.add(btnStart);
@@ -308,7 +297,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		this.add(checkEffect); // 효과음(millions)
 		this.add(checkBGM); /// 배경음악(millions)
 
-		icon1 = new ImageIcon(TetrisMain.class.getResource("../../../Images/gameBackground.jpg"));
+		icon1 = new ImageIcon(TetrisMain.class.getResource("../../../Images/GameBackground.jpg"));
 
 	}
 
@@ -324,22 +313,22 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 	 */
 
 	public void gameStart(int speed) {
-		
 		comboSpeed.setSelectedItem(new Integer(speed));
+		gameSpeed = speed; // hwadong
+		initSpeed = gameSpeed; // hwadong
 		// 돌고 있을 스레드를 정지시킨다.
 		if (th != null) {
 			try {
 				isPlay = false;
 
 				th.join();
+				// th2.join(); // hwadong
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
-		
-		
 		//게임 초기 음악 1번으로 설정
-		SoundNumber = 1 ;
+		SoundNumber = 1;
 		//음악 선택 초기화
 		FixedSound = 0; 
 		
@@ -396,12 +385,11 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 			nextBlocks.add(getRandomTetrisBlock());
 		}
 
-		
-		
 		// 스레드 셋팅
 		isPlay = true;
 		th = new Thread(this);
 		th.start();
+		// th2.start();// hwadong
 	}
 
 	// TODO : paint
@@ -410,16 +398,18 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		g.clearRect(0, 0, this.getWidth(), this.getHeight() + 1);
 
 		/*
-		 * g.setColor(new Color(196, 240, 180)); g.fillRect(0, 0,
-		 * 2*(2*BOARD_X+maxX*BLOCK_SIZE)+50, BOARD_Y);
-		 * 
-		 * g.setColor(new Color(196, 240, 180)); g.fillRect(0, BOARD_Y,
-		 * 2*(2*BOARD_X+maxX*BLOCK_SIZE)+50, maxY*BLOCK_SIZE);
-		 */
+		*  g.setColor(new Color(196, 240, 180)); g.fillRect(0, 0,
+		*  2*(2*BOARD_X+maxX*BLOCK_SIZE)+50, BOARD_Y);
+		*  
+		*  g.setColor(new Color(196, 240, 180)); g.fillRect(0, BOARD_Y,
+		*  2*(2*BOARD_X+maxX*BLOCK_SIZE)+50, maxY*BLOCK_SIZE);
+		*/
+		
 
 		g.drawImage(icon1.getImage(), 0, 0, null);
 
 		g.setColor(Color.black);
+		
 		// IP 출력
 		g.drawString("ip : " + ip + "     port : " + port, 20, 20);
 
@@ -431,9 +421,10 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		g.setFont(new Font("굴림", Font.BOLD, 13));
 		g.drawString("속도", PANEL_WIDTH - BLOCK_SIZE * 15, 20);
 		g.setFont(font);
-
-		g.setColor(Color.white);
+		// grid hwadong
+		g.setColor(Color.lightGray);
 		g.fillRect(BOARD_X + BLOCK_SIZE * minX, BOARD_Y, maxX * BLOCK_SIZE + 1, maxY * BLOCK_SIZE + 1);
+		g.setColor(Color.white);
 		g.fillRect(BLOCK_SIZE * minX, BOARD_Y + BLOCK_SIZE, BLOCK_SIZE * 5, BLOCK_SIZE * 5);
 		g.fillRect(BOARD_X + BLOCK_SIZE * minX + (maxX + 1) * BLOCK_SIZE + 1, BOARD_Y + BLOCK_SIZE, BLOCK_SIZE * 5,
 				BLOCK_SIZE * 5);
@@ -448,7 +439,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 				BOARD_Y + BLOCK_SIZE + BLOCK_SIZE * 5 + 20);
 		g.setFont(font);
 
-		// Myscore 출력
+		// Myscore 출력 hwadong
 		g.setColor(Color.black);
 		g.setFont(new Font(font.getFontName(), font.getStyle(), 20));
 		g.drawString("MY SCORE", BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 120, BOARD_Y + 50);
@@ -472,8 +463,23 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 //		g.setFont(new Font(font.getFontName(), font.getStyle(), 20));
 //		g.drawString("ENEMY", BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 120, BOARD_Y + 110);
 		//g.drawString(" " + EnemyScore, BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 170, BOARD_Y + 140);
-
-		// 그리드 표시
+		
+		// Combo 출력 hwadong
+		g.setColor(Color.black);
+		g.setFont(new Font(font.getFontName(), font.getStyle(), 20));
+		g.drawString("L E V E L", BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 120, BOARD_Y + 110);
+		g.drawString(" " + gameSpeed, BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 170, BOARD_Y + 140);
+		
+		// 그리드 표시 hwadong
+		g.setColor(Color.BLACK);
+		g.drawLine(BOARD_X + BLOCK_SIZE * minX, BOARD_Y + BLOCK_SIZE * ( minY),
+				BOARD_X + (maxX + minX) * BLOCK_SIZE, BOARD_Y + BLOCK_SIZE * ( minY));
+		g.drawLine(BOARD_X + BLOCK_SIZE * minX, BOARD_Y + BLOCK_SIZE * (maxY + minY),
+				BOARD_X + (maxX + minX) * BLOCK_SIZE, BOARD_Y + BLOCK_SIZE * (maxY + minY));
+		g.drawLine(BOARD_X + BLOCK_SIZE * ( minX), BOARD_Y + BLOCK_SIZE * minY,
+				BOARD_X + BLOCK_SIZE * ( minX), BOARD_Y + BLOCK_SIZE * (minY + maxY));
+		g.drawLine(BOARD_X + BLOCK_SIZE * (maxX + minX), BOARD_Y + BLOCK_SIZE * minY,
+				BOARD_X + BLOCK_SIZE * (maxX + minX), BOARD_Y + BLOCK_SIZE * (minY + maxY));
 		if (usingGrid) {
 			g.setColor(Color.DARK_GRAY);
 			for (int i = 1; i < maxY; i++)
@@ -501,13 +507,25 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		g.drawLine(this.getWidth() / 2 + 10, BOARD_Y + 20, this.getWidth() / 2 + 10, BOARD_Y + maxY * BLOCK_SIZE);
 
 		// <<2p 화면>>
-		// 까만 배경 부분
-		g.setColor(Color.white);
+		// 까만 배경 부분 hwadong
+		g.setColor(Color.lightGray);
 		// 가운데
 		g.fillRect(3 * BOARD_X + maxX * BLOCK_SIZE + (2 * BLOCK_SIZE), BOARD_Y, maxX * BLOCK_SIZE + 1,
 				maxY * BLOCK_SIZE);
 
-		// 그리드 표시
+		// 그리드 표시 hwadong
+		g.setColor(Color.black);
+		g.drawLine(3 * BOARD_X + maxX * BLOCK_SIZE + (2 * BLOCK_SIZE), BOARD_Y + BLOCK_SIZE * 0,
+				3 * BOARD_X + 2 * maxX * BLOCK_SIZE + (2 * BLOCK_SIZE), BOARD_Y + BLOCK_SIZE * 0);
+		g.drawLine(3 * BOARD_X + maxX * BLOCK_SIZE + (2 * BLOCK_SIZE), BOARD_Y + BLOCK_SIZE * maxY,
+				3 * BOARD_X + 2 * maxX * BLOCK_SIZE + (2 * BLOCK_SIZE), BOARD_Y + BLOCK_SIZE * maxY);
+		g.drawLine(3 * BOARD_X + maxX * BLOCK_SIZE + BLOCK_SIZE * 0 + (2 * BLOCK_SIZE), BOARD_Y,
+				3 * BOARD_X + maxX * BLOCK_SIZE + BLOCK_SIZE * 0 + (2 * BLOCK_SIZE),
+				BOARD_Y + maxY * BLOCK_SIZE);
+		g.drawLine(3 * BOARD_X + maxX * BLOCK_SIZE + BLOCK_SIZE * maxX + (2 * BLOCK_SIZE), BOARD_Y,
+				3 * BOARD_X + maxX * BLOCK_SIZE + BLOCK_SIZE * maxX + (2 * BLOCK_SIZE),
+				BOARD_Y + maxY * BLOCK_SIZE);
+		g.setColor(Color.white);
 		if (usingGrid) {
 			g.setColor(Color.darkGray);
 			// 가운데 가로줄
@@ -606,16 +624,17 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 	}
 
 	/* 상대 블록 그리기 HK */
+
 	public void drawBlockShap(TetrisBlock shap, Graphics g) {
 		if (shap != null) {
-//			int x = 0, y = 0;
-//			x = shap.getPosX();
-//			y = shap.getPosY();
-//			shap.setPosX(x + 24);
-//			shap.setPosY(y);
-//			shap.drawBlock(g);
-//			shap.setPosX(x);
-//			shap.setPosY(y);
+			int x = 0, y = 0;
+			x = shap.getPosX();
+			y = shap.getPosY();
+			shap.setPosX(x + 24);
+			shap.setPosY(y);
+			shap.drawBlock(g);
+			shap.setPosX(x);
+			shap.setPosY(y);
 		}
 	}
 
@@ -658,7 +677,8 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 
 	@Override
 	public void run() {
-		int countMove = (21 - (int) comboSpeed.getSelectedItem()) * 5;
+		// int countMove = (21 - (int) comboSpeed.getSelectedItem()) * 5;
+		int countMove = (21 - (int) gameSpeed) * 5;
 		int countDown = 0;
 		int countUp = up;
 
@@ -682,7 +702,8 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 
 			countMove--;
 			if (countMove == 0) {
-				countMove = (21 - (int) comboSpeed.getSelectedItem()) * 5;
+				// countMove = (21 - (int) comboSpeed.getSelectedItem()) * 5;
+				countMove = (21 - (int) gameSpeed) * 5;
 				if (controller != null && !controller.moveDown())
 					countDown = down;
 				else
@@ -696,6 +717,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 					addBlockLine(1);
 				}
 			}
+			
 
 			this.repaint();
 		} // while()
@@ -720,6 +742,21 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 
 		// 고스트 다시 뿌리기
 		this.showGhost();
+		// hwadong
+		if (((int)myScore / 500 >= (gameSpeed - initSpeed + 1)) && gameSpeed < 20) {
+			++gameSpeed;
+			changeSpeed(gameSpeed);
+			addBlockLine(1);
+			this.repaint();
+		}
+		/*if (gameSpeed == 20 && isPlay) {
+			try {
+				addBlockLine(1);
+				Thread.sleep(3000);
+			}catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}*/
 	}
 
 	/**
@@ -808,8 +845,11 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		}
 		pk = 0;
 
-		if (isCombo)
+
+		if (isCombo) {
 			removeLineCombo++;
+			
+		}
 		else
 			removeLineCombo = 0;
 
@@ -881,13 +921,14 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 			// block의 해당 line을 지운다.
 			if (count == maxX) {
 				removeLineCount++;
-				//myScore += 100;
-				EnemyScore += 100;
+				// myScore += 100; //hwadong
+				EnemyScore += 50;
 				this.removeBlockLine(mainBlock.getY());
 				isCombo = true;
 				
 				pk += 1;
 			}
+
 		}
 		return isCombo;
 	}
@@ -928,6 +969,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		} // for(j)
 
 		this.dropBoard(lineNumber, 1);
+		this.myScore+= 50; // hwaaad
 	}
 
 	/**
@@ -1020,9 +1062,6 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		return blocks;
 	}
 
-	
-	
-	// check
 	/**
 	 * TODO : 콜백메소드 테트리스 블럭이 고정될 때 자동 호출 된다.
 	 * 
@@ -1052,8 +1091,6 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		}
 	}
 
-	
-	
 	/**
 	 * 블럭을 홀드시킨다.
 	 */
@@ -1076,8 +1113,6 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		isHold = true;
 	}
 
-	
-	
 	/**
 	 * 가장 밑에 줄에 블럭을 생성한다.
 	 * 
@@ -1101,8 +1136,6 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 					map[maxY - 1][col] = block;
 				}
 			}
-			
-			
 			// 만약 내려오는 블럭과 겹치면 블럭을 위로 올린다.
 			boolean up = false;
 			for (int j = 0; j < shap.getBlock().length; j++) {
@@ -1155,7 +1188,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		} else if (e.getKeyCode() == button.getUp_key()) {
 			if (usingEffect)
 				new Music("Rotation.mp3", false).start(); // millions
-			controller.nextRotationLeft(); // 시계
+			controller.nextRotationLeft();
 			controllerGhost.nextRotationLeft();
 		} else if (e.getKeyCode() == button.getSpace_key()) {
 			controller.moveQuickDown(shap.getPosY(), true);
@@ -1192,11 +1225,8 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 	public void mouseReleased(MouseEvent e) {
 	}
 
-	
-
 	// 게임 뮤직 키고 끄기 millions
 	public void actionPerformed(ActionEvent e) {
-			
 		if (e.getSource() == btnStart) {
 
 			if (client != null) {
