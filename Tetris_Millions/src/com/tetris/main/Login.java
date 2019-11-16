@@ -32,7 +32,7 @@ public class Login extends JFrame implements ActionListener{
 	    {
 	          setTitle("로그인");
 	          
-	          
+	          // 안녕 로그인이야
 	         	         
 	          
 	          // FlowLayout사용
