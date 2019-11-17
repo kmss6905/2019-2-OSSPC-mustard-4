@@ -10,6 +10,7 @@ public class TetrisController {
 	private Block[][] map;
 	
 	private int maxX, maxY;
+	private int minX, minY;
 	
 	/**
 	 * 테트리스 블럭을 조정하는 컨트롤러이다.
@@ -20,11 +21,13 @@ public class TetrisController {
 	 * @param maxX : 블럭이 움직일 최대 GridX좌표
 	 * @param maxY : 블럭이 움직일 최대 GridY좌표
 	 */
-	public TetrisController(TetrisBlock block, int maxX, int maxY, Block[][] map) {
+	public TetrisController(TetrisBlock block, int maxX, int maxY, Block[][] map,int minX,int minY) {
 		this.block = block;
 		
 		this.maxX = maxX;
 		this.maxY = maxY;
+		this.minX = minX;
+		this.minY = minY;
 		
 		this.map = map;
 		this.rotation_index = block.getRotationIndex();
@@ -168,12 +171,28 @@ public class TetrisController {
 		
 		//체크, 범위를 벗어났다면 원상복귀
 		if(!checkIndex(maxX,maxY)) {
-			rotation_index--;
-			if(rotation_index == TetrisBlock.ROTATION_0-1) rotation_index = TetrisBlock.ROTATION_270;
-			block.rotation(rotation_index);
+			
+			if (block.getType() == TetrisBlock.TYPE_LINE) {
+				if (block.getPosX() == maxX)
+					block.moveLeft(2);
+				else if (block.getPosX() ==maxX-1)
+				    block.moveLeft(1);
+				else if  (block.getPosX()<=minX)
+				    block.moveRight(1);
+				else 
+					rotation_index--;
+			        if(rotation_index == TetrisBlock.ROTATION_0-1) rotation_index = TetrisBlock.ROTATION_270;
+			            block.rotation(rotation_index);
+			}
+			else if (block.getPosX()==maxX)
+				block.moveLeft(1);
+			else 
+				rotation_index--;
+			    if(rotation_index == TetrisBlock.ROTATION_0-1) rotation_index = TetrisBlock.ROTATION_270;
+			        block.rotation(rotation_index);
 		}
 	}
-	
+        	
 	
 	
 	
@@ -181,7 +200,7 @@ public class TetrisController {
 	 * 테트리스 블럭을 회전시킨다. (반시계방향)
 	 * 만약 회전시 범위를 벗어나면, 회전을 하지 않는다.
 	 */
-	public void nextRotationRight(){
+	public void nextRotationRight() {
 		//회전
 		rotation_index--;
 		if(rotation_index == TetrisBlock.ROTATION_0-1) rotation_index = TetrisBlock.ROTATION_270;
@@ -189,9 +208,26 @@ public class TetrisController {
 		
 		//체크, 범위를 벗어났다면 원상복귀
 		if(!checkIndex(maxX,maxY)) {
-			rotation_index++;
-			if(rotation_index == TetrisBlock.ROTATION_270+1) rotation_index = TetrisBlock.ROTATION_0;
-			block.rotation(rotation_index);
-		}
-	}
-}
+			
+			if (block.getType() == TetrisBlock.TYPE_LINE) {
+				if (block.getPosX() == minX)
+					block.moveRight(2);
+				else if (block.getPosX() ==maxX+1)
+				    block.moveRight(1);
+				else if  (block.getPosX()<=minX)
+				    block.moveRight(1);
+				else 
+					rotation_index++;
+			        if(rotation_index == TetrisBlock.ROTATION_270+1) rotation_index = TetrisBlock.ROTATION_0;
+			            block.rotation(rotation_index);
+			}
+			else if (block.getPosX()==minX)
+				block.moveRight(1);
+			else 
+				rotation_index++;
+			    if(rotation_index == TetrisBlock.ROTATION_270+1) rotation_index = TetrisBlock.ROTATION_0;
+			        block.rotation(rotation_index);
+        }
+     }
+ }
+
