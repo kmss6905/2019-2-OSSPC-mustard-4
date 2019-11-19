@@ -17,7 +17,9 @@ public class Button {
    Container contentPane;
    String keyString = null;
    private static int z_key = 90, left_key = 37, right_key=39, down_key=40, up_key=38, space_key=32, shift_key=16, keyCode, pk=0;
-   // »ý¼ºÀÚ
+   // ï¿½ï¿½ï¿½ï¿½
+
+
    public Button() {}
    
    public int getZ_key(){
@@ -35,6 +37,9 @@ public class Button {
    }
    public int getUp_key() {
       return up_key;
+   }
+   public int getZ_key() {
+	   return z_key;
    }
    public int getSpace_key() {
       return space_key;
@@ -58,6 +63,9 @@ public class Button {
    public void setUp_key(int up_key) {
       this.up_key = up_key;
    }
+   public void setZ_key(int z_key) {
+	   this.z_key= z_key;
+   }
    public void setSpace_key(int space_key) {
       this.space_key = space_key;
    }
@@ -67,10 +75,10 @@ public class Button {
    public void FrameShow() {
     
     // Frame
-    frame = new JFrame("Å° ¼³Á¤");
+    frame = new JFrame("Å° ï¿½ï¿½ï¿½ï¿½");
      frame.setPreferredSize(new Dimension(350, 250));
      frame.setLocation(350, 250);
-     frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); // ¹®Á¦°¡ »ý±â ½Ã DISPOSE_ON_CLOSE·Î ÇØº¼ °Í.
+     frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ DISPOSE_ON_CLOSEï¿½ï¿½ ï¿½Øºï¿½ ï¿½ï¿½.
      frame.pack();
      frame.setVisible(true);
      
@@ -78,7 +86,7 @@ public class Button {
      centerPanel = new JPanel();
      contentPane = frame.getContentPane();
 
-     // ÆÐ³Î¿¡ ¹öÆ° 6°³ Ãß°¡
+     // ï¿½Ð³Î¿ï¿½ ï¿½ï¿½Æ° 6ï¿½ï¿½ ï¿½ß°ï¿½
      centerPanel.setLayout(new GridLayout(3, 2));
      for (int i = 0; i < 6; i++) {
       btn[i] = new JButton();
@@ -88,7 +96,7 @@ public class Button {
       btn[i].addActionListener(bingoBtnClickListener);
      }
      
-     // ¹öÆ° text  
+     // ï¿½ï¿½Æ° text  
      btn[0].setText(" Left ");
      btn[1].setText(" Right ");
      btn[2].setText(" Down ");
@@ -131,14 +139,14 @@ public class Button {
 
  }
 
- // 6°³ Áß ÇÏ³ª¸¦ Å¬¸¯ÇßÀ» ¶§ ¸®½º³Ê
+ // 6ï¿½ï¿½ ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
  class BtnArrayListener implements ActionListener {
     
     public void actionPerformed(ActionEvent event) {
        eventBtn = (JButton) event.getSource();   
       
-       keyFrame = new JFrame("¹öÆ°º¯°æ");
+       keyFrame = new JFrame("ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ï¿½");
        JPanel panel1 = new JPanel();
        JPanel panel2 = new JPanel();
    
@@ -146,63 +154,63 @@ public class Button {
        contentPane1.setLayout(new BorderLayout());
     
    
-       // ÇÁ·¹ÀÓ »ý¼º
+       // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
        keyFrame.setPreferredSize(new Dimension(400, 150));
        keyFrame.setLocation(700, 250);
        keyFrame.pack();
       
-       // ÅØ½ºÆ®ÇÊµå »ý¼º
+       // ï¿½Ø½ï¿½Æ®ï¿½Êµï¿½ ï¿½ï¿½ï¿½ï¿½
        keysetNumTxt = new JTextField("", 5);
        TextClickListener textClickListener = new TextClickListener();
        keysetNumTxt.addMouseListener(textClickListener);
    
        KeyPressed keyPressed = new KeyPressed();
-       keysetNumTxt.addKeyListener(keyPressed); // ÅØ½ºÆ®ÇÊµå¿¡ Å°°¡ ÀÔ·ÂµÇ¾úÀ» ¶§ ¸®½º³Ê È£Ãâ
+       keysetNumTxt.addKeyListener(keyPressed); // ï¿½Ø½ï¿½Æ®ï¿½Êµå¿¡ Å°ï¿½ï¿½ ï¿½Ô·ÂµÇ¾ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½
       
        if ("b0".equals( eventBtn.getName() ) ) {
           keyFrame.setVisible(true);
-          // ·¹ÀÌºí »ý¼º
-          keyLabel = new JLabel("Left Å°¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+          // ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½
+          keyLabel = new JLabel("Left Å°ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.");
           pk=0;
           
        } else if("b1".equals( eventBtn.getName() ) ) {
           keyFrame.setVisible(true);
-          // ·¹ÀÌºí »ý¼º
-          keyLabel = new JLabel("Right Å°¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+          // ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½
+          keyLabel = new JLabel("Right Å°ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.");
           pk=1;
          
        } else if ("b2".equals( eventBtn.getName() ) ) {
           keyFrame.setVisible(true);
-          // ·¹ÀÌºí »ý¼º
-          keyLabel = new JLabel("Down Å°¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+          // ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½
+          keyLabel = new JLabel("Down Å°ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.");
           pk=2;
          
        } else if ("b3".equals( eventBtn.getName() ) ) {
           keyFrame.setVisible(true);
-          // ·¹ÀÌºí »ý¼º
-          keyLabel = new JLabel("Rotation Å°¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+          // ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½
+          keyLabel = new JLabel("Rotation Å°ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.");
           pk=3;
          
        } else if ("b4".equals( eventBtn.getName() ) ) {
           keyFrame.setVisible(true);
-          // ·¹ÀÌºí »ý¼º
-          keyLabel = new JLabel("Drop Å°¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+          // ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½
+          keyLabel = new JLabel("Drop Å°ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.");
           pk=4;
          
        } else if ("b5".equals( eventBtn.getName() ) ) {
           keyFrame.setVisible(true);
-          // ·¹ÀÌºí »ý¼º
-          keyLabel = new JLabel("Hold Å°¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+          // ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½
+          keyLabel = new JLabel("Hold Å°ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.");
           pk=5;
        }
       
-      // ÆÐ³Î Ãß°¡
+      // ï¿½Ð³ï¿½ ï¿½ß°ï¿½
       
       
       panel1.add(keyLabel);
       panel2.add(keysetNumTxt);
    
-      // ÇÁ·¹ÀÓ ·¹ÀÌ¾Æ¿ô
+      // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾Æ¿ï¿½
       keyFrame.getContentPane().add(BorderLayout.NORTH, panel1);
       keyFrame.getContentPane().add(BorderLayout.CENTER, panel2);
      }
@@ -214,14 +222,14 @@ public class Button {
     }
  }
  
- // ¹öÆ°¿¡¼­ ºÒ·¯¿Â ÇÁ·¹ÀÓ¿¡ Å°ÀÔ·Â½Ã ¸®½º³Ê
+ // ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó¿ï¿½ Å°ï¿½Ô·Â½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
  class KeyPressed implements KeyListener{
     public void keyPressed(KeyEvent e) {
        BtnArrayListener btnArray = new  BtnArrayListener();
 
          
-//       keyString = ""; // ÀÔ·Â ÈÄ ÅØ½ºÆ® Àü¿ªº¯¼ö ÃÊ±âÈ­
+//       keyString = ""; // ï¿½Ô·ï¿½ ï¿½ï¿½ ï¿½Ø½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
        System.out.println("=======");
        keyString = e.getKeyText(e.getKeyCode());
        keyCode = e.getKeyCode();
@@ -241,7 +249,7 @@ public class Button {
              } else {
                 setLeft_key(keyCode);
                 btn[0].setText("Left : "+ keyString);
-                keyFrame.setVisible(false); // ÀÔ·ÂÃ¢ Á¾·á
+                keyFrame.setVisible(false); // ï¿½Ô·ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½
                 }
              
           } else if (pk == 1){
@@ -258,7 +266,7 @@ public class Button {
              } else {
                 setRight_key(keyCode);
                 btn[1].setText("Right : "+ keyString);
-                keyFrame.setVisible(false); // ÀÔ·ÂÃ¢ Á¾·á   
+                keyFrame.setVisible(false); // ï¿½Ô·ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½   
                 }
              
           } else if (pk == 2){
@@ -275,7 +283,7 @@ public class Button {
              } else {
                 setDown_key(keyCode);
                 btn[2].setText("Down : "+ keyString);
-                keyFrame.setVisible(false); // ÀÔ·ÂÃ¢ Á¾·á   
+                keyFrame.setVisible(false); // ï¿½Ô·ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½   
                 }
              
           } else if (pk == 3){
@@ -292,7 +300,7 @@ public class Button {
              } else {
                 setUp_key(keyCode);
                 btn[3].setText("Rotation : "+ keyString);
-                keyFrame.setVisible(false); // ÀÔ·ÂÃ¢ Á¾·á   
+                keyFrame.setVisible(false); // ï¿½Ô·ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½   
                 }
              
           } else if (pk == 4){
@@ -309,7 +317,7 @@ public class Button {
              } else {
                 setSpace_key(keyCode);
                 btn[4].setText("Drop : "+ keyString);
-                keyFrame.setVisible(false); // ÀÔ·ÂÃ¢ Á¾·á   
+                keyFrame.setVisible(false); // ï¿½Ô·ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½   
                 }
              
           } else if (pk == 5){
@@ -326,7 +334,7 @@ public class Button {
              } else {
                 setShift_key(keyCode);
                 btn[5].setText("Hold : "+ keyString);
-                keyFrame.setVisible(false); // ÀÔ·ÂÃ¢ Á¾·á   
+                keyFrame.setVisible(false); // ï¿½Ô·ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½   
                 }
           } else {keyFrame.setVisible(false);
           }
@@ -334,22 +342,22 @@ public class Button {
     }
     
    public void warning_Left() {
-      JOptionPane.showMessageDialog(null, "left_key ¿Í Áßº¹µË´Ï´Ù. ´Ù¸¥ Å°¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.", "Áßº¹µÈ key", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(null, "left_key ï¿½ï¿½ ï¿½ßºï¿½ï¿½Ë´Ï´ï¿½. ï¿½Ù¸ï¿½ Å°ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.", "ï¿½ßºï¿½ï¿½ï¿½ key", JOptionPane.ERROR_MESSAGE);
    }
    public void warning_Right() {
-      JOptionPane.showMessageDialog(null, "right_key ¿Í Áßº¹µË´Ï´Ù. ´Ù¸¥ Å°¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.", "Áßº¹µÈ key", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(null, "right_key ï¿½ï¿½ ï¿½ßºï¿½ï¿½Ë´Ï´ï¿½. ï¿½Ù¸ï¿½ Å°ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.", "ï¿½ßºï¿½ï¿½ï¿½ key", JOptionPane.ERROR_MESSAGE);
    }
    public void warning_Up() {
-      JOptionPane.showMessageDialog(null, "up_key ¿Í Áßº¹µË´Ï´Ù. ´Ù¸¥ Å°¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.", "Áßº¹µÈ key", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(null, "up_key ï¿½ï¿½ ï¿½ßºï¿½ï¿½Ë´Ï´ï¿½. ï¿½Ù¸ï¿½ Å°ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.", "ï¿½ßºï¿½ï¿½ï¿½ key", JOptionPane.ERROR_MESSAGE);
    }
    public void warning_Down() {
-      JOptionPane.showMessageDialog(null, "down_key ¿Í Áßº¹µË´Ï´Ù. ´Ù¸¥ Å°¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.", "Áßº¹µÈ key", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(null, "down_key ï¿½ï¿½ ï¿½ßºï¿½ï¿½Ë´Ï´ï¿½. ï¿½Ù¸ï¿½ Å°ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.", "ï¿½ßºï¿½ï¿½ï¿½ key", JOptionPane.ERROR_MESSAGE);
    }
    public void warning_Drop() {
-      JOptionPane.showMessageDialog(null, "drop_key ¿Í Áßº¹µË´Ï´Ù. ´Ù¸¥ Å°¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.", "Áßº¹µÈ key", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(null, "drop_key ï¿½ï¿½ ï¿½ßºï¿½ï¿½Ë´Ï´ï¿½. ï¿½Ù¸ï¿½ Å°ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.", "ï¿½ßºï¿½ï¿½ï¿½ key", JOptionPane.ERROR_MESSAGE);
    }
    public void warning_Hold() {
-      JOptionPane.showMessageDialog(null, "hold_key ¿Í Áßº¹µË´Ï´Ù. ´Ù¸¥ Å°¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.", "Áßº¹µÈ key", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(null, "hold_key ï¿½ï¿½ ï¿½ßºï¿½ï¿½Ë´Ï´ï¿½. ï¿½Ù¸ï¿½ Å°ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.", "ï¿½ßºï¿½ï¿½ï¿½ key", JOptionPane.ERROR_MESSAGE);
    }
 
    @Override
