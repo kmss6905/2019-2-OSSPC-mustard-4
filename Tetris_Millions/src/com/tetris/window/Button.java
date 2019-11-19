@@ -16,9 +16,13 @@ public class Button {
    JButton[] btn = new JButton[6];
    Container contentPane;
    String keyString = null;
-   private static int left_key = 37, right_key=39, down_key=40, up_key=38, space_key=32, shift_key=16, keyCode, pk=0;
+   private static int z_key = 90, left_key = 37, right_key=39, down_key=40, up_key=38, space_key=32, shift_key=16, keyCode, pk=0;
    // »ý¼ºÀÚ
    public Button() {}
+   
+   public int getZ_key(){
+       return z_key;
+   }
  
    public int getLeft_key() {
       return left_key;
@@ -37,6 +41,10 @@ public class Button {
    }
    public int getShift_key() {
       return shift_key;
+   }
+   
+   public void setZ_key(int z_key){
+       this.z_key = z_key;
    }
    public void setLeft_key(int left_key) {
       this.left_key = left_key;
