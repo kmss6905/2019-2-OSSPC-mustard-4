@@ -13,6 +13,7 @@ import java.awt.event.MouseAdapter; // millions
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -99,12 +100,16 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 	private Block[][] map;
 	private TetrisController controller;
 	private TetrisController controllerGhost;
-
+	public static String timerBuffer; // hwaaad
+	public static int oldTime; // hwaaad
+	public static int sec; // hwaaad
+	public int new_sec;
+	public boolean line_add_complete = false; // hwaaad
 	private TetrisBlock shap2;// HK
 	private ArrayList<Block> blockList2;// HK
 	private int EnemyScore;
 	private int myScore = 0;
-
+	
 	private boolean isPlay = false;
 	private boolean isHold = false;
 	private boolean usingGhost = true;
@@ -164,6 +169,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 			public void mousePressed(MouseEvent e) {
 				Music MousePressedSound = new Music("Exit.mp3", false);
 				MousePressedSound.start();
+				comboSpeed.setEnabled(true); // 나가기 눌릴때 다시 활성화 hwaaad
 			}
 
 			public void mouseEntered(MouseEvent e) {
@@ -390,6 +396,8 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		th = new Thread(this);
 		th.start();
 		// th2.start();// hwadong
+		stopwatch(1); // hwadong
+		comboSpeed.setEnabled(false); // 시작버튼 눌리면 enable(false)
 	}
 
 	// TODO : paint
@@ -464,11 +472,17 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 //		g.drawString("ENEMY", BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 120, BOARD_Y + 110);
 		//g.drawString(" " + EnemyScore, BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 170, BOARD_Y + 140);
 		
-		// Combo 출력 hwadong
+		// LEVEL 출력 hwadong
 		g.setColor(Color.black);
 		g.setFont(new Font(font.getFontName(), font.getStyle(), 20));
 		g.drawString("L E V E L", BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 120, BOARD_Y + 110);
 		g.drawString(" " + gameSpeed, BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 170, BOARD_Y + 140);
+		
+		secToMMSS(  ((int) System.currentTimeMillis() / 1000) - oldTime  );
+		g.setColor(Color.black);
+		g.setFont(new Font(font.getFontName(), font.getStyle(), 20));
+		g.drawString("T I M E", BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 120, BOARD_Y + 210);
+		g.drawString(" " + timerBuffer, BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 170, BOARD_Y + 240);
 		
 		// 그리드 표시 hwadong
 		g.setColor(Color.BLACK);
@@ -717,8 +731,16 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 					addBlockLine(1);
 				}
 			}
+			// 시간별 난이도 조절
 			
-
+			sec = secToMMSS(  ((int) System.currentTimeMillis() / 1000) - oldTime  );
+			new_sec = (int)System.currentTimeMillis();
+			if (gameSpeed >= 15 && sec % 15 == 14 && line_add_complete == false) {
+				addBlockLine(1);
+				line_add_complete = true;
+			}
+			if(sec % 15 == 0) 
+				line_add_complete = false;
 			this.repaint();
 		} // while()
 	}// run()
@@ -746,7 +768,6 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		if (((int)myScore / 500 >= (gameSpeed - initSpeed + 1)) && gameSpeed < 20) {
 			++gameSpeed;
 			changeSpeed(gameSpeed);
-			addBlockLine(1);
 			this.repaint();
 		}
 		/*if (gameSpeed == 20 && isPlay) {
@@ -986,6 +1007,8 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		GameEndSound.start();
 		ImageIcon popupicon = new ImageIcon(TetrisMain.class.getResource("../../../Images/GAMEOVER.PNG"));
 		JOptionPane.showMessageDialog(null, null, "The End", JOptionPane.ERROR_MESSAGE, popupicon);
+		stopwatch(0);
+		comboSpeed.setEnabled(true); // combobox 잠금 hwadong
 	}
 
 	/**
@@ -1357,5 +1380,26 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		messageArea.clearMessage();
 		systemMsg.clearMessage();
 	}
+	public static void stopwatch(int onOff) {
+		if(onOff == 1) // 타이머 켜기
+			oldTime = (int) System.currentTimeMillis() / 1000;
+		if(onOff == 0) // 타이머 끄기
+			secToMMSS(  ((int) System.currentTimeMillis() / 1000) - oldTime  );
+	}
+	public static int secToMMSS(int secs) {
+	    int hour, min, sec;
+
+	    sec  = secs % 60;
+	    min  = secs / 60 % 60;
+	    // hour = secs / 3600;
+
+	    timerBuffer = String.format("%02d:%02d", min, sec);
+	    return sec;
+	}
+	/*public static void pause() {
+	    try {
+	      System.in.read();
+	    } catch (IOException e) { }
+	}*/
 
 }
