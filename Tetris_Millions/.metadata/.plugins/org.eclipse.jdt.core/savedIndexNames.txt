@@ -1,0 +1,23 @@
+INDEX VERSION 1.131+/home/q202-23/Desktop/hwaaad/2019-2-OSSPC-mustard-4/Tetris_Millions/.metadata/.plugins/org.eclipse.jdt.core
+1824119111.index
+1762035962.index
+440479583.index
+439266037.index
+1027394547.index
+1019396081.index
+1558933292.index
+560977019.index
+3853911827.index
+3770016266.index
+2056939467.index
+3991891620.index
+939481272.index
+2591021101.index
+173471993.index
+3863896841.index
+836338436.index
+2596863187.index
+2502213690.index
+688547751.index
+1675390958.index
+3897622435.index
