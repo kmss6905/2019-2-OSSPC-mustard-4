@@ -50,16 +50,16 @@ public class Line extends TetrisBlock implements Serializable {
 			colBlock[3].setFixGridXY(0,2);
 			break;
 		case ROTATION_180 : 
-			colBlock[3].setFixGridXY(-2,0);
-			colBlock[2].setFixGridXY(-1,0);
+			colBlock[1].setFixGridXY(-1,0);
 			colBlock[0].setFixGridXY(0,0);
-			colBlock[1].setFixGridXY(1,0);
+			colBlock[2].setFixGridXY(1,0);
+			colBlock[3].setFixGridXY(2,0);
 			break;
 		case ROTATION_270 : 
-			colBlock[1].setFixGridXY(0,-2);
-			colBlock[0].setFixGridXY(0,-1);
-			colBlock[2].setFixGridXY(0,0);
-			colBlock[3].setFixGridXY(0,1);
+			colBlock[1].setFixGridXY(0,-1);
+			colBlock[0].setFixGridXY(0,0);
+			colBlock[2].setFixGridXY(0,1);
+			colBlock[3].setFixGridXY(0,2);
 			break;
 		}//switch
 	}//rotation
