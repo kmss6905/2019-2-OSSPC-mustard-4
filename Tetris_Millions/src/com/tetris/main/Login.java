@@ -72,7 +72,7 @@ public class Login extends JFrame implements ActionListener{
 	          setVisible(true);
 	          
 	          setLocationRelativeTo(null);
-	          setDefaultCloseOperation(EXIT_ON_CLOSE);
+	          setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); // min
 	          
 	          
 	          

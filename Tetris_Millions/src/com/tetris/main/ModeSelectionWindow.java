@@ -72,7 +72,7 @@ public class ModeSelectionWindow extends JFrame implements ActionListener{
 		setResizable(false);
 		setVisible(true);
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		description.setBounds(100,40,100,40);
 		add(description); // 게임설명
 		
