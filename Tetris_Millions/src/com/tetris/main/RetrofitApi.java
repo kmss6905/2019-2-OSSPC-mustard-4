@@ -56,7 +56,7 @@ public interface RetrofitApi {
 	@FormUrlEncoded
 	@POST("/php-react/add-point.php")
 	Call<GameResultRepo> add_point(
-		@Field("id") String user_id,
+		@Field("user_id") String user_id,
 		@Field("mode") int mode_,
 		@Field("score") int score_
 	);
