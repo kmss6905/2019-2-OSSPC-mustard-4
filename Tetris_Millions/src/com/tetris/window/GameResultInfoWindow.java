@@ -2,11 +2,16 @@ package com.tetris.window;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import com.tetris.main.TetrisMain;
 
@@ -19,14 +24,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
  *
  */
 public class GameResultInfoWindow{
-	
-	
 	private static final long serialVersionUID = 1L;
 	JFrame frame = new JFrame();
+	
 	private int gameScore;
 	private int gameMode;
 	private String info;
 	private int ranking;
+
 
 	
 	
@@ -46,16 +51,16 @@ public class GameResultInfoWindow{
 	
 	
 	/**
-	 *  JFrame ì„¸íŒ…
+	 *  JFrame ¼¼ÆÃ
 	 */
 	public void WindowSetting() {
 	
 		if(gameMode == 1) {
-			frame.setTitle("ì¼ë°˜ëª¨ë“œ ê²°ê³¼");
+			frame.setTitle("ÀÏ¹İ¸ğµå °á°ú");
 		}else if(gameMode == 2) {
-			frame.setTitle("íƒ€ì„ëª¨ë“œ ê²°ê³¼");
+			frame.setTitle("Å¸ÀÓ¸ğµå °á°ú");
 		}else if(gameMode == 3) {
-			frame.setTitle("ë§µëª¨ë“œ ê²°ê³¼");
+			frame.setTitle("¸Ê¸ğµå °á°ú");
 		}
 		frame.setSize(300, 400);
 		frame.setLayout(null); 
@@ -64,28 +69,32 @@ public class GameResultInfoWindow{
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
+	
+		
+		
+	
 	}
 	
 	/**
-	* ì»´í¬ë„ŒíŠ¸ ë§Œë“¤ê¸°
+	* ÄÄÆ÷³ÍÆ® ¸¸µé±â
 	*/
 	public void Component() {
 		
 		
 		if(this.info.equalsIgnoreCase("new")) {
 		
-			JLabel record = new JLabel("ê²Œì„ê²°ê³¼"); 
+			JLabel record = new JLabel("°ÔÀÓ°á°ú"); 
 			record.setBounds(100,40,100,40);
 			record.setFont(new Font("Monospaced", Font.BOLD, 13));
 			record.setForeground(Color.BLACK);
 			
 			
-			JLabel userId = new JLabel(TetrisMain.userId + " ë‹˜");
+			JLabel userId = new JLabel(TetrisMain.userId + " ´Ô");
 			userId.setBounds(100, 100, 100, 40);
 			userId.setForeground(Color.black);
 			
 			
-			JLabel score = new JLabel("â˜…â˜…â˜…â˜…ìƒˆë¡œìš´ ì ìˆ˜â˜…â˜…â˜…â˜…");
+			JLabel score = new JLabel("¡Ú¡Ú¡Ú¡Ú»õ·Î¿î Á¡¼ö¡Ú¡Ú¡Ú¡Ú");
 			score.setBounds(100, 120, 200, 40);
 			score.setFont(new Font("Monospaced", Font.BOLD, 11));
 			score.setForeground(Color.BLACK);
@@ -97,7 +106,7 @@ public class GameResultInfoWindow{
 			score_.setFont(new Font("Monospaced", Font.BOLD, 20));
 			
 			
-			JLabel raking = new JLabel("â˜…â˜…â˜…â˜…ìƒˆë¡œìš´ ë­í‚¹â˜…â˜…â˜…â˜… ");
+			JLabel raking = new JLabel("¡Ú¡Ú¡Ú¡Ú»õ·Î¿î ·©Å·¡Ú¡Ú¡Ú¡Ú ");
 			raking.setBounds(100,180,200,40);
 			raking.setFont(new Font("Monospaced", Font.BOLD, 11));
 			raking.setForeground(Color.BLACK);
@@ -120,16 +129,16 @@ public class GameResultInfoWindow{
 			
 			
 		}else if (this.info.equalsIgnoreCase("high")) {
-			JLabel record = new JLabel("ê²Œì„ê²°ê³¼"); 
+			JLabel record = new JLabel("°ÔÀÓ°á°ú"); 
 			record.setBounds(100,40,100,40);
 			record.setFont(new Font("Monospaced", Font.BOLD, 13));
 			record.setForeground(Color.BLACK);
-			JLabel userId = new JLabel(TetrisMain.userId + " ë‹˜");
+			JLabel userId = new JLabel(TetrisMain.userId + " ´Ô");
 			userId.setBounds(100, 100, 100, 40);
 			userId.setForeground(Color.black);
 			
 			
-			JLabel score = new JLabel("â˜†â˜†â˜†â˜†ì ìˆ˜ ê°±ì‹ â˜†â˜†â˜†â˜†");
+			JLabel score = new JLabel("¡Ù¡Ù¡Ù¡ÙÁ¡¼ö °»½Å¡Ù¡Ù¡Ù¡Ù");
 			score.setBounds(100, 120, 200, 40);
 			score.setFont(new Font("Monospaced", Font.BOLD, 11));
 			score.setForeground(Color.BLACK);
@@ -141,7 +150,7 @@ public class GameResultInfoWindow{
 			score_.setFont(new Font("Monospaced", Font.BOLD, 20));
 			
 			
-			JLabel raking = new JLabel("ë­í‚¹");
+			JLabel raking = new JLabel("·©Å·");
 			raking.setBounds(100,180,140,40);
 			raking.setFont(new Font("Monospaced", Font.BOLD, 11));
 			raking.setForeground(Color.BLACK);
@@ -161,18 +170,18 @@ public class GameResultInfoWindow{
 			frame.add(raking_);
 			
 		}else if(this.info.equalsIgnoreCase("low")) {
-			JLabel record = new JLabel("ê²Œì„ê²°ê³¼"); 
+			JLabel record = new JLabel("°ÔÀÓ°á°ú"); 
 			record.setBounds(100,40,100,40);
 			record.setFont(new Font("Monospaced", Font.BOLD, 13));
 			record.setForeground(Color.BLACK);
 			
 			
-			JLabel userId = new JLabel(TetrisMain.userId + " ë‹˜");
+			JLabel userId = new JLabel(TetrisMain.userId + " ´Ô");
 			userId.setBounds(100, 100, 100, 40);
 			userId.setForeground(Color.black);
 			
 			
-			JLabel score = new JLabel("ì ìˆ˜");
+			JLabel score = new JLabel("Á¡¼ö");
 			score.setBounds(100, 120, 200, 40);
 			score.setFont(new Font("Monospaced", Font.BOLD, 11));
 			score.setForeground(Color.BLACK);
@@ -184,7 +193,7 @@ public class GameResultInfoWindow{
 			score_.setFont(new Font("Monospaced", Font.BOLD, 20));
 			
 			
-			JLabel raking = new JLabel("ë­í‚¹ ");
+			JLabel raking = new JLabel("·©Å· ");
 			raking.setBounds(100,180,200,40);
 			raking.setFont(new Font("Monospaced", Font.BOLD, 11));
 			raking.setForeground(Color.BLACK);
@@ -207,5 +216,4 @@ public class GameResultInfoWindow{
 	}
 	
 
-		
 }
