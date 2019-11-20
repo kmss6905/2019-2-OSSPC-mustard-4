@@ -10,6 +10,7 @@ import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 
 import com.tetris.main.Response;
+import com.tetris.window.GameResultInfoWindow;
 import com.tetris.window.Tetris;
 
 import retrofit2.*;
@@ -71,7 +72,7 @@ public class Login extends JFrame implements ActionListener{
 	          setVisible(true);
 	          
 	          setLocationRelativeTo(null);
-	          setDefaultCloseOperation(EXIT_ON_CLOSE);
+	          setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); // min
 	          
 	          
 	          
@@ -155,10 +156,11 @@ public class Login extends JFrame implements ActionListener{
 					System.out.println("접속 성공 : " + response.body());
 					System.out.println("접속 성공 : " + response.code());
 					Response response2 = response.body();
-					if(response2.getSuccess().equalsIgnoreCase("ok")) {
+					if(response2.getSuccess().equalsIgnoreCase("ok")) { 
 						JOptionPane.showMessageDialog(null,"로그인성공");
-						new Tetris();
-						
+						TetrisMain.userId = id;// 로그인 성공시 전역변수로 아이디를 저장함
+						dispose();// 로그인 창 끔
+						new ModeSelectionWindow(); // 모드 선택창 띄움
 					}else {
 						 
 						JOptionPane.showMessageDialog(null,"존재하지 않는 회원이거나 잘못된 아이디와 비밀번호를 입력하였습니다.");
@@ -175,4 +177,3 @@ public class Login extends JFrame implements ActionListener{
 	    
 	    
 }
-

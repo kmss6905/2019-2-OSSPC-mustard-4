@@ -35,14 +35,15 @@ public class ModeSelectionWindow extends JFrame implements ActionListener{
 	// 버튼 클릭시 발동
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == mapModeButton) {
-			
+		if(e.getSource() == nomalModeButton) { // 일반모드 선택
+			TetrisMain.GameMode = 1;
 		}else if(e.getSource() == timeModeButton) {
-			
-		}else if(e.getSource() == nomalModeButton) {
-            //테트리스 게임화면 호출
-            new Tetris();
+			TetrisMain.GameMode = 2;
+		}else if(e.getSource() == mapModeButton) {
+			TetrisMain.GameMode = 3;
 		}
+		dispose();
+		new Tetris();
 	}
 	
 	public void CreateButton() {
@@ -71,7 +72,7 @@ public class ModeSelectionWindow extends JFrame implements ActionListener{
 		setResizable(false);
 		setVisible(true);
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		description.setBounds(100,40,100,40);
 		add(description); // 게임설명
 		

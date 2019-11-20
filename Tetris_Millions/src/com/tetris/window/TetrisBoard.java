@@ -1,3 +1,4 @@
+
 package com.tetris.window;
 
 import java.awt.Color;
@@ -1406,5 +1407,6 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 	      System.in.read();
 	    } catch (IOException e) { }
 	}*/
+
 
 }
