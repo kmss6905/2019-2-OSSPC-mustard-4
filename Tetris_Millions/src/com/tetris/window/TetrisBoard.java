@@ -31,8 +31,10 @@ import javax.swing.JLabel;
 import com.tetris.classes.Block;
 import com.tetris.classes.TetrisBlock;
 import com.tetris.controller.TetrisController;
-
+import com.tetris.main.ApiClient;
+import com.tetris.main.GameResultRepo;
 import com.tetris.main.Music; // millions
+import com.tetris.main.RetrofitApi;
 import com.tetris.main.TetrisMain;
 import com.tetris.network.DataShip;
 import com.tetris.network.GameClient;
@@ -45,6 +47,15 @@ import com.tetris.shape.Nemo;
 import com.tetris.shape.RightTwoUp;
 import com.tetris.shape.RightUp;
 import com.tetris.window.Button;
+
+
+/**
+ * 
+ * @author minshik 네트워크 라이브러리 추가
+ *
+ */
+import retrofit2.*;
+
 
 public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseListener, ActionListener {
 	private static final long serialVersionUID = 1L;
@@ -132,8 +143,12 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 	public int FixedSound= 0;
 	
 	private int pk=0;
+	RetrofitApi retrofitApi; // 네트워크 객체 추가 minshik
 
 	public TetrisBoard(Tetris tetris, GameClient client) {
+		retrofitApi = ApiClient.getClient_aws().create(RetrofitApi.class); // minshik
+		
+		
 		this.tetris = tetris;
 		this.client = client;
 		this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));// 기본크기
@@ -1005,10 +1020,12 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		}
 		GameEndSound = new Music("GameOver.mp3", false);
 		GameEndSound.start();
-		ImageIcon popupicon = new ImageIcon(TetrisMain.class.getResource("../../../Images/GAMEOVER.PNG"));
-		JOptionPane.showMessageDialog(null, null, "The End", JOptionPane.ERROR_MESSAGE, popupicon);
+//		ImageIcon popupicon = new ImageIcon(TetrisMain.class.getResource("../../../Images/GAMEOVER.PNG"));
+//		JOptionPane.showMessageDialog(null, null, "The End", JOptionPane.ERROR_MESSAGE, popupicon);
 		stopwatch(0);
 		comboSpeed.setEnabled(true); // combobox 잠금 hwadong
+		
+		getResult(TetrisMain.userId, TetrisMain.GameMode, myScore);
 	}
 
 	/**
@@ -1406,5 +1423,34 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 	      System.in.read();
 	    } catch (IOException e) { }
 	}*/
+	
+	
+	public void getResult(String userId, int GameMode, int Score) {
+		Call<GameResultRepo> call = retrofitApi.add_point(userId, GameMode, Score);
+		call.enqueue(new Callback<GameResultRepo>() {
+			
+			@Override
+			public void onResponse(Call<GameResultRepo> arg0, Response<GameResultRepo> response) {
+				if(!response.isSuccessful()) {  
+					System.out.println(getClass().getName() + " / " + response.message());
+					return;
+				}
+				
+				
+				// 서버로 부터 온 데이터들이 gameResultRepo에 담김
+				GameResultRepo gameResultRepo = response.body(); //repo 가져오는 건 모드 스트링임
+				System.out.println(gameResultRepo.toString());
+							
+				// 게임 결과창을 띄어줌
+				new GameResultInfoWindow(myScore, Integer.valueOf(gameResultRepo.getMode()), Integer.valueOf(gameResultRepo.getRanking()), gameResultRepo.getInfo());
+				
+			}
+			
+			@Override
+			public void onFailure(Call<GameResultRepo> arg0, Throwable e) {
+				System.out.println(getClass().getName()+ " / " + e.getMessage());
+			}
+		});
+	}
 
 }
