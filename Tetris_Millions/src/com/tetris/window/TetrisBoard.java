@@ -318,7 +318,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		this.add(checkEffect); // 효과음(millions)
 		this.add(checkBGM); /// 배경음악(millions)
 
-		icon1 = new ImageIcon(TetrisMain.class.getResource("../../../Images/GameBackground.jpg"));
+		icon1 = new ImageIcon(TetrisMain.class.getResource("../../../Images/gameBackground3.jpg.png"));
 
 	}
 
@@ -466,7 +466,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		g.setColor(Color.black);
 		g.setFont(new Font(font.getFontName(), font.getStyle(), 20));
 		g.drawString("MY SCORE", BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 120, BOARD_Y + 50);
-		g.drawString(" " + myScore, BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 170, BOARD_Y + 80);
+		g.drawString(" " + myScore, BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 160, BOARD_Y + 80);
 		
 		// now bgm 출력
 		g.setColor(Color.black);
@@ -487,17 +487,18 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 //		g.drawString("ENEMY", BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 120, BOARD_Y + 110);
 		//g.drawString(" " + EnemyScore, BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 170, BOARD_Y + 140);
 		
+		//사소한 자리이동 jehun
 		// LEVEL 출력 hwadong
 		g.setColor(Color.black);
 		g.setFont(new Font(font.getFontName(), font.getStyle(), 20));
-		g.drawString("L E V E L", BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 120, BOARD_Y + 110);
-		g.drawString(" " + gameSpeed, BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 170, BOARD_Y + 140);
+		g.drawString("L E V E L", BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 130, BOARD_Y + 110);
+		g.drawString(" " + gameSpeed, BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 160, BOARD_Y + 140);
 		
 		secToMMSS(  ((int) System.currentTimeMillis() / 1000) - oldTime  );
 		g.setColor(Color.black);
 		g.setFont(new Font(font.getFontName(), font.getStyle(), 20));
-		g.drawString("T I M E", BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 120, BOARD_Y + 210);
-		g.drawString(" " + timerBuffer, BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 170, BOARD_Y + 240);
+		g.drawString("T I M E", BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 140, BOARD_Y + 170);
+		g.drawString(" " + timerBuffer, BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 140, BOARD_Y + 200);
 		
 		// 그리드 표시 hwadong
 		g.setColor(Color.BLACK);
@@ -509,6 +510,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 				BOARD_X + BLOCK_SIZE * ( minX), BOARD_Y + BLOCK_SIZE * (minY + maxY));
 		g.drawLine(BOARD_X + BLOCK_SIZE * (maxX + minX), BOARD_Y + BLOCK_SIZE * minY,
 				BOARD_X + BLOCK_SIZE * (maxX + minX), BOARD_Y + BLOCK_SIZE * (minY + maxY));
+		
 		if (usingGrid) {
 			g.setColor(Color.DARK_GRAY);
 			for (int i = 1; i < maxY; i++)
@@ -532,41 +534,42 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 						BOARD_X + BLOCK_SIZE * minX + BLOCK_SIZE + BLOCK_SIZE * (10 + i) + 1,
 						BOARD_Y + BLOCK_SIZE * 6 - 1);
 		}
+        
+		//중간 선 제거 jehun
+		//g.drawLine(this.getWidth() / 2 + 10, BOARD_Y + 20, this.getWidth() / 2 + 10, BOARD_Y + maxY * BLOCK_SIZE);
 
-		g.drawLine(this.getWidth() / 2 + 10, BOARD_Y + 20, this.getWidth() / 2 + 10, BOARD_Y + maxY * BLOCK_SIZE);
-
-		// <<2p 화면>>
+		// <<2p 화면>>  제거  jehun
 		// 까만 배경 부분 hwadong
-		g.setColor(Color.lightGray);
+		//g.setColor(Color.lightGray);
 		// 가운데
-		g.fillRect(3 * BOARD_X + maxX * BLOCK_SIZE + (2 * BLOCK_SIZE), BOARD_Y, maxX * BLOCK_SIZE + 1,
-				maxY * BLOCK_SIZE);
+	//	g.fillRect(3 * BOARD_X + maxX * BLOCK_SIZE + (2 * BLOCK_SIZE), BOARD_Y, maxX * BLOCK_SIZE + 1,
+		//		maxY * BLOCK_SIZE);
 
 		// 그리드 표시 hwadong
-		g.setColor(Color.black);
-		g.drawLine(3 * BOARD_X + maxX * BLOCK_SIZE + (2 * BLOCK_SIZE), BOARD_Y + BLOCK_SIZE * 0,
-				3 * BOARD_X + 2 * maxX * BLOCK_SIZE + (2 * BLOCK_SIZE), BOARD_Y + BLOCK_SIZE * 0);
-		g.drawLine(3 * BOARD_X + maxX * BLOCK_SIZE + (2 * BLOCK_SIZE), BOARD_Y + BLOCK_SIZE * maxY,
-				3 * BOARD_X + 2 * maxX * BLOCK_SIZE + (2 * BLOCK_SIZE), BOARD_Y + BLOCK_SIZE * maxY);
-		g.drawLine(3 * BOARD_X + maxX * BLOCK_SIZE + BLOCK_SIZE * 0 + (2 * BLOCK_SIZE), BOARD_Y,
-				3 * BOARD_X + maxX * BLOCK_SIZE + BLOCK_SIZE * 0 + (2 * BLOCK_SIZE),
-				BOARD_Y + maxY * BLOCK_SIZE);
-		g.drawLine(3 * BOARD_X + maxX * BLOCK_SIZE + BLOCK_SIZE * maxX + (2 * BLOCK_SIZE), BOARD_Y,
-				3 * BOARD_X + maxX * BLOCK_SIZE + BLOCK_SIZE * maxX + (2 * BLOCK_SIZE),
-				BOARD_Y + maxY * BLOCK_SIZE);
-		g.setColor(Color.white);
-		if (usingGrid) {
-			g.setColor(Color.darkGray);
+	//	g.setColor(Color.black);
+		//g.drawLine(3 * BOARD_X + maxX * BLOCK_SIZE + (2 * BLOCK_SIZE), BOARD_Y + BLOCK_SIZE * 0,
+		//		3 * BOARD_X + 2 * maxX * BLOCK_SIZE + (2 * BLOCK_SIZE), BOARD_Y + BLOCK_SIZE * 0);
+		//g.drawLine(3 * BOARD_X + maxX * BLOCK_SIZE + (2 * BLOCK_SIZE), BOARD_Y + BLOCK_SIZE * maxY,
+		//		3 * BOARD_X + 2 * maxX * BLOCK_SIZE + (2 * BLOCK_SIZE), BOARD_Y + BLOCK_SIZE * maxY);
+		//g.drawLine(3 * BOARD_X + maxX * BLOCK_SIZE + BLOCK_SIZE * 0 + (2 * BLOCK_SIZE), BOARD_Y,
+		//		3 * BOARD_X + maxX * BLOCK_SIZE + BLOCK_SIZE * 0 + (2 * BLOCK_SIZE),
+		//		BOARD_Y + maxY * BLOCK_SIZE);
+		//g.drawLine(3 * BOARD_X + maxX * BLOCK_SIZE + BLOCK_SIZE * maxX + (2 * BLOCK_SIZE), BOARD_Y,
+		//		3 * BOARD_X + maxX * BLOCK_SIZE + BLOCK_SIZE * maxX + (2 * BLOCK_SIZE),
+		//		BOARD_Y + maxY * BLOCK_SIZE);
+		//g.setColor(Color.white);
+	//	if (usingGrid) {
+		//	g.setColor(Color.darkGray);
 			// 가운데 가로줄
-			for (int i = 1; i < maxY; i++)
-				g.drawLine(3 * BOARD_X + maxX * BLOCK_SIZE + (2 * BLOCK_SIZE), BOARD_Y + BLOCK_SIZE * i,
-						3 * BOARD_X + 2 * maxX * BLOCK_SIZE + (2 * BLOCK_SIZE), BOARD_Y + BLOCK_SIZE * i);
+		//	for (int i = 1; i < maxY; i++)
+		//		g.drawLine(3 * BOARD_X + maxX * BLOCK_SIZE + (2 * BLOCK_SIZE), BOARD_Y + BLOCK_SIZE * i,
+		//				3 * BOARD_X + 2 * maxX * BLOCK_SIZE + (2 * BLOCK_SIZE), BOARD_Y + BLOCK_SIZE * i);
 			// 가운데 세로줄
-			for (int i = 1; i < maxX; i++)
-				g.drawLine(3 * BOARD_X + maxX * BLOCK_SIZE + BLOCK_SIZE * i + (2 * BLOCK_SIZE), BOARD_Y,
-						3 * BOARD_X + maxX * BLOCK_SIZE + BLOCK_SIZE * i + (2 * BLOCK_SIZE),
-						BOARD_Y + maxY * BLOCK_SIZE);
-		}
+		//	for (int i = 1; i < maxX; i++)
+		//		g.drawLine(3 * BOARD_X + maxX * BLOCK_SIZE + BLOCK_SIZE * i + (2 * BLOCK_SIZE), BOARD_Y,
+		//				3 * BOARD_X + maxX * BLOCK_SIZE + BLOCK_SIZE * i + (2 * BLOCK_SIZE),
+		//				BOARD_Y + maxY * BLOCK_SIZE);
+		//}
 
 		int x = 0, y = 0, newY = 0;
 		if (hold != null) {
@@ -870,14 +873,18 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		// check
 		isCombo = checkMap();
 		
-		if(pk == 2) {
+		
+		// 1줄파괴시 50점 추가 jehun
+		if(pk == 1) {
+			myScore += 50;
+		} else if (pk == 2) {
 			myScore += 100;
-		} else if (pk == 3) {
+		} else if(pk == 3) {
 			myScore += 200;
 		} else if(pk == 4) {
-			myScore += 400;
+			myScore += 300;
 		} else if(pk >= 5) {
-			myScore += 500;
+			myScore +=400;
 		}
 		pk = 0;
 
@@ -1005,7 +1012,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		} // for(j)
 
 		this.dropBoard(lineNumber, 1);
-		this.myScore+= 50; // hwaaad
+		//this.myScore+= 50; // hwaaad
 	}
 
 	/**
