@@ -15,10 +15,10 @@ public class CenterUp extends TetrisBlock implements Serializable {
 
 	@Override
 	/**
-	 * ROTATION_0 : 1  
+	 * ROTATION_0 :   
 	 * 		2 0 3
 	 * 		  1 
-	 * ROTATION_90 : 2  
+	 * ROTATION_90 :   
 	 * 		  2
 	 *      1 0
 	 *        3

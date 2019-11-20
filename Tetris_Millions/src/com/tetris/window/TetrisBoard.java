@@ -303,7 +303,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		this.add(checkEffect); // 효과음(millions)
 		this.add(checkBGM); /// 배경음악(millions)
 
-		icon1 = new ImageIcon(TetrisMain.class.getResource("../../../Images/GameBackground.jpg"));
+		icon1 = new ImageIcon(TetrisMain.class.getResource("../../../Images/gameBackground.jpg"));
 
 	}
 
@@ -384,8 +384,8 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		ghost = getBlockClone(shap, true);
 		hold = null;
 		isHold = false;
-		controller = new TetrisController(shap, maxX - 1, maxY - 1, map, minX, minY);
-		controllerGhost = new TetrisController(ghost, maxX - 1, maxY - 1, map, minX, minY);
+		controller = new TetrisController(shap, maxX - 1, maxY - 1, map, minX-1, minY-1);
+		controllerGhost = new TetrisController(ghost, maxX - 1, maxY - 1, map, minX-1, minY-1);
 		this.showGhost();
 		for (int i = 0; i < 5; i++) {
 			nextBlocks.add(getRandomTetrisBlock());
@@ -1212,13 +1212,13 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 			if (usingEffect)
 				new Music("Rotation.mp3", false).start(); // millions
 			controller.nextRotationLeft(); //  clockwise
-			controllerGhost.nextRotationLeft();
-		}else if (e.getKeyCode() == button.getZ_key()) {
+			controllerGhost.nextRotationLeft()
+		}  else if (e.getKeyCode() == button.getZ_key()) {
 			if (usingEffect)
-				new Music("Rotation.mp3", false).start();
+				new Music("Rotation.mp3", false).start(); // millions
 			controller.nextRotationRight();
 			controllerGhost.nextRotationRight();
-		}else if (e.getKeyCode() == button.getSpace_key()) {
+		} else if (e.getKeyCode() == button.getSpace_key()) {
 			controller.moveQuickDown(shap.getPosY(), true);
 			this.fixingTetrisBlock();
 
