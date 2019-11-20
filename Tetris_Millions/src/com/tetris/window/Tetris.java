@@ -26,7 +26,7 @@ public class Tetris extends JFrame implements ActionListener{
 	private GameClient client;
 	
 	
-	private TetrisBoard board = new TetrisBoard(this,client);
+	private TetrisBoard board = new TetrisBoard(this,client); // 게임 보드 시작
 	
 	private JMenuItem itemServerStart = new JMenuItem("서버로 접속하기");
 	private JMenuItem itemClientStart = new JMenuItem("클라이언트로 접속하기");

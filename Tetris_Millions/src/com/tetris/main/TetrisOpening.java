@@ -31,12 +31,12 @@ public class TetrisOpening extends JFrame {
    
    
    /** 
-    *  �߰��� ��ư��
-    *  �α��� , ����, �Ͽ����÷���
+    *  占쌩곤옙占쏙옙 占쏙옙튼占쏙옙
+    *  占싸깍옙占쏙옙 , 占쏙옙占쏙옙, 占싹울옙占쏙옙占시뤄옙占쏙옙
     */
-   private ImageIcon loginButtonImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/loginBtnBasic.png")); // �α��ι�ư
-   private ImageIcon settingButtonImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/settingBtnBasic.png")); // ������ư
-   private ImageIcon howToPlayButtonImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/howToPlayBtnBasic.png")); // howtoPlay ��ư
+   private ImageIcon loginButtonImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/loginBtnBasic.png")); // 占싸깍옙占싸뱄옙튼
+   private ImageIcon settingButtonImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/settingBtnBasic.png")); // 占쏙옙占쏙옙占쏙옙튼
+   private ImageIcon howToPlayButtonImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/howToPlayBtnBasic.png")); // howtoPlay 占쏙옙튼
    
    
    
@@ -52,9 +52,7 @@ public class TetrisOpening extends JFrame {
    private JButton startButton = new JButton(startButtonBasicImage);
    private JButton quitButton = new JButton(quitButtonBasicImage);
    
-   /**
-    *  �α��ι�ư, ������ư, howToPlay��ư
-    */
+ 
    private JButton loginButton = new JButton(loginButtonImage);
    private JButton settingButton = new JButton(settingButtonImage);
    private JButton howToPlayButton = new JButton(howToPlayButtonImage);
@@ -78,7 +76,7 @@ public class TetrisOpening extends JFrame {
       
       
       
-      // �����ϱ� ��ư�� ���� ����
+      // 占쏙옙占쏙옙占싹깍옙 占쏙옙튼占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙
       exitButton.setBounds(880, 0, 30, 30);
       exitButton.setBounds(890, 0, 30, 30);
       exitButton.setBorderPainted(false);
@@ -98,44 +96,44 @@ public class TetrisOpening extends JFrame {
             exitButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
          }
          @Override
-         public void mousePressed(MouseEvent e) { // ���콺 ���ý�
+         public void mousePressed(MouseEvent e) { // 占쏙옙占쎌스 占쏙옙占시쏙옙
         	 
             try { 
-               Thread.sleep(1000); // 1�ʰ� ���߰�
+               Thread.sleep(1000); // 1占십곤옙 占쏙옙占쌩곤옙
             } catch(InterruptedException ex) {
                ex.printStackTrace();
             } 
-            System.exit(0); // �ý��� ������
+            System.exit(0); // 占시쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
          }
       });
       
-      add(exitButton); // ���� ��ư �߰�
+      add(exitButton); // 占쏙옙占쏙옙 占쏙옙튼 占쌩곤옙
       
       
-      // �����ϱ� ��ư ����
-      startButton.setBounds(260, 200, 400, 50); //��ư ����(ũ��)
-      startButton.setBorderPainted(false); // �� �״�� ��ư setBorder
+      // 占쏙옙占쏙옙占싹깍옙 占쏙옙튼 占쏙옙占쏙옙
+      startButton.setBounds(260, 200, 400, 50); //占쏙옙튼 占쏙옙占쏙옙(크占쏙옙)
+      startButton.setBorderPainted(false); // 占쏙옙 占쌓댐옙占� 占쏙옙튼 setBorder
       startButton.setContentAreaFilled(false);
-      startButton.setFocusPainted(false); // ��Ŀ���� ����Ʈ ��
-      startButton.addMouseListener(new MouseAdapter() { // ���콺 ������
+      startButton.setFocusPainted(false); // 占쏙옙커占쏙옙占쏙옙 占쏙옙占쏙옙트 占쏙옙
+      startButton.addMouseListener(new MouseAdapter() { // 占쏙옙占쎌스 占쏙옙占쏙옙占쏙옙
          @Override
-         public void mouseEntered(MouseEvent e) { // ����� ��
-        	// �ܼ��� ���콺 ������ ����� �� �̹����� �ٲپ� ������ �ϴ� ���� ��
+         public void mouseEntered(MouseEvent e) { // 占쏙옙占쏙옙占� 占쏙옙
+        	// 占쌤쇽옙占쏙옙 占쏙옙占쎌스 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占� 占쏙옙 占싱뱄옙占쏙옙占쏙옙 占쌕꾸억옙 占쏙옙占쏙옙占쏙옙 占싹댐옙 占쏙옙占쏙옙 占쏙옙
             startButton.setIcon(startButtonEnteredImage);
             startButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
             
          }
          @Override
-         public void mouseExited(MouseEvent e) { // ������ ��
+         public void mouseExited(MouseEvent e) { // 占쏙옙占쏙옙占쏙옙 占쏙옙
             startButton.setIcon(startButtonBasicImage);
             startButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
          }
          
          @Override
-         public void mousePressed(MouseEvent e) { //���콺 ���߾��� ��
+         public void mousePressed(MouseEvent e) { //占쏙옙占쎌스 占쏙옙占쌩억옙占쏙옙 占쏙옙
             startButton.setVisible(false);
             quitButton.setVisible(false);
-            //background ���߱�
+            //background 占쏙옙占쌩깍옙
             isMainScreen = true;
             
             
@@ -143,7 +141,7 @@ public class TetrisOpening extends JFrame {
             
 
             
-            new ModeSelectionWindow(); // ���� ��� ����
+            new ModeSelectionWindow(); // 占쏙옙占쏙옙 占쏙옙占� 占쏙옙占쏙옙
             
          }
       });
@@ -182,13 +180,13 @@ public class TetrisOpening extends JFrame {
          }
       });
       
-      add(quitButton); // �����ư �߰�
+      add(quitButton); // 占쏙옙占쏙옙占싣� 占쌩곤옙
       
       
       
       
       
-      // �α��� ��ư �����ϱ�
+      // 로그인 버튼
       loginButton.setBounds(260, 300, 400, 50);
       loginButton.setBorderPainted(false);
       loginButton.setContentAreaFilled(false);
@@ -209,28 +207,23 @@ public class TetrisOpening extends JFrame {
          public void mousePressed(MouseEvent e) {
 //        	 startButton.setVisible(false);
 //             quitButton.setVisible(false);
-             //background ���߱�
+             //background 占쏙옙占쌩깍옙
 //             isMainScreen = true;
              
-        	 
-//        	 TetrisLogin frame = new TetrisLogin();
+        	
         	 Login login_frame = new Login();
         	 login_frame.setVisible(true);
             
          }
       });
       
-   // �α��� ��ư �߰�
+  
       add(loginButton); 
       
       
       
       
-     /**
-      *  how to play ��ư �� ������ư �߰�
-      */
-      
-      //how to play ��ư
+    
       howToPlayButton.setBounds(260, 350, 400, 50);
       howToPlayButton.setBorderPainted(false);
       howToPlayButton.setContentAreaFilled(false);
@@ -244,19 +237,19 @@ public class TetrisOpening extends JFrame {
 		}
 		
 		@Override
-		public void mousePressed(MouseEvent e) { // ���콺 ������ ��
+		public void mousePressed(MouseEvent e) { 
 			// TODO Auto-generated method stub
 			
 		}
 		
 		@Override
-		public void mouseExited(MouseEvent e) { // �ش� ��ư���� ���콺�� ����� ��
+		public void mouseExited(MouseEvent e) { 
 			// TODO Auto-generated method stub
 			
 		}
 		
 		@Override
-		public void mouseEntered(MouseEvent e) { // ���콺 ��ư�� ���� ����� ��
+		public void mouseEntered(MouseEvent e) { 
 			howToPlayButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		}
 		
@@ -269,7 +262,7 @@ public class TetrisOpening extends JFrame {
       add(howToPlayButton);
       
       
-      // ������ư
+      // 占쏙옙占쏙옙占쏙옙튼
       settingButton.setBounds(260, 400, 400, 50);
       settingButton.setBorderPainted(false);
       settingButton.setContentAreaFilled(false);
@@ -283,7 +276,7 @@ public class TetrisOpening extends JFrame {
 		}
 		
 		@Override
-		public void mousePressed(MouseEvent e) { // ����Ű ��
+		public void mousePressed(MouseEvent e) { // 占쏙옙占쏙옙키 占쏙옙
 			Button start = new Button();
 			start.FrameShow();			
 		}
@@ -320,22 +313,22 @@ public class TetrisOpening extends JFrame {
       
       
       
-      menuBar.setBounds(0, 0, 1280, 30); // �޴��� �ٿ����
+      menuBar.setBounds(0, 0, 1280, 30); // 占쌨댐옙占쏙옙 占쌕울옙占쏙옙占�
       menuBar.addMouseListener(new MouseAdapter() {
          @Override
-         public void mousePressed(MouseEvent e) { //���콺 Ŭ���� 
+         public void mousePressed(MouseEvent e) { //占쏙옙占쎌스 클占쏙옙占쏙옙 
             mouseX = e.getX();
             mouseY = e.getY();
          }
          
       });
       
-      menuBar.addMouseMotionListener(new MouseMotionAdapter() { // â�� �ű� �� �ֵ��� ��
+      menuBar.addMouseMotionListener(new MouseMotionAdapter() { // 창占쏙옙 占신깍옙 占쏙옙 占쌍듸옙占쏙옙 占쏙옙
          @Override
          public void mouseDragged(MouseEvent e) {
             int x = e.getXOnScreen();
             int y = e.getYOnScreen();
-            setLocation(x - mouseX, y - mouseY); //��ġ �ٲٱ� , �ű��
+            setLocation(x - mouseX, y - mouseY); //占쏙옙치 占쌕꾸깍옙 , 占신깍옙占�
          }
       });
       add(menuBar);
