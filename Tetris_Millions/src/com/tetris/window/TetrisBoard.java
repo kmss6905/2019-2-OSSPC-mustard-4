@@ -782,11 +782,22 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 
 		// 고스트 다시 뿌리기
 		this.showGhost();
+		
+		System.out.println("내 점수 myScore : " + myScore  +" / (int)myScore / 500 >= (gameSpeed - initSpeed + 1)) 의 값  : " + String.valueOf(((int)myScore / 500 >= (gameSpeed - initSpeed + 1))));
+		System.out.println("Myscore/500 : " + myScore / 500);
+		System.out.println("gameSpeed : " + gameSpeed);
+		System.out.println("initSpeed : " + initSpeed);
+		System.out.println("(gameSpeed - initSpeed + 1) : " + (gameSpeed - initSpeed + 1));
+	
+		
+		
 		// hwadong
 		if (((int)myScore / 500 >= (gameSpeed - initSpeed + 1)) && gameSpeed < 20) {
 			++gameSpeed;
 			changeSpeed(gameSpeed);
+			System.out.println("myScore : " + myScore + "/ gameSpeed : " + gameSpeed);
 			this.repaint();
+			
 		}
 		/*if (gameSpeed == 20 && isPlay) {
 			try {
