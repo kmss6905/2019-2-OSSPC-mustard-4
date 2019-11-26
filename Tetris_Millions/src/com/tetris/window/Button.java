@@ -22,9 +22,9 @@ public class Button {
 
    public Button() {}
    
-   public int getZ_key(){
-       return z_key;
-   }
+//   public int getZ_key(){
+//       return z_key;
+//   }
  
    public int getLeft_key() {
       return left_key;
@@ -63,9 +63,9 @@ public class Button {
    public void setUp_key(int up_key) {
       this.up_key = up_key;
    }
-   public void setZ_key(int z_key) {
-	   this.z_key= z_key;
-   }
+//   public void setZ_key(int z_key) {
+//	   this.z_key= z_key;
+//   }
    public void setSpace_key(int space_key) {
       this.space_key = space_key;
    }
