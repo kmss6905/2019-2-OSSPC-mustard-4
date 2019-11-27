@@ -480,12 +480,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 			g.drawString("BGM3", BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 500, BOARD_Y + 80);
 		} 
 		
-		
-		// Enemyscore 출력
-//		g.setColor(Color.black);
-//		g.setFont(new Font(font.getFontName(), font.getStyle(), 20));
-//		g.drawString("ENEMY", BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 120, BOARD_Y + 110);
-		//g.drawString(" " + EnemyScore, BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 170, BOARD_Y + 140);
+
 		
 		//사소한 자리이동 jehun
 		// LEVEL 출력 hwadong
@@ -535,41 +530,6 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 						BOARD_Y + BLOCK_SIZE * 6 - 1);
 		}
         
-		//중간 선 제거 jehun
-		//g.drawLine(this.getWidth() / 2 + 10, BOARD_Y + 20, this.getWidth() / 2 + 10, BOARD_Y + maxY * BLOCK_SIZE);
-
-		// <<2p 화면>>  제거  jehun
-		// 까만 배경 부분 hwadong
-		//g.setColor(Color.lightGray);
-		// 가운데
-	//	g.fillRect(3 * BOARD_X + maxX * BLOCK_SIZE + (2 * BLOCK_SIZE), BOARD_Y, maxX * BLOCK_SIZE + 1,
-		//		maxY * BLOCK_SIZE);
-
-		// 그리드 표시 hwadong
-	//	g.setColor(Color.black);
-		//g.drawLine(3 * BOARD_X + maxX * BLOCK_SIZE + (2 * BLOCK_SIZE), BOARD_Y + BLOCK_SIZE * 0,
-		//		3 * BOARD_X + 2 * maxX * BLOCK_SIZE + (2 * BLOCK_SIZE), BOARD_Y + BLOCK_SIZE * 0);
-		//g.drawLine(3 * BOARD_X + maxX * BLOCK_SIZE + (2 * BLOCK_SIZE), BOARD_Y + BLOCK_SIZE * maxY,
-		//		3 * BOARD_X + 2 * maxX * BLOCK_SIZE + (2 * BLOCK_SIZE), BOARD_Y + BLOCK_SIZE * maxY);
-		//g.drawLine(3 * BOARD_X + maxX * BLOCK_SIZE + BLOCK_SIZE * 0 + (2 * BLOCK_SIZE), BOARD_Y,
-		//		3 * BOARD_X + maxX * BLOCK_SIZE + BLOCK_SIZE * 0 + (2 * BLOCK_SIZE),
-		//		BOARD_Y + maxY * BLOCK_SIZE);
-		//g.drawLine(3 * BOARD_X + maxX * BLOCK_SIZE + BLOCK_SIZE * maxX + (2 * BLOCK_SIZE), BOARD_Y,
-		//		3 * BOARD_X + maxX * BLOCK_SIZE + BLOCK_SIZE * maxX + (2 * BLOCK_SIZE),
-		//		BOARD_Y + maxY * BLOCK_SIZE);
-		//g.setColor(Color.white);
-	//	if (usingGrid) {
-		//	g.setColor(Color.darkGray);
-			// 가운데 가로줄
-		//	for (int i = 1; i < maxY; i++)
-		//		g.drawLine(3 * BOARD_X + maxX * BLOCK_SIZE + (2 * BLOCK_SIZE), BOARD_Y + BLOCK_SIZE * i,
-		//				3 * BOARD_X + 2 * maxX * BLOCK_SIZE + (2 * BLOCK_SIZE), BOARD_Y + BLOCK_SIZE * i);
-			// 가운데 세로줄
-		//	for (int i = 1; i < maxX; i++)
-		//		g.drawLine(3 * BOARD_X + maxX * BLOCK_SIZE + BLOCK_SIZE * i + (2 * BLOCK_SIZE), BOARD_Y,
-		//				3 * BOARD_X + maxX * BLOCK_SIZE + BLOCK_SIZE * i + (2 * BLOCK_SIZE),
-		//				BOARD_Y + maxY * BLOCK_SIZE);
-		//}
 
 		int x = 0, y = 0, newY = 0;
 		if (hold != null) {
