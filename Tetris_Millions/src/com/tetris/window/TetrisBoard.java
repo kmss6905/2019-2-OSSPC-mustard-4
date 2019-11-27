@@ -399,8 +399,8 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		ghost = getBlockClone(shap, true);
 		hold = null;
 		isHold = false;
-		controller = new TetrisController(shap, maxX - 1, maxY - 1, map, minX, minY);
-		controllerGhost = new TetrisController(ghost, maxX - 1, maxY - 1, map, minX, minY);
+		controller = new TetrisController(shap, maxX - 1, maxY - 1, map, minX-1, minY-1);
+		controllerGhost = new TetrisController(ghost, maxX - 1, maxY - 1, map, minX-1, minY-1);
 		this.showGhost();
 		for (int i = 0; i < 5; i++) {
 			nextBlocks.add(getRandomTetrisBlock());
