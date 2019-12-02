@@ -393,6 +393,186 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		blockList = new ArrayList<Block>();
 		nextBlocks = new ArrayList<TetrisBlock>();
 		blockList2 = new ArrayList<Block>();
+		
+		/*
+		// 정한교 체리 맵 추가 
+		{
+		for( int i=1; i<6; i ++) {
+			for( int k=1; k<11; k++) {
+				
+				if (i==1 && (k==1 || k==4 || k==5 || k==6 || k==10))
+					continue;
+				if (i==2 && k==5)
+					continue;
+				if (i==3 && k==5)
+					continue;
+				if (i==4 && (k==1 || k==4 || k==5))
+					continue;
+				if (i == 5 && (k==1 || k==2 || k==3 || k==4 || k==5 || k==6 || k==10))
+				    continue;
+				
+				Block mapblock = new Block(0,0,Color.RED,Color.RED);
+				mapblock.setFixGridXY(maxX-k, maxY-i);
+				blockList.add(mapblock);
+			    map[maxY-i][maxX-k] = mapblock;
+			}
+		}
+		
+		// maxX-3, maxX-5 초록블록으로 대체 
+				Block mapblock1 = new Block(0,0,Color.GREEN,Color.GREEN);
+				mapblock1.setFixGridXY(maxX-3, maxY-5);
+				blockList.add(mapblock1);
+			    map[maxY-5][maxX-3] = mapblock1;
+			    
+	    // 초록색 가지 부분
+		for( int i=6; i<13; i ++) {
+			for( int k=1; k<11; k++) {
+				
+				if (i==6 && (k!=3 && k!=8))
+					continue;
+				if (i==7 &&  (k!=3 && k!=4 && k!=7 && k!=8))
+					continue;
+				if (i==8 && (k!=4 && k!=6 && k!=7))
+					continue;
+				if (i==9 && (k!=4 && k!=6))
+					continue;
+				if (i==10 &&  (k!=4 && k!=5 && k!=6))
+					continue;
+				if (i==11 && k!=4)
+					continue;
+				if (i==12 && (k!=3 && k!=4 ))
+					continue;
+				Block mapblock = new Block(0,0,Color.GREEN,Color.GREEN);
+				mapblock.setFixGridXY(maxX-k, maxY-i);
+				blockList.add(mapblock);
+			    map[maxY-i][maxX-k] = mapblock;
+			}
+		}
+	    
+		//체리 위에 오렌지색 줄기
+		for( int k=1; k<11; k++) {
+			int i = 13;
+			if (k==7 || k==8 || k==9 || k==10)
+				continue;
+			Block mapblock = new Block(0,0,Color.orange,Color.orange);
+			mapblock.setFixGridXY(maxX-k, maxY-i);
+			blockList.add(mapblock);
+		    map[maxY-i][maxX-k] = mapblock;
+		}
+		}
+		*/
+		
+		
+		/*
+		// 정한교 머쓱타드 맵 추가 
+		
+		// 머쓱타드 몸통
+		for( int i=1; i<12; i ++) {
+			for( int k=1; k<11; k++) {
+				
+				if (i==1 && (k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 ))
+					continue;
+				if (i==2 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8 ))
+					continue;
+				if (i==3 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8 && k!=9))
+					continue;
+				if (i==4 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8 && k!=9))
+					continue;
+				if (i==5 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8 && k!=9))
+					continue;
+				if (i==6 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8 && k!=9))
+					continue;
+				if (i==7 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8 && k!=9))
+					continue;
+				if (i==8 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8))
+					continue;
+				if (i==9 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8))
+					continue;
+				if (i==10 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7))
+					continue;
+				if (i==11 && (k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7))
+					continue;
+				Block mapblock = new Block(0,0,Color.decode("0XFFD700"),Color.decode("0XFFD700"));
+				mapblock.setFixGridXY(maxX-k, maxY-i);
+				blockList.add(mapblock);
+			    map[maxY-i][maxX-k] = mapblock;
+
+			}
+		}
+		
+		// 머쓱타드 모자
+		
+		for( int i=12; i<14; i ++) {
+			for( int k=2; k<8; k++) {
+				
+				Block mapblock = new Block(0,0,Color.decode("0XF5F5DC"),Color.decode("0XF5F5DC"));
+				mapblock.setFixGridXY(maxX-k, maxY-i);
+				blockList.add(mapblock);
+			    map[maxY-i][maxX-k] = mapblock;
+			}
+		}
+		
+		// 머쓱타드 입
+		{
+		for (int k=4; k<8 ; k++) {
+			int i=5;
+			Block mapblock = new Block(0,0,Color.decode("0X696969"),Color.decode("0X696969"));
+		    mapblock.setFixGridXY(maxX-k, maxY-i);
+		    blockList.add(mapblock);
+	        map[maxY-i][maxX-k] = mapblock;
+		}
+		
+		
+		Block mapblock = new Block(0,0,Color.decode("0X696969"),Color.decode("0X696969"));
+	    mapblock.setFixGridXY(maxX-8, maxY-6);
+	    blockList.add(mapblock);
+        map[maxY-6][maxX-8] = mapblock;
+   
+		
+        Block mapblock1 = new Block(0,0,Color.decode("0X696969"),Color.decode("0X696969"));
+	    mapblock1.setFixGridXY(maxX-3, maxY-6);
+	    blockList.add(mapblock1);
+        map[maxY-6][maxX-3] = mapblock1;
+     
+		
+        // 머쓱타드 눈
+        for (int i=8; i<10; i++) {
+        	for(int k=1;k<10;k++) {
+            	
+            	if(i==8 && (k!=2 && k!=4 && k!=6 && k!=8 ))
+            		continue;
+            	if(i==9 && (k!=3 && k!=7))	
+            		continue;
+                Block mapblock2 = new Block(0,0,Color.decode("0X696969"),Color.decode("0X696969"));
+    	        mapblock2.setFixGridXY(maxX-k, maxY-i);
+    	        blockList.add(mapblock2);
+                map[maxY-i][maxX-k] = mapblock2;
+           	}
+        }
+        
+        // 머쓱타드 땀
+        Block mapblock3 = new Block(0,0,Color.decode("0XFFFAFA"),Color.decode("0XFFFAFA"));
+	    mapblock3.setFixGridXY(maxX-10, maxY-10);
+	    blockList.add(mapblock3);
+        map[maxY-10][maxX-10] = mapblock3;
+        
+        Block mapblock4 = new Block(0,0,Color.decode("0XFFFAFA"),Color.decode("0XFFFAFA"));
+	    mapblock4.setFixGridXY(maxX-9, maxY-11);
+	    blockList.add(mapblock4);
+        map[maxY-11][maxX-9] = mapblock4;
+        
+        Block mapblock5 = new Block(0,0,Color.decode("0XFFFAFA"),Color.decode("0XFFFAFA"));
+	    mapblock5.setFixGridXY(maxX-10, maxY-9);
+	    blockList.add(mapblock5);
+        map[maxY-9][maxX-10] = mapblock5;
+        
+        Block mapblock6 = new Block(0,0,Color.decode("0XFFFAFA"),Color.decode("0XFFFAFA"));
+	    mapblock6.setFixGridXY(maxX-9, maxY-10);
+	    blockList.add(mapblock6);
+        map[maxY-10][maxX-9] = mapblock6;
+		
+*/
+		
 
 		// 도형셋팅
 		shap = getRandomTetrisBlock();
