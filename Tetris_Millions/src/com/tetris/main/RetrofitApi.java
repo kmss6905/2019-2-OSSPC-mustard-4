@@ -3,7 +3,12 @@ package com.tetris.main;
 import retrofit2.*;
 import retrofit2.http.*;
 
-
+/*
+ *  설명 추가 해야함 
+ *  누가 만들었는 지
+ *  날짜 도 추가해야함
+ * 
+ */
 public interface RetrofitApi {
 	
 	

@@ -1,6 +1,7 @@
 package com.tetris.window;
 
 import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -69,9 +70,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 	private static int minX = 1, minY = 0;
 
 	public static int maxX = 10;
-
 	private static int maxY = 21;
-
 	private static int down = 50;
 
 	private static int up = 0;
@@ -179,7 +178,6 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 				messageArea.getHeight() / 2);
 		btnExit.setFocusable(false);
 		btnExit.addActionListener(this);
-
 		btnExit.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				Music MousePressedSound = new Music("Exit.mp3", false);
@@ -341,7 +339,6 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		if (th != null) {
 			try {
 				isPlay = false;
-
 				th.join();
 				// th2.join(); // hwadong
 			} catch (InterruptedException e) {
@@ -388,12 +385,78 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		myScore = 0;
 		EnemyScore = 0;
 
+		
+		
 		// 맵셋팅
-		map = new Block[maxY][maxX];
-		blockList = new ArrayList<Block>();
+		map = new Block[maxY][maxX]; // 맵이 들어갈 공간을 만든다. ? 
+		blockList = new ArrayList<Block>(); // 블럭 리스트에 블럭을 담는다. 
+		
+		
+		
+		
+		
 		nextBlocks = new ArrayList<TetrisBlock>();
 		blockList2 = new ArrayList<Block>();
+		
+		
+		if(TetrisMain.GameMode == 3) {
+			
 
+			
+			System.out.println("map.length : " + map.length);
+		
+			Block mapblock = new Block(0, 0, new Color(204,255,255), Color.YELLOW);	 // 맵블럭을 만들고
+			
+			
+			mapblock = new Block(0, 0, new Color(204,255,255), Color.YELLOW);
+			mapblock.setModeBlock(1);
+			mapblock.setFixGridXY(maxX-1, maxY-1); 
+			map[maxY-1][maxX-1] = mapblock;  // ui
+			System.out.println(map[maxY-1][maxX-1].getColor());
+			
+	
+			
+			blockList.add(mapblock); // 데이터
+			
+			mapblock = new Block(0, 0, new Color(204,255,255), Color.YELLOW);		
+			mapblock.setFixGridXY(maxX-2, maxY-2);
+			map[maxY-2][maxX-2] = mapblock;
+			mapblock.setModeBlock(1);
+			System.out.println(map[maxY-2][maxX-2].getColor());
+			blockList.add(mapblock);
+			
+			
+			mapblock = new Block(0, 0, new Color(204,255,255), Color.YELLOW);
+			mapblock.setFixGridXY(maxX-3, maxY-3);
+			map[maxY-3][maxX-3] = mapblock;
+			mapblock.setModeBlock(1);
+			System.out.println(map[maxY-3][maxX-3].getColor());
+			blockList.add(mapblock);
+			
+			
+			
+			mapblock = new Block(0, 0,new Color(204,255,255), Color.YELLOW);
+			mapblock.setFixGridXY(maxX-4, maxY-4);
+			map[maxY-4][maxX-4] = mapblock;
+			mapblock.setModeBlock(1);
+			System.out.println(map[maxY-4][maxX-4].getColor());
+			blockList.add(mapblock);
+			
+		
+		}
+		
+		
+		
+		for(int i=0; i< blockList.size(); i++) {
+			System.out.println(i + "번째 "  + blockList.get(i).getColor());
+		}
+		
+		
+	
+		
+		
+		
+		
 		// 도형셋팅
 		shap = getRandomTetrisBlock();
 		ghost = getBlockClone(shap, true);
@@ -414,6 +477,13 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		stopwatch(1); // hwadong
 		comboSpeed.setEnabled(false); // 시작버튼 눌리면 enable(false)
 	}
+	
+	
+	
+	
+	
+	
+	
 
 	// TODO : paint
 	@Override
@@ -510,6 +580,8 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 				BOARD_X + BLOCK_SIZE * ( minX), BOARD_Y + BLOCK_SIZE * (minY + maxY));
 		g.drawLine(BOARD_X + BLOCK_SIZE * (maxX + minX), BOARD_Y + BLOCK_SIZE * minY,
 				BOARD_X + BLOCK_SIZE * (maxX + minX), BOARD_Y + BLOCK_SIZE * (minY + maxY));
+		
+		
 		
 		if (usingGrid) {
 			g.setColor(Color.DARK_GRAY);
@@ -771,6 +843,8 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 	 */
 	public void dropBoard(int lineNumber, int num) {
 
+		
+		
 		// 맵을 떨어트린다.
 		this.dropMap(lineNumber, num);
 
@@ -788,6 +862,73 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		System.out.println("gameSpeed : " + gameSpeed);
 		System.out.println("initSpeed : " + initSpeed);
 		System.out.println("(gameSpeed - initSpeed + 1) : " + (gameSpeed - initSpeed + 1));
+		
+		System.out.println("지워야하는 블럭수  : " + blockList.size());
+		for(int i = 0;  i < blockList.size(); i ++) {
+			System.out.println(blockList.get(i).getColor().toString());
+		}
+		
+		// 맵에 남아있?
+		
+		
+		
+				
+			
+		
+		
+		int i = 0;
+		for(Block block : blockList) {
+			if(block.getModeBlock() == 1) {
+				i++;
+			}
+		}
+		
+		
+		
+		if(i == 0) {
+			
+			if(TetrisMain.GameMode == 1) {
+				TetrisMain.GameMode ++;
+				
+				
+			}
+			
+			
+			System.out.println("남은 개수 " + i + "개" + " 클리어");
+//			blockList.clear();
+			
+			
+			for(Block block : blockList) {
+				map[block.getY()][block.getX()] = null; 	
+			}
+		
+			
+			blockList.clear();
+			Block mapblock = new Block(0, 0, new Color(204,255,255), Color.YELLOW);	
+		
+			
+			mapblock = new Block(0, 0, new Color(204,255,255), Color.YELLOW);
+			mapblock.setFixGridXY(maxX-7, maxY-7);
+			map[maxY-7][maxX-7] = mapblock;
+			blockList.add(mapblock);
+			
+			
+			
+			mapblock = new Block(0, 0,new Color(204,255,255), Color.YELLOW);
+			mapblock.setFixGridXY(maxX-8, maxY-8);
+			map[maxY-8][maxX-8] = mapblock;
+			blockList.add(mapblock);
+			
+			System.out.println("세로운 맵 ! ");
+		
+			
+			
+		}else {
+			System.out.println("남은 개수 " + i + "개");
+		}
+		
+		
+		
 	
 		
 		

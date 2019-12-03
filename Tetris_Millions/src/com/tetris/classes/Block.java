@@ -17,6 +17,7 @@ public class Block implements Serializable {
 	private Color color;
 	private Color ghostColor;	
 	private boolean ghost;
+	private int modeBlock = 0;
 	
 	
 	/**
@@ -78,4 +79,20 @@ public class Block implements Serializable {
 	public void setFixGridY(int fixGridY) {this.fixGridY = fixGridY;}
 	public void setFixGridXY(int fixGridX, int fixGridY){this.fixGridX = fixGridX;this.fixGridY = fixGridY;}
 	public void setGhostView(boolean b){this.ghost = b;}
+
+	
+	public Color getColor() {return color;}
+	public void setColor(Color color) {this.color = color;}
+
+
+	public int getModeBlock() {
+		return modeBlock;
+	}
+
+
+	public void setModeBlock(int modeBlock) {
+		this.modeBlock = modeBlock;
+	}
+	
+	
 }

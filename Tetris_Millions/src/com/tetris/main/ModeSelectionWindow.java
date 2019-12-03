@@ -42,7 +42,7 @@ public class ModeSelectionWindow extends JFrame implements ActionListener{
 		}else if(e.getSource() == mapModeButton) {
 			TetrisMain.GameMode = 3;
 		}
-		dispose();
+		dispose(); // 기존의 창 닫음
 		new Tetris();
 	}
 	
@@ -75,7 +75,6 @@ public class ModeSelectionWindow extends JFrame implements ActionListener{
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		description.setBounds(100,40,100,40);
 		add(description); // 게임설명
-		
 	      
 	}
 	

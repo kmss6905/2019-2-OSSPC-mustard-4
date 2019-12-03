@@ -32,8 +32,6 @@ public class Login extends JFrame implements ActionListener{
 	    public Login()
 	    {
 	          setTitle("로그인");
-  
-	          
 	          // FlowLayout사용
 	          setLayout( new FlowLayout() );
 	          // Border로 영역 생성
