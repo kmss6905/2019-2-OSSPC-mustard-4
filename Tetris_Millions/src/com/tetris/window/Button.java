@@ -13,12 +13,18 @@ public class Button {
    JFrame frame, keyFrame;
    JPanel centerPanel;
    JButton eventBtn;
-   JButton[] btn = new JButton[6];
+   JButton[] btn = new JButton[8];
    Container contentPane;
    String keyString = null;
    private static int z_key = 90, left_key = 37, right_key=39, down_key=40, up_key=38, space_key=32, shift_key=16, keyCode, pk=0;
-   // ������
+   // ����
+
+
    public Button() {}
+   
+//   public int getZ_key(){
+//       return z_key;
+//   }
  
    public int getLeft_key() {
       return left_key;
@@ -41,6 +47,10 @@ public class Button {
    public int getShift_key() {
       return shift_key;
    }
+   
+   public void setZ_key(int z_key){
+       this.z_key = z_key;
+   }
    public void setLeft_key(int left_key) {
       this.left_key = left_key;
    }
@@ -53,9 +63,9 @@ public class Button {
    public void setUp_key(int up_key) {
       this.up_key = up_key;
    }
-   public void setZ_key(int z_key) {
-	   this.z_key= z_key;
-   }
+//   public void setZ_key(int z_key) {
+//	   this.z_key= z_key;
+//   }
    public void setSpace_key(int space_key) {
       this.space_key = space_key;
    }
@@ -65,7 +75,7 @@ public class Button {
    public void FrameShow() {
     
     // Frame
-    frame = new JFrame("Ű ����");
+    frame = new JFrame("KEY SETTING");
      frame.setPreferredSize(new Dimension(350, 250));
      frame.setLocation(350, 250);
      frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); // ������ ���� �� DISPOSE_ON_CLOSE�� �غ� ��.
@@ -77,8 +87,8 @@ public class Button {
      contentPane = frame.getContentPane();
 
      // �гο� ��ư 6�� �߰�
-     centerPanel.setLayout(new GridLayout(3, 2));
-     for (int i = 0; i < 6; i++) {
+     centerPanel.setLayout(new GridLayout(4, 2));
+     for (int i = 0; i < 8; i++) {
       btn[i] = new JButton();
 
       centerPanel.add(btn[i]);
@@ -93,6 +103,8 @@ public class Button {
      btn[3].setText(" Rotation ");
      btn[4].setText(" Drop ");
      btn[5].setText(" Hold ");
+     btn[6].setText(" Reverse ");
+     btn[7].setText(" - Mustard - ");
 
      btn[0].setName("b0");
      btn[1].setName("b1");
@@ -100,6 +112,8 @@ public class Button {
      btn[3].setName("b3");
      btn[4].setName("b4");
      btn[5].setName("b5");
+     btn[6].setName("b6");
+     btn[7].setName("b7");
      
     
      
@@ -192,7 +206,13 @@ public class Button {
           // ���̺� ����
           keyLabel = new JLabel("Hold Ű�� �Է��ϼ���.");
           pk=5;
-       }
+          
+       } else if ("b6".equals( eventBtn.getName() ) ) {
+          keyFrame.setVisible(true);
+          // ���̺� ����
+          keyLabel = new JLabel("Reverse Ű�� �Է��ϼ���.");
+          pk=6;
+       } 
       
       // �г� �߰�
       
@@ -224,6 +244,7 @@ public class Button {
        keyString = e.getKeyText(e.getKeyCode());
        keyCode = e.getKeyCode();
        System.out.println(e.getKeyCode());
+       
        if (e.getKeyCode() != 10) {
           if (pk == 0) {
              if(keyCode == right_key) {
@@ -236,7 +257,9 @@ public class Button {
                 warning_Drop();
              } else if(keyCode == shift_key) {
                 warning_Hold();
-             } else {
+             } else if(keyCode == z_key) {
+            	 warning_Reverse();
+             }  else {
                 setLeft_key(keyCode);
                 btn[0].setText("Left : "+ keyString);
                 keyFrame.setVisible(false); // �Է�â ����
@@ -253,7 +276,10 @@ public class Button {
                 warning_Drop();
              } else if(keyCode == shift_key) {
                 warning_Hold();
-             } else {
+             } else if(keyCode == z_key) {
+            	 warning_Reverse();
+             }
+             else {
                 setRight_key(keyCode);
                 btn[1].setText("Right : "+ keyString);
                 keyFrame.setVisible(false); // �Է�â ����   
@@ -270,7 +296,10 @@ public class Button {
                 warning_Drop();
              } else if(keyCode == shift_key) {
                 warning_Hold();
-             } else {
+             } else if(keyCode == z_key) {
+            	 warning_Reverse();
+             }
+             else {
                 setDown_key(keyCode);
                 btn[2].setText("Down : "+ keyString);
                 keyFrame.setVisible(false); // �Է�â ����   
@@ -287,7 +316,10 @@ public class Button {
                 warning_Drop();
              } else if(keyCode == shift_key) {
                 warning_Hold();
-             } else {
+             } else if(keyCode == z_key) {
+            	 warning_Reverse();
+             }
+             else {
                 setUp_key(keyCode);
                 btn[3].setText("Rotation : "+ keyString);
                 keyFrame.setVisible(false); // �Է�â ����   
@@ -304,7 +336,10 @@ public class Button {
                 warning_Down();
              } else if(keyCode == shift_key) {
                 warning_Hold();
-             } else {
+             } else if(keyCode == z_key) {
+            	 warning_Reverse();
+             }
+             else {
                 setSpace_key(keyCode);
                 btn[4].setText("Drop : "+ keyString);
                 keyFrame.setVisible(false); // �Է�â ����   
@@ -321,14 +356,39 @@ public class Button {
                 warning_Down();
              } else if(keyCode == space_key) {
                 warning_Drop();
-             } else {
+             } else if(keyCode == z_key) {
+            	 warning_Reverse();
+             }
+             else {
                 setShift_key(keyCode);
                 btn[5].setText("Hold : "+ keyString);
                 keyFrame.setVisible(false); // �Է�â ����   
                 }
-          } else {keyFrame.setVisible(false);
           }
-      }
+      
+          else if (pk == 6){
+              if (keyCode == left_key) {
+                 warning_Left();                
+              } else if(keyCode == right_key) {
+                 warning_Right();
+              } else if(keyCode == up_key) {
+                 warning_Up();
+              } else if(keyCode == down_key) {
+                 warning_Down();
+              } else if(keyCode == shift_key) {
+                 warning_Hold();
+              } else if(keyCode == space_key) {
+             	 warning_Drop();
+              }
+              else {
+                 setZ_key(keyCode);
+                 btn[6].setText("Reverse : "+ keyString);
+                 keyFrame.setVisible(false); // �Է�â ����   
+                 }
+           }
+          else { keyFrame.setVisible(false);
+          }
+       }
     }
     
    public void warning_Left() {
@@ -349,6 +409,10 @@ public class Button {
    public void warning_Hold() {
       JOptionPane.showMessageDialog(null, "hold_key �� �ߺ��˴ϴ�. �ٸ� Ű�� �Է����ּ���.", "�ߺ��� key", JOptionPane.ERROR_MESSAGE);
    }
+   public void warning_Reverse() {
+	  JOptionPane.showMessageDialog(null, "reverse_key �� �ߺ��˴ϴ�. �ٸ� Ű�� �Է����ּ���.", "�ߺ��� key", JOptionPane.ERROR_MESSAGE);
+   }
+   
 
    @Override
    public void keyReleased(KeyEvent e) {

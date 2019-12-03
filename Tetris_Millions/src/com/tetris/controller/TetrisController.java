@@ -175,9 +175,9 @@ public class TetrisController {
 			if (block.getType() == TetrisBlock.TYPE_LINE) {
 				if (block.getPosX() == maxX)
 					block.moveLeft(2);
-				else if (block.getPosX() ==maxX-1)
+				else if (block.getPosX() == maxX-1)
 				    block.moveLeft(1);
-				else if  (block.getPosX()<=minX)
+				else if  (block.getPosX()==minX)
 				    block.moveRight(1);
 				else 
 					rotation_index--;
@@ -186,6 +186,9 @@ public class TetrisController {
 			}
 			else if (block.getPosX()==maxX)
 				block.moveLeft(1);
+			
+			else if (block.getPosX()<=minX)
+			    block.moveRight(1);	
 			else 
 				rotation_index--;
 			    if(rotation_index == TetrisBlock.ROTATION_0-1) rotation_index = TetrisBlock.ROTATION_270;
@@ -210,24 +213,28 @@ public class TetrisController {
 		if(!checkIndex(maxX,maxY)) {
 			
 			if (block.getType() == TetrisBlock.TYPE_LINE) {
-				if (block.getPosX() == minX)
-					block.moveRight(2);
-				else if (block.getPosX() ==maxX+1)
-				    block.moveRight(1);
-				else if  (block.getPosX()<=minX)
+				if (block.getPosX() == maxX)
+					block.moveLeft(2);
+				else if (block.getPosX() ==maxX-1)
+				    block.moveLeft(1);
+				else if  (block.getPosX()== minX)
 				    block.moveRight(1);
 				else 
-					rotation_index++;
-			        if(rotation_index == TetrisBlock.ROTATION_270+1) rotation_index = TetrisBlock.ROTATION_0;
+					rotation_index--;
+			        if(rotation_index == TetrisBlock.ROTATION_0-1) rotation_index = TetrisBlock.ROTATION_270;
 			            block.rotation(rotation_index);
 			}
-			else if (block.getPosX()==minX)
-				block.moveRight(1);
+			else if (block.getPosX()==maxX)
+				block.moveLeft(1);
+			
+			else if (block.getPosX()<=minX)
+			    block.moveRight(1);	
+			
 			else 
 				rotation_index++;
 			    if(rotation_index == TetrisBlock.ROTATION_270+1) rotation_index = TetrisBlock.ROTATION_0;
 			        block.rotation(rotation_index);
-        }
+		}
      }
  }
 
