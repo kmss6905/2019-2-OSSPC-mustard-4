@@ -53,30 +53,39 @@ IDE
 
 <h2>7. Screenshot</h2>
 	
-Login & Register
+<h4>Login & Register</h4>
 
 <br>
-Game Homepage
-<div>
-	<img width=600 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/home.png?raw=true"/>
+<h4>Game Homepage</h4>
+<div>	
+	home
+	<img width=800 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/home.png?raw=true"/>
 	<br>
-	<img width=600 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/search.png?raw=true"/>
+	
+	search result page
+	<img width=800 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/search.png?raw=true"/>
 	<br>
-	<img width=600 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/nomal.png?raw=true"/>
+	
+	nomal mode ranking
+	<img width=800 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/nomal.png?raw=true"/>
 	<br>
-	<img width=600 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/map.png?raw=true"/>
+	
+	map mode ranking 
+	<img width=800 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/map.png?raw=true"/>
 	<br>
-	<img width=600 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/time.png?raw=true"/>
+	
+	time mode ranking
+	<img width=800 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/time.png?raw=true"/>
 	<br>
 </div>
 
 <br>
 
-MapMode
+<h4>MapMode</h4>
 
 
 <br>
-TimeAttackMode
+<h4>TimeAttackMode</h4>
 
 
 <br>
