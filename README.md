@@ -51,11 +51,9 @@ IDE
 	• eclipse
 <h2>6. What Improved?</h2>
 
-<h2>7. Screenshot<h2>
+<h2>7. Screenshot</h2>
 	
 Login & Register
-
-
 
 <br>
 Game Homepage
