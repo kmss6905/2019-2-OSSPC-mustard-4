@@ -1,6 +1,7 @@
 package com.tetris.main;
 
 import java.awt.Color;
+
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -19,33 +20,48 @@ import javax.swing.JLabel;
 import com.tetris.window.Button;
 import com.tetris.window.Tetris;
 
+/**
+ * 
+ * @author minshik_kim
+ * 2019 / 12 / 05 이미지 버튼 새롭게 바꾸었습니다.
+ *
+ */
+
 public class TetrisOpening extends JFrame {
    
    private Image screenImage;
    private Graphics screenGraphic;
-   private ImageIcon exitButtonEnteredImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/exitButtonEntered.png"));
    private ImageIcon exitButtonBasicImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/exitButtonBasic.png"));
-   private ImageIcon startButtonEnteredImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/startButtonEntered.png"));
-   private ImageIcon startButtonBasicImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/startButtonBasic.png"));
-   private ImageIcon quitButtonEnteredImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/quitButtonEntered.png"));
+   private ImageIcon exitButtonEnteredImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/exitButtonEntered.png"));
+   
+   private ImageIcon startButtonBasicImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/startBtnBasic.png"));
+   private ImageIcon startButtonEnteredImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/startBtnEnter.png"));
+   
    private ImageIcon quitButtonBasicImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/quitBtnBasic.png"));
+   private ImageIcon quitButtonEnteredImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/quitBtnEnter.png"));
    
-   
-   /** 
-    *  占쌩곤옙占쏙옙 占쏙옙튼占쏙옙
-    *  占싸깍옙占쏙옙 , 占쏙옙占쏙옙, 占싹울옙占쏙옙占시뤄옙占쏙옙
+   /**
+    *  로그인, 설정, 게임방법 버튼 이미지 추가 
+    *  by kms
     */
-   private ImageIcon loginButtonImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/loginBtnBasic.png")); // 占싸깍옙占싸뱄옙튼
-   private ImageIcon settingButtonImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/settingBtnBasic.png")); // 占쏙옙占쏙옙占쏙옙튼
-   private ImageIcon howToPlayButtonImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/howToPlayBtnBasic.png")); // howtoPlay 占쏙옙튼
+   private ImageIcon loginButtonImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/loginBtnBasic.png"));
+   private ImageIcon loginButtonEnterImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/loginBtnEnter.png"));
    
+   private ImageIcon settingButtonImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/settingBtnBasic.png"));
+   private ImageIcon settingButtonEnterImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/settingBtnEnter.png"));
    
+   private ImageIcon howToPlayButtonImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/howToPlayBtnBasic.png")); 
+   private ImageIcon howToPlayButtonEnterImage = new ImageIcon(TetrisMain.class.getResource("../../../Images/howToPlayBtnEnter.png"));
    
-   
-   
-   
-   
-   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
    private Image background = new ImageIcon(TetrisMain.class.getResource("../../../Images/IntroBackground.jpg")).getImage();
    private JLabel menuBar = new JLabel(new ImageIcon(TetrisMain.class.getResource("../../../Images/menuBar.png")));
    
@@ -53,7 +69,7 @@ public class TetrisOpening extends JFrame {
    private JButton startButton = new JButton(startButtonBasicImage);
    private JButton quitButton = new JButton(quitButtonBasicImage);
    
- 
+   
    private JButton loginButton = new JButton(loginButtonImage);
    private JButton settingButton = new JButton(settingButtonImage);
    private JButton howToPlayButton = new JButton(howToPlayButtonImage);
@@ -61,7 +77,7 @@ public class TetrisOpening extends JFrame {
    
    private int mouseX, mouseY;
    private boolean isMainScreen = false;
-
+   
    public TetrisOpening() {
 	   
 	   setUndecorated(true);
@@ -110,7 +126,7 @@ public class TetrisOpening extends JFrame {
 	   
 	   add(exitButton); 
 	   
-	 
+	   
 	   startButton.setBounds(260, 200, 400, 50); 
 	   startButton.setBorderPainted(false); 
 	   startButton.setContentAreaFilled(false);
@@ -194,7 +210,7 @@ public class TetrisOpening extends JFrame {
 	   loginButton.addMouseListener(new MouseAdapter() {
 		   @Override
 		   public void mouseEntered(MouseEvent e) {
-			   loginButton.setIcon(loginButtonImage);
+			   loginButton.setIcon(loginButtonEnterImage);
 			   loginButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 			   
 		   }
@@ -267,7 +283,7 @@ public class TetrisOpening extends JFrame {
 			   f.add(howtoplay2);
 			   
 			   
-			  
+			   
 			   JLabel howtoplay3=new JLabel("3. 반시계방향 회전 : Z");
 			   howtoplay3.setBounds(70,120,200,40);
 			   howtoplay3.setFont(new Font("Monospaced", Font.BOLD, 13));
@@ -306,12 +322,14 @@ public class TetrisOpening extends JFrame {
 		   
 		   @Override
 		   public void mouseExited(MouseEvent e) { 
-			   // TODO Auto-generated method stub
+			   howToPlayButton.setIcon(howToPlayButtonImage);
+			   howToPlayButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 			   
 		   }
 		   
 		   @Override
 		   public void mouseEntered(MouseEvent e) { 
+			   howToPlayButton.setIcon(howToPlayButtonEnterImage);
 			   howToPlayButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		   }
 		   
@@ -345,13 +363,15 @@ public class TetrisOpening extends JFrame {
 		   
 		   @Override
 		   public void mouseExited(MouseEvent e) {
-			   // TODO Auto-generated method stub
-			   
+			   settingButton.setIcon(settingButtonImage);
+			   settingButton.setCursor(new Cursor(Cursor.HAND_CURSOR));			   
 		   }
 		   
 		   @Override
 		   public void mouseEntered(MouseEvent e) {
+			   settingButton.setIcon(settingButtonEnterImage);
 			   settingButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+ 
 		   }
 		   
 		   @Override
@@ -399,12 +419,11 @@ public class TetrisOpening extends JFrame {
    }
    
    public void paint(Graphics g) {
-      screenImage = createImage(TetrisMain.SCREEN_WIDTH, TetrisMain.SCREEN_HEIGHT);
-      screenGraphic = screenImage.getGraphics();
-      screenDraw(screenGraphic);
-      g.drawImage(screenImage, 0, 0, null);
+	   screenImage = createImage(TetrisMain.SCREEN_WIDTH, TetrisMain.SCREEN_HEIGHT);
+	   screenGraphic = screenImage.getGraphics();
+	   screenDraw(screenGraphic);
+	   g.drawImage(screenImage, 0, 0, null);
    }
-   
    public void screenDraw(Graphics g) {
       g.drawImage(background, 0, 0, null);
       if(isMainScreen) {
