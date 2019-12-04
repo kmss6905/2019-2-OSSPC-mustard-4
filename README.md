@@ -73,6 +73,18 @@ IDE
 
 <br>
 <h4>UI & UX</h4>
+	<br>
+		Home screen 
+		<img width=800 src="https://trello-attachments.s3.amazonaws.com/5dd55007ce697a064e7bdd67/207x161/981e0a9cb6ec23f3f70a0e1e414dc5a1/image.png"/> 
+		<br>
+		Mode selection window
+		<img width=800 src="https://trello-attachments.s3.amazonaws.com/5dd55026e59b177e64b1fd5b/264x318/896b52837c40413666705ec382a6814a/image.png"/>
+		<br>
+		Key Setting : add reverse mode
+		<img width=800 src="https://trello-attachments.s3.amazonaws.com/5de72e763838464f53ba5052/546x393/f5126c531e65679fc04206f5a0d0ed63/image.png"/>
+		<br>change TetrisBoard background Image
+		<img width=800 src="https://trello-attachments.s3.amazonaws.com/5de72e763838464f53ba5052/842x593/bf868e06419cbe25513cb5a5908ddb26/image.png"/>
+	</br>
 
 
 <br>
