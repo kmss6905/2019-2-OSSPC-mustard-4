@@ -51,7 +51,7 @@ IDE
 	• eclipse
 <h2>6. What Improved?</h2>
 
-<h2>7. Image<h2>
+<h2>7. Screenshot<h2>
 	
 Login & Register
 
@@ -60,11 +60,16 @@ Login & Register
 <br>
 Game Homepage
 <div>
-	<img width=250 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/home.png?raw=true"/>
-	<img width=250 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/search.png?raw=true"/>
-	<img width=250 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/nomal.png?raw=true"/>
-	<img width=250 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/map.png?raw=true"/>
-	<img width=250 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/time.png?raw=true"/>
+	<img width=600 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/home.png?raw=true"/>
+	<br>
+	<img width=600 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/search.png?raw=true"/>
+	<br>
+	<img width=600 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/nomal.png?raw=true"/>
+	<br>
+	<img width=600 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/map.png?raw=true"/>
+	<br>
+	<img width=600 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/time.png?raw=true"/>
+	<br>
 </div>
 
 <br>
