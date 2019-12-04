@@ -41,7 +41,7 @@ public class Tetris extends JFrame implements ActionListener{
 		JMenuBar mnBar = new JMenuBar(); 
 		JMenu mnGame = new JMenu("게임하기");
 		JMenu stGame = new JMenu("키 조작");	 //상단에 "키 조작" menu 삽입. (millions)
-		JMenu test = new JMenu("테스트");
+		
 		
 		mnGame.add(itemServerStart); 
 		mnGame.add(itemClientStart);
@@ -50,7 +50,7 @@ public class Tetris extends JFrame implements ActionListener{
 		
 		mnBar.add(mnGame);
 		mnBar.add(stGame);					//millions
-		mnBar.add(test); 
+		
 		
 		this.setJMenuBar(mnBar); // 메뉴세팅
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
