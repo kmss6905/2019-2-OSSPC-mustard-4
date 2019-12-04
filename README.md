@@ -58,23 +58,21 @@ IDE
 <br>
 <h4>Game Homepage</h4>
 <div>	
-	home
 	<img width=800 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/home.png?raw=true"/>
 	<br>
 	
-	search result page
 	<img width=800 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/search.png?raw=true"/>
 	<br>
 	
-	nomal mode ranking
+
 	<img width=800 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/nomal.png?raw=true"/>
 	<br>
 	
-	map mode ranking 
+	
 	<img width=800 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/map.png?raw=true"/>
 	<br>
 	
-	time mode ranking
+	
 	<img width=800 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/time.png?raw=true"/>
 	<br>
 </div>
