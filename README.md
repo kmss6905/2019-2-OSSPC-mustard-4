@@ -60,11 +60,11 @@ Login & Register
 <br>
 Game Homepage
 <div>
-	<img width=200 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/home.png?raw=true"/>
-	<img width=200 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/search.png?raw=true"/>
-	<img width=200 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/nomal.png?raw=true"/>
-	<img width=200 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/map.png?raw=true"/>
-	<img width=200 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/time.png?raw=true"/>
+	<img width=250 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/home.png?raw=true"/>
+	<img width=250 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/search.png?raw=true"/>
+	<img width=250 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/nomal.png?raw=true"/>
+	<img width=250 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/map.png?raw=true"/>
+	<img width=250 src="https://github.com/CSID-DGU/2019-2-OSSPC-mustard-4/blob/master/IMAGES/time.png?raw=true"/>
 </div>
 
 <br>
