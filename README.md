@@ -7,10 +7,6 @@
 	
  <a href="https://opensource.org/licenses/MIT">The MIT License </a>
 
-
-
-
-
 <h2>2. Developers</h2>
 김민식(팀장)<br>
 경제훈<br>
@@ -23,9 +19,6 @@
 
 
 • The game never ends unless you make a mistake -> Helps you end the game not only by mistake, but also by other external factors
-
-
-• Show Enemy Score
 
 
 • Bug(that does not proceed to the next block even though the block touches the floor when adjusting the speed) fix
@@ -48,7 +41,7 @@ OS
 	• Windows 10, Ubuntu (Linux)
 IDE
 
-	• eclipse
+	• eclipse, phpStrom
 <h2>6. What Improved?</h2>
 
 <h2>7. Screenshot</h2>
