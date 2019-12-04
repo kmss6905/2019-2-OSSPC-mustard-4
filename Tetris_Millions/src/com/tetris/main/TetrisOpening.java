@@ -2,6 +2,7 @@ package com.tetris.main;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.*;
@@ -235,8 +236,70 @@ public class TetrisOpening extends JFrame {
 			   
 		   }
 		   
-		   @Override
+		   @Override //게임방법 코드작성 - 경제훈
 		   public void mousePressed(MouseEvent e) { 
+			   JFrame f=new JFrame();
+			   
+			   f.setTitle("게임방법");
+			   f.setSize(400,300);
+			   f.setLocationRelativeTo(null);
+			   f.setVisible(true);
+			   
+			   
+			   JLabel howtoplay = new JLabel("★★★게임 조작 방법★★★");
+			   howtoplay.setBounds(100,20,200,40);
+			   howtoplay.setFont(new Font("Monospaced", Font.BOLD, 13));
+			   howtoplay.setForeground(Color.BLACK);
+			   f.add(howtoplay);
+			   
+			   
+			   JLabel howtoplay1=new JLabel("1. 이동방법 : ← → ↓");
+			   howtoplay1.setBounds(70,60,200,40);
+			   howtoplay1.setFont(new Font("Monospaced", Font.BOLD, 13));
+			   howtoplay1.setForeground(Color.BLACK);
+			   f.add(howtoplay1);
+			   
+			   
+			   JLabel howtoplay2=new JLabel("2. 시계방향 회전 : ↑");
+			   howtoplay2.setBounds(70,90,200,40);
+			   howtoplay2.setFont(new Font("Monospaced", Font.BOLD, 13));
+			   howtoplay2.setForeground(Color.BLACK);
+			   f.add(howtoplay2);
+			   
+			   
+			  
+			   JLabel howtoplay3=new JLabel("3. 반시계방향 회전 : Z");
+			   howtoplay3.setBounds(70,120,200,40);
+			   howtoplay3.setFont(new Font("Monospaced", Font.BOLD, 13));
+			   howtoplay3.setForeground(Color.BLACK);
+			   f.add(howtoplay3);
+			   
+			   
+			   
+			   JLabel howtoplay4=new JLabel("4. 아래로 한번에 내리기 : Spacebar");
+			   howtoplay4.setBounds(70,150,300,40);
+			   howtoplay4.setFont(new Font("Monospaced", Font.BOLD, 13));
+			   howtoplay4.setForeground(Color.BLACK);
+			   f.add(howtoplay4);
+			   
+			   
+			   
+			   JLabel howtoplay5=new JLabel("5. HOLD : Shift");
+			   howtoplay5.setBounds(70,180,200,40);
+			   howtoplay5.setFont(new Font("Monospaced", Font.BOLD, 13));
+			   howtoplay5.setForeground(Color.BLACK);
+			   f.add(howtoplay5);
+			   
+			   
+			   
+			   JLabel howtoplay6=new JLabel("");
+			   howtoplay6.setBounds(70,200,200,40);
+			   howtoplay6.setFont(new Font("Monospaced", Font.BOLD, 13));
+			   howtoplay6.setForeground(Color.BLACK);
+			   f.add(howtoplay6);
+			   
+			   
+			   
 			   // TODO Auto-generated method stub
 			   
 		   }
