@@ -153,7 +153,6 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 	public TetrisBoard(Tetris tetris, GameClient client) {
 		retrofitApi = ApiClient.getClient_aws().create(RetrofitApi.class); // minshik
 		
-		
 		this.tetris = tetris;
 		this.client = client;
 		this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));// 기본크기
@@ -166,7 +165,6 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		btnStart.setFocusable(false);
 		btnStart.setEnabled(false);
 		btnStart.addActionListener(this);
-
 		btnStart.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				Music MousePressedSound = new Music("Start.mp3", false);
@@ -323,7 +321,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		this.add(checkEffect); // 효과음(millions)
 		this.add(checkBGM); /// 배경음악(millions)
 
-		icon1 = new ImageIcon(TetrisMain.class.getResource("../../../Images/gameBackground3.jpg.png")); // 게임배경 변경 - 경제훈
+		icon1 = new ImageIcon(TetrisMain.class.getResource("../../../Images/gameBackground4.png")); // 게임배경 변경 - 경제훈
 
 	}
 
@@ -337,27 +335,28 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 	/**
 	 * TODO : 게임시작 게임을 시작한다.
 	 */
-
 	public void gameStart(int speed) {
 		comboSpeed.setSelectedItem(new Integer(speed));
 		gameSpeed = speed; // hwadong
 		initSpeed = gameSpeed; // hwadong
+		
+		
 		// 돌고 있을 스레드를 정지시킨다.
 		if (th != null) {
 			try {
 				isPlay = false;
-
 				th.join();
 				// th2.join(); // hwadong
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
+		
+		
 		//게임 초기 음악 1번으로 설정
 		SoundNumber = 1;
 		//음악 선택 초기화
 		FixedSound = 0; 
-		
 		if (GameMusic != null && GameMusic.isAlive()) {
 			GameMusic.close();
 			if (checkBGM.isSelected()) {
@@ -400,6 +399,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		blockList2 = new ArrayList<Block>();
 		
 		
+		//minshik 1.맵 모드 들어갈 경우 초반에 세팅되는 첫번 째 맵
 		if(TetrisMain.GameMode == 3) {
 			Block mapblock = new Block(0, 0, Color.yellow, Color.yellow);
 			mapblock.setFixGridXY(maxX-1,maxY-1);
@@ -408,6 +408,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 			map[maxY-1][maxX-1] = mapblock;
 		}
 		
+				
 		/*
 		// 정한교 체리 맵 추가 
 		{
@@ -1480,7 +1481,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		stopwatch(0);
 		comboSpeed.setEnabled(true); // combobox 잠금 hwadong
 		
-		getResult(TetrisMain.userId, TetrisMain.GameMode, myScore);
+		getResult(TetrisMain.userId, TetrisMain.GameMode, myScore, timerBuffer);
 	}
 
 	/**
@@ -1734,6 +1735,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 			} else {
 				this.gameStart((int) comboSpeed.getSelectedItem());
 			}
+			
 		} else if (e.getSource() == btnExit) {
 
 			if (GameMusic != null && GameMusic.isAlive()) {
@@ -1880,8 +1882,19 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 	}*/
 	
 	
-	public void getResult(String userId, int GameMode, int Score) {
-		Call<GameResultRepo> call = retrofitApi.add_point(userId, GameMode, Score);
+	
+	
+	
+	/**
+	 * 
+	 * @author minshik_kim
+	 * @param userId 사용자아이디
+	 * @param GameMode 게임모드
+	 * @param Score 점수
+	 * 게임이 끝났을 경우 해당 함수를 사용하여 서버로 점수를 보내고 결과값(랭킹)을 받아 새로운 결과창에 뿌림
+	 */
+	public void getResult(String userId, int GameMode, int Score, String timebuffer) {
+		Call<GameResultRepo> call = retrofitApi.add_point(userId, GameMode, Score, timebuffer);
 		call.enqueue(new Callback<GameResultRepo>() {
 			
 			@Override
@@ -1890,7 +1903,6 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 					System.out.println(getClass().getName() + " / " + response.message());
 					return;
 				}
-				
 				
 				// 서버로 부터 온 데이터들이 gameResultRepo에 담김
 				GameResultRepo gameResultRepo = response.body(); //repo 가져오는 건 모드 스트링임

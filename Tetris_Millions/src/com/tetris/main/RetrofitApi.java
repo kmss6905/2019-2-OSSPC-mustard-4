@@ -63,7 +63,8 @@ public interface RetrofitApi {
 	Call<GameResultRepo> add_point(
 		@Field("user_id") String user_id,
 		@Field("mode") int mode_,
-		@Field("score") int score_
+		@Field("score") int score_,
+		@Field("time") String time_
 	);
 	
 	
