@@ -100,13 +100,13 @@ if($conn){}else{exit();} // db 접속실패시 접속 끊음
         <tr>
             <th style="text-align: center">#순위</th>
             <th style="text-align: center">#아이디</th>
-            <th style="text-align: center">#스코어</th>
+            <th style="text-align: center">#경과시간</th>
         </tr>
         </thead>
         <tbody>
         <?php
 
-        $nomal_sql = "select * from react_php_crud.time order by score desc ";
+        $nomal_sql = "select * from react_php_crud.map order by time asc ";
         $i = 1;
         $result = mysqli_query($conn, $nomal_sql);
         while ($row = mysqli_fetch_assoc($result)){ ?>
@@ -124,7 +124,7 @@ if($conn){}else{exit();} // db 접속실패시 접속 끊음
                     <?php $i++; ?>
                 </th>
                 <td class="user_id" style="text-align: center"><a id="link"  style="font-weight:bold" href="./result.php?id=<?php echo $row['user_id']; ?>"><?php echo $row['user_id']; ?></a></td>
-                <td style="text-align: center"><?php echo $row['score']; ?></td>
+                <td style="text-align: center"><?php echo $row['time']; ?></td>
             </tr>
         <?php  } ?>
 

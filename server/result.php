@@ -43,6 +43,21 @@ function GetTimeTopUserInfo($what){
     }
 }
 
+function GetMapNum(){
+    $sqlGeneralNum = "select * from react_php_crud.map";
+    $result = mysqli_query($GLOBALS['conn'], $sqlGeneralNum);
+    $num = mysqli_num_rows($result);
+    return $num;
+}
+
+function GetMapModeTopUserInfo($what){
+    $sql = "select * from react_php_crud.map where time = (select min(time) from react_php_crud.map)";
+    $result = mysqli_query($GLOBALS['conn'], $sql);
+    while($row = mysqli_fetch_assoc($result)){
+        echo $row[$what];
+    }
+}
+
 
 function isUser(){
     $sql = "select * from react_php_crud.users where user_id = '$_GET[id]'";
@@ -54,30 +69,6 @@ function isUser(){
         return false;
 }
 
-
-
-function GetUserScore($id, $what){
-    switch ($what){
-        case 1:
-            $sql = "select * from react_php_crud.nomal where user_id = $id";
-            $result = mysqli_query($GLOBALS['conn'], $sql);
-            if($result){
-                if(mysqli_num_rows($result) != 0){
-                    while ($row = mysqli_fetch_assoc($result)){
-                        echo $row['score'];
-                    }
-                }
-            }
-
-            break;
-
-        case 2:
-            break;
-
-        case 3:
-            break;
-    }
-}
 
 ?>
 
@@ -230,12 +221,47 @@ function GetUserScore($id, $what){
         <table class="table">
             <thead class="table-primary">
             <th class="text-center" scope="col">#순위( 전체순위 )</th>
-            <th class="text-center" scope="col">#스코어</th>
+            <th class="text-center" scope="col">#경과시간</th>
             </thead>
             <tbody>
+            <?php
+            $sql = "select * from react_php_crud.map where user_id = '$_GET[id]'";
+            $result = mysqli_query($conn, $sql);
+            while ($row = mysqli_fetch_assoc($result)){
+                $map_time = $row['time'];
+            }
+
+            $sql3  = "select user_id, time, ranking from (select user_id, time,
+                                         @vRank := @vRank + 1 AS ranking from react_php_crud.map AS p, (select @vRank :=0) AS r ORDER BY time ASC) AS CNT WHERE user_id = '$_GET[id]'";
+            $result3 = mysqli_query($conn, $sql3);
+            while ($row = mysqli_fetch_assoc($result3)){
+//            echo '<h1>'.$row['ranking'].'</h1>';
+                $ranking3 = $row['ranking'];
+            }
+
+            ?>
             <tr>
-                <th class="text-center" scope="row"></th>
-                <td class="text-center" style="font-weight: bold">없음</td>
+                <?php if($ranking3 <= 3) {?>
+                    <th class="text-center" scope="row">
+                        <?php if($ranking3 == 1){ ?>
+                            <h4><span class="badge badge-danger">1st Player</span></h4>
+                            <?php echo $ranking3 ?> (  <?php echo GetMapNum(); ?> )
+                        <?php }else if($ranking3 == 2){ ?>
+                            <h4><span class="badge badge-secondary">2nd Player</span></h4>
+                            <?php echo $ranking3 ?> (  <?php echo GetMapNum(); ?> )
+                        <?php }else if($ranking3 == 3){ ?>
+                            <h4><span class="badge badge-secondary">3th Player</span></h4>
+                            <?php echo $ranking3 ?> (  <?php echo GetMapNum(); ?> )
+                        <?php }?>
+                    </th>
+                <?php }else{?>
+                    <th class="text-center" scope="row">
+                        <?php if($ranking3 != null){ ?>
+                            <?php echo $ranking3 ?> (  <?php echo GetMapNum(); ?> )
+                        <?php }?>
+                    </th>
+                <?php } ?>
+                <td class="text-center" style="font-weight: bold"><?php if($map_time != null){?> <?php echo $map_time; }else{?> 없음 <?php }?></td>
             </tr>
             </tbody>
         </table>
