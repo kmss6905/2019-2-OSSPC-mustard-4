@@ -108,9 +108,10 @@ function get_ranking($conn ,$score, $mode, $time){
                 });
 
                 $arrlength = count($rankingArray); // array 의 사이즈
+
                 $rank = 0;
                 for ($x = 0; $x < $arrlength; $x++) {
-                    if ($rankingArray[$x] > $score) {
+                    if ($rankingArray[$x] > $time) {
                         $rank++;
                     } else {
                         $rank++;
@@ -240,7 +241,7 @@ switch ($mode){
                     echo json_encode($json_object, JSON_UNESCAPED_UNICODE + JSON_PRETTY_PRINT);
                     exit;
                 } else { // 기록갱신하는 경우
-                    $ranking = get_ranking($conn, $score, $mode,$time);
+                    $ranking = get_ranking($conn, $score, $mode, $time);
                     $sql = "update react_php_crud.map set time = '$time' where user_id = '$user_id'";//기록갱신
                     if($result = mysqli_query($conn, $sql)){
                         $json_object = array(
