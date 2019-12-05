@@ -152,10 +152,7 @@ public class TetrisOpening extends JFrame {
 			   //background 占쏙옙占쌩깍옙
 			   isMainScreen = true;
 			   
-			   
-			   
-			   
-			   
+			  
 			   
 			   new ModeSelectionWindow(); 
 			   
