@@ -646,13 +646,10 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
       Block mapblock9 = new Block(0,0,Color.BLACK,Color.BLACK);
       mapblock9.setFixGridXY(maxX-7, maxY-9);
       blockList.add(mapblock9);
+      
        map[maxY-9][maxX-7] = mapblock9;        
              
         
-        
-        
-        
-		
 */
 		
 
@@ -982,6 +979,15 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 			if(sec % 15 == 0) 
 				line_add_complete = false;
 			this.repaint();
+			
+			// 여기서 체크하자 minshik
+			// 타임어택 모드이면서 해당 타임이 2분이 된다면
+			if(TetrisMain.GameMode == 2 && timerBuffer.equalsIgnoreCase("02:00")) {
+				this.gameEndCallBack();
+			}
+			
+			
+			
 		} // while()
 	}// run()
 
@@ -1011,6 +1017,75 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		System.out.println("initSpeed : " + initSpeed);
 		System.out.println("(gameSpeed - initSpeed + 1) : " + (gameSpeed - initSpeed + 1));
 		
+		// minshik, 커스텀맵블럭의 개수를 체크합니다.
+	      
+//	      for(Block block : blockList) {
+//	            map[block.getY()][block.getX()] = null;    
+//	         }
+//	  		blockList.clear();
+//    	 TetrisMain.mapLevel ++; // 맵레벨을 2로 올림
+	      
+	      
+	      
+	      
+	      
+//	      // 만약 커스텁 맵블럭의 개수가 0이라면( = 커스텀맵 블럭을 모두 클리어 했다면)
+//	      if(CustomBlockNum == 0) {
+//	    	  
+//	      }else {
+//	         System.out.println("남은 개수 " +CustomBlockNum  + "개");
+//	      }
+	      
+		
+		
+		// 모드를 나눔
+		switch (TetrisMain.GameMode) {
+		case 1: //일반모드
+			break;
+
+		case 2: //타임어택모드
+			break;
+			
+		case 3: //맵모드
+			
+				// 맵모드 종료조건
+			
+			
+			
+			  int CustomBlockNum = 0;
+		      for(Block block : blockList) {
+		         if(block.isCustomBlock() == true) {
+		        	 CustomBlockNum++;
+		         }
+		      }
+		      System.out.println("남은 개수 " + CustomBlockNum + "개" + " 클리어");
+		      // 만약 커스텀 블럭을 모두 부셨다면 
+		      if(CustomBlockNum == 0) {
+		    	  
+		    	  if(TetrisMain.mapLevel == 6) { // 만약 해당 맵이 파이널 맵이였다면? minshik
+		    		  this.gameEndCallBack(); // 게임을 종료한다.
+		    	  }
+		    	  
+		    	  
+		    	 
+		    	// UI에 있는 블럭 지우기
+		    	  for(Block block : blockList) {
+			            map[block.getY()][block.getX()] = null;    
+			      }
+		    	  
+		    	// 데이터 블럭 지우기	
+			    	blockList.clear();
+			    	
+		    	// 레벨에 맞는 맵 세팅
+			    	TetrisMain.mapLevel ++;
+			    	mapSetting(TetrisMain.mapLevel, blockList, map);
+			    	
+		      }
+			break;
+		}
+		
+		
+		
 		
 		/**
 		 * @author minshik
@@ -1023,268 +1098,9 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 	         System.out.println(blockList.get(i).getColor().toString());
 	      }
 	      
-	      // 맵에 남아있?
+	     
 	      
 	      
-	      
-	      // minshik, 커스텀맵블럭의 개수를 체크합니다.
-	      int CustomBlockNum = 0;
-	      for(Block block : blockList) {
-	         if(block.isCustomBlock() == true) {
-	        	 CustomBlockNum++;
-	         }
-	      }
-	      
-	      System.out.println("남은 개수 " + CustomBlockNum + "개" + " 클리어");
-	      
-	      // 만약 커스텁 맵블럭의 개수가 0이라면( = 커스텀맵 블럭을 모두 클리어 했다면)
-	      if(CustomBlockNum == 0) {
-	    	  
-	    	  
-	    	  switch(TetrisMain.mapLevel) { // 현재의 맵 단계
-	    	  	case 1: // 현재의 맵 레벨
-	    	  		
-	    	  		for(Block block : blockList) {
-		 	            map[block.getY()][block.getX()] = null;    
-		 	         }
-	    	  		blockList.clear();
-		        	 TetrisMain.mapLevel ++; // 맵레벨을 2로 올림
-		        	 
-		        	 //레벨 2의 맵을 세팅함
-		        	 
-		     		// 정한교 체리 맵 추가 
-		     		{
-		     		for( int i=1; i<6; i ++) {
-		     			for( int k=1; k<11; k++) {
-		     				
-		     				if (i==1 && (k==1 || k==4 || k==5 || k==6 || k==10))
-		     					continue;
-		     				if (i==2 && k==5)
-		     					continue;
-		     				if (i==3 && k==5)
-		     					continue;
-		     				if (i==4 && (k==1 || k==4 || k==5))
-		     					continue;
-		     				if (i == 5 && (k==1 || k==2 || k==3 || k==4 || k==5 || k==6 || k==10))
-		     				    continue;
-		     				
-		     				Block mapblock = new Block(0,0,Color.RED,Color.RED);
-		     				mapblock.setFixGridXY(maxX-k, maxY-i);
-		     				mapblock.setCustomBlock(true);
-		     				blockList.add(mapblock);
-		     			    map[maxY-i][maxX-k] = mapblock;
-		     			}
-		     		}
-		     		
-		     		// maxX-3, maxX-5 초록블록으로 대체 
-		     				Block mapblock1 = new Block(0,0,Color.GREEN,Color.GREEN);
-		     				mapblock1.setFixGridXY(maxX-3, maxY-5);
-		     				mapblock1.setCustomBlock(true);
-		     				blockList.add(mapblock1);
-		     			    map[maxY-5][maxX-3] = mapblock1;
-		     			    
-		     	    // 초록색 가지 부분
-		     		for( int i=6; i<13; i ++) {
-		     			for( int k=1; k<11; k++) {
-		     				
-		     				if (i==6 && (k!=3 && k!=8))
-		     					continue;
-		     				if (i==7 &&  (k!=3 && k!=4 && k!=7 && k!=8))
-		     					continue;
-		     				if (i==8 && (k!=4 && k!=6 && k!=7))
-		     					continue;
-		     				if (i==9 && (k!=4 && k!=6))
-		     					continue;
-		     				if (i==10 &&  (k!=4 && k!=5 && k!=6))
-		     					continue;
-		     				if (i==11 && k!=4)
-		     					continue;
-		     				if (i==12 && (k!=3 && k!=4 ))
-		     					continue;
-		     				Block mapblock = new Block(0,0,Color.GREEN,Color.GREEN);
-		     				mapblock.setFixGridXY(maxX-k, maxY-i);
-		     				mapblock.setCustomBlock(true);
-		     				blockList.add(mapblock);
-		     			    map[maxY-i][maxX-k] = mapblock;
-		     			}
-		     		}
-		     	    
-		     		//체리 위에 오렌지색 줄기
-		     		for( int k=1; k<11; k++) {
-		     			int i = 13;
-		     			if (k==7 || k==8 || k==9 || k==10)
-		     				continue;
-		     			Block mapblock = new Block(0,0,Color.orange,Color.orange);
-		     			mapblock.setFixGridXY(maxX-k, maxY-i);
-		     			mapblock.setCustomBlock(true);
-		     			blockList.add(mapblock);
-		     		    map[maxY-i][maxX-k] = mapblock;
-		     		}
-		     		}
-		     		
-		     		int num2 = 0;
-		     		for(Block block : blockList) {
-		     			if(block.isCustomBlock()) {
-		     				num2++;
-		     			}
-		     		}
-		     		System.out.println("꺠야할 블럭 수 : " + num2);
-		        	 
-	    	  		break;
-	    	  	case 2:
-	    	  		
-	    	  		
-	    	  		for(Block block : blockList) {
-		 	            map[block.getY()][block.getX()] = null;    
-		 	         }
-	    	  		blockList.clear();
-		        	 TetrisMain.mapLevel ++; // 맵레벨을 3로 올림
-		        	 
-		        	
-		        	 
-		     		// 정한교 머쓱타드 맵 추가 
-		     		
-		     		// 머쓱타드 몸통
-		     		for( int i=1; i<12; i ++) {
-		     			for( int k=1; k<11; k++) {
-		     				
-		     				if (i==1 && (k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 ))
-		     					continue;
-		     				if (i==2 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8 ))
-		     					continue;
-		     				if (i==3 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8 && k!=9))
-		     					continue;
-		     				if (i==4 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8 && k!=9))
-		     					continue;
-		     				if (i==5 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8 && k!=9))
-		     					continue;
-		     				if (i==6 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8 && k!=9))
-		     					continue;
-		     				if (i==7 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8 && k!=9))
-		     					continue;
-		     				if (i==8 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8))
-		     					continue;
-		     				if (i==9 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8))
-		     					continue;
-		     				if (i==10 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7))
-		     					continue;
-		     				if (i==11 && (k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7))
-		     					continue;
-		     				Block mapblock = new Block(0,0,Color.decode("0XFFD700"),Color.decode("0XFFD700"));
-		     				mapblock.setFixGridXY(maxX-k, maxY-i);
-		     				mapblock.setCustomBlock(true);
-		     				blockList.add(mapblock);
-		     			    map[maxY-i][maxX-k] = mapblock;
-
-		     			}
-		     		}
-		     		
-		     		// 머쓱타드 모자
-		     		
-		     		for( int i=12; i<14; i ++) {
-		     			for( int k=2; k<8; k++) {
-		     				
-		     				Block mapblock = new Block(0,0,Color.decode("0XF5F5DC"),Color.decode("0XF5F5DC"));
-		     				mapblock.setFixGridXY(maxX-k, maxY-i);
-		     				mapblock.setCustomBlock(true);
-		     				blockList.add(mapblock);
-		     			    map[maxY-i][maxX-k] = mapblock;
-		     			}
-		     		}
-		     		
-		     		// 머쓱타드 입
-		     		{
-		     		for (int k=4; k<8 ; k++) {
-		     			int i=5;
-		     			Block mapblock = new Block(0,0,Color.decode("0X696969"),Color.decode("0X696969"));
-		     		    mapblock.setFixGridXY(maxX-k, maxY-i);
-		     		   mapblock.setCustomBlock(true);
-		     		    blockList.add(mapblock);
-		     	        map[maxY-i][maxX-k] = mapblock;
-		     		}
-		     		
-		     		
-		     		Block mapblock = new Block(0,0,Color.decode("0X696969"),Color.decode("0X696969"));
-		     	    mapblock.setFixGridXY(maxX-8, maxY-6);
-		     	   mapblock.setCustomBlock(true);
-		     	    blockList.add(mapblock);
-		             map[maxY-6][maxX-8] = mapblock;
-		        
-		     		
-		             Block mapblock1 = new Block(0,0,Color.decode("0X696969"),Color.decode("0X696969"));
-		     	    mapblock1.setFixGridXY(maxX-3, maxY-6);
-		     	   mapblock1.setCustomBlock(true);
-		     	    blockList.add(mapblock1);
-		             map[maxY-6][maxX-3] = mapblock1;
-		          
-		     		
-		             // 머쓱타드 눈
-		             for (int i=8; i<10; i++) {
-		             	for(int k=1;k<10;k++) {
-		                 	
-		                 	if(i==8 && (k!=2 && k!=4 && k!=6 && k!=8 ))
-		                 		continue;
-		                 	if(i==9 && (k!=3 && k!=7))	
-		                 		continue;
-		                     Block mapblock2 = new Block(0,0,Color.decode("0X696969"),Color.decode("0X696969"));
-		         	        mapblock2.setFixGridXY(maxX-k, maxY-i);
-		         	       mapblock2.setCustomBlock(true);
-		         	        blockList.add(mapblock2);
-		                     map[maxY-i][maxX-k] = mapblock2;
-		                	}
-		             }
-		             
-		             // 머쓱타드 땀
-		             Block mapblock3 = new Block(0,0,Color.decode("0XFFFAFA"),Color.decode("0XFFFAFA"));
-		     	    mapblock3.setFixGridXY(maxX-10, maxY-10);
-		     	    mapblock3.setCustomBlock(true);
-		     	    blockList.add(mapblock3);
-		             map[maxY-10][maxX-10] = mapblock3;
-		             
-		             Block mapblock4 = new Block(0,0,Color.decode("0XFFFAFA"),Color.decode("0XFFFAFA"));
-		     	    mapblock4.setFixGridXY(maxX-9, maxY-11);
-		     	    mapblock4.setCustomBlock(true);
-		     	    blockList.add(mapblock4);
-		             map[maxY-11][maxX-9] = mapblock4;
-		             
-		             Block mapblock5 = new Block(0,0,Color.decode("0XFFFAFA"),Color.decode("0XFFFAFA"));
-		     	    mapblock5.setFixGridXY(maxX-10, maxY-9);
-		     	    mapblock5.setCustomBlock(true);
-		     	    blockList.add(mapblock5);
-		             map[maxY-9][maxX-10] = mapblock5;
-		             
-		             Block mapblock6 = new Block(0,0,Color.decode("0XFFFAFA"),Color.decode("0XFFFAFA"));
-		     	    mapblock6.setFixGridXY(maxX-9, maxY-10);
-		     	    mapblock6.setCustomBlock(true);
-		     	    blockList.add(mapblock6);
-		             map[maxY-10][maxX-9] = mapblock6;
-		     		
-		     
-		     		}
-		     		
-		     		
-		     		
-		     		
-		        	
-	    	  	case 3:
-	    	  		break;
-	    	  	case 4:
-	    	  		break;
-	    	  	case 5:
-	    	  		break;
-	    		  
-	    	  }
-	         
-	       
-	         
-	         
-	      }else {
-	         System.out.println("남은 개수 " +CustomBlockNum  + "개");
-	      }
-	      
-		
-		
-	
 		
 		
 		// hwadong
@@ -1547,7 +1363,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 //		JOptionPane.showMessageDialog(null, null, "The End", JOptionPane.ERROR_MESSAGE, popupicon);
 		stopwatch(0);
 		comboSpeed.setEnabled(true); // combobox 잠금 hwadong
-		
+		System.out.println("\n\n 게임종료시의 결과  : \n 사용자아이디 : " + TetrisMain.userId + "\n 게임모드  : " + TetrisMain.GameMode + "\n 스코어 : " + myScore + "\n 경과시간 : " + timerBuffer);
 		getResult(TetrisMain.userId, TetrisMain.GameMode, myScore, timerBuffer);
 	}
 
@@ -1795,7 +1611,8 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 
 	// 게임 뮤직 키고 끄기 millions
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnStart) {
+		if (e.getSource() == btnStart) { //게임 시작버튼 누르면 , 민식
+			TetrisMain.mapLevel = 1; // 맵모드 레벨 1부터 만듬, 민식
 
 			if (client != null) {
 				client.gameStart((int) comboSpeed.getSelectedItem());
@@ -1954,31 +1771,265 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 	
 	/**
 	 * @author minshik_kim
-	 * @param userId 사용자아이디
-	 * @param GameMode 게임모드
-	 * @param Score 점수
+	 * @param userId, GameMode, Score, timebuffer ( 사용자 아이디, 게임모드, 점수, 경과시간 )
 	 * 게임이 끝났을 경우 해당 함수를 사용하여 서버로 점수를 보내고 결과값(랭킹)을 받아 새로운 결과창에 뿌림
 	 */
 	public void getResult(String userId, int GameMode, int Score, String timebuffer) {
 		Call<GameResultRepo> call = retrofitApi.add_point(userId, GameMode, Score, timebuffer);
+		
 		call.enqueue(new Callback<GameResultRepo>() {
 			@Override
 			public void onResponse(Call<GameResultRepo> arg0, Response<GameResultRepo> response) {
 				if(!response.isSuccessful()) {  
 					System.out.println(getClass().getName() + " / " + response.message());
+					System.out.println(response.raw());
 					return;
 				}
 				// 서버로 부터 온 데이터들이 gameResultRepo에 담김
 				GameResultRepo gameResultRepo = response.body(); //repo 가져오는 건 모드 스트링임
 				System.out.println(gameResultRepo.toString());
+				
 				// 게임 결과창을 띄어줌
 				new GameResultInfoWindow(myScore, Integer.valueOf(gameResultRepo.getMode()), Integer.valueOf(gameResultRepo.getRanking()), gameResultRepo.getInfo());	
 			}
 			@Override
 			public void onFailure(Call<GameResultRepo> arg0, Throwable e) {
-				System.out.println(getClass().getName()+ " / " + e.getMessage());
+				System.out.println(getClass().getName()+ " fail / " + e.getMessage());
 			}
 		});
 	}
+	
+
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * @author minshik_kim
+	 * @param mapLevel 맵 레벨에 따라 해당 맵 넣음
+	 * @param blockList 블럭리스트
+	 * @param map 맵 
+	 */
+	public void mapSetting(int mapLevel, ArrayList<Block> blockList, Block[][] map) {
+		switch (mapLevel) {
+		case 2: // 레벨 2 : 체리
+		{
+     		for( int i=1; i<6; i ++) {
+     			for( int k=1; k<11; k++) {
+     				
+     				if (i==1 && (k==1 || k==4 || k==5 || k==6 || k==10))
+     					continue;
+     				if (i==2 && k==5)
+     					continue;
+     				if (i==3 && k==5)
+     					continue;
+     				if (i==4 && (k==1 || k==4 || k==5))
+     					continue;
+     				if (i == 5 && (k==1 || k==2 || k==3 || k==4 || k==5 || k==6 || k==10))
+     				    continue;
+     				
+     				Block mapblock = new Block(0,0,Color.RED,Color.RED);
+     				mapblock.setFixGridXY(maxX-k, maxY-i);
+     				mapblock.setCustomBlock(true);
+     				blockList.add(mapblock);
+     			    map[maxY-i][maxX-k] = mapblock;
+     			}
+     		}
+     		
+     		// maxX-3, maxX-5 초록블록으로 대체 
+     				Block mapblock1 = new Block(0,0,Color.GREEN,Color.GREEN);
+     				mapblock1.setFixGridXY(maxX-3, maxY-5);
+     				mapblock1.setCustomBlock(true);
+     				blockList.add(mapblock1);
+     			    map[maxY-5][maxX-3] = mapblock1;
+     			    
+     	    // 초록색 가지 부분
+     		for( int i=6; i<13; i ++) {
+     			for( int k=1; k<11; k++) {
+     				
+     				if (i==6 && (k!=3 && k!=8))
+     					continue;
+     				if (i==7 &&  (k!=3 && k!=4 && k!=7 && k!=8))
+     					continue;
+     				if (i==8 && (k!=4 && k!=6 && k!=7))
+     					continue;
+     				if (i==9 && (k!=4 && k!=6))
+     					continue;
+     				if (i==10 &&  (k!=4 && k!=5 && k!=6))
+     					continue;
+     				if (i==11 && k!=4)
+     					continue;
+     				if (i==12 && (k!=3 && k!=4 ))
+     					continue;
+     				Block mapblock = new Block(0,0,Color.GREEN,Color.GREEN);
+     				mapblock.setFixGridXY(maxX-k, maxY-i);
+     				mapblock.setCustomBlock(true);
+     				blockList.add(mapblock);
+     			    map[maxY-i][maxX-k] = mapblock;
+     			}
+     		}
+     	    
+     		//체리 위에 오렌지색 줄기
+     		for( int k=1; k<11; k++) {
+     			int i = 13;
+     			if (k==7 || k==8 || k==9 || k==10)
+     				continue;
+     			Block mapblock = new Block(0,0,Color.orange,Color.orange);
+     			mapblock.setFixGridXY(maxX-k, maxY-i);
+     			mapblock.setCustomBlock(true);
+     			blockList.add(mapblock);
+     		    map[maxY-i][maxX-k] = mapblock;
+     		}
+     		}
+     		
+     		int num2 = 0;
+     		for(Block block : blockList) {
+     			if(block.isCustomBlock()) {
+     				num2++;
+     			}
+     		}
+			break;
+
+		case 3: // 머쓱타드 레벨  3 : 머쓱타드 
+			// 정한교 머쓱타드 맵 추가 
+     		
+     		// 머쓱타드 몸통
+     		for( int i=1; i<12; i ++) {
+     			for( int k=1; k<11; k++) {
+     				
+     				if (i==1 && (k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 ))
+     					continue;
+     				if (i==2 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8 ))
+     					continue;
+     				if (i==3 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8 && k!=9))
+     					continue;
+     				if (i==4 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8 && k!=9))
+     					continue;
+     				if (i==5 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8 && k!=9))
+     					continue;
+     				if (i==6 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8 && k!=9))
+     					continue;
+     				if (i==7 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8 && k!=9))
+     					continue;
+     				if (i==8 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8))
+     					continue;
+     				if (i==9 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8))
+     					continue;
+     				if (i==10 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7))
+     					continue;
+     				if (i==11 && (k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7))
+     					continue;
+     				Block mapblock = new Block(0,0,Color.decode("0XFFD700"),Color.decode("0XFFD700"));
+     				mapblock.setFixGridXY(maxX-k, maxY-i);
+     				mapblock.setCustomBlock(true);
+     				blockList.add(mapblock);
+     			    map[maxY-i][maxX-k] = mapblock;
+
+     			}
+     		}
+     		
+     		// 머쓱타드 모자
+     		
+     		for( int i=12; i<14; i ++) {
+     			for( int k=2; k<8; k++) {
+     				
+     				Block mapblock = new Block(0,0,Color.decode("0XF5F5DC"),Color.decode("0XF5F5DC"));
+     				mapblock.setFixGridXY(maxX-k, maxY-i);
+     				mapblock.setCustomBlock(true);
+     				blockList.add(mapblock);
+     			    map[maxY-i][maxX-k] = mapblock;
+     			}
+     		}
+     		
+     		// 머쓱타드 입
+     		{
+     		for (int k=4; k<8 ; k++) {
+     			int i=5;
+     			Block mapblock = new Block(0,0,Color.decode("0X696969"),Color.decode("0X696969"));
+     		    mapblock.setFixGridXY(maxX-k, maxY-i);
+     		   mapblock.setCustomBlock(true);
+     		    blockList.add(mapblock);
+     	        map[maxY-i][maxX-k] = mapblock;
+     		}
+     		
+     		
+     		Block mapblock = new Block(0,0,Color.decode("0X696969"),Color.decode("0X696969"));
+     	    mapblock.setFixGridXY(maxX-8, maxY-6);
+     	   mapblock.setCustomBlock(true);
+     	    blockList.add(mapblock);
+             map[maxY-6][maxX-8] = mapblock;
+        
+     		
+             Block mapblock1 = new Block(0,0,Color.decode("0X696969"),Color.decode("0X696969"));
+     	    mapblock1.setFixGridXY(maxX-3, maxY-6);
+     	   mapblock1.setCustomBlock(true);
+     	    blockList.add(mapblock1);
+             map[maxY-6][maxX-3] = mapblock1;
+          
+     		
+             // 머쓱타드 눈
+             for (int i=8; i<10; i++) {
+             	for(int k=1;k<10;k++) {
+                 	
+                 	if(i==8 && (k!=2 && k!=4 && k!=6 && k!=8 ))
+                 		continue;
+                 	if(i==9 && (k!=3 && k!=7))	
+                 		continue;
+                     Block mapblock2 = new Block(0,0,Color.decode("0X696969"),Color.decode("0X696969"));
+         	        mapblock2.setFixGridXY(maxX-k, maxY-i);
+         	       mapblock2.setCustomBlock(true);
+         	        blockList.add(mapblock2);
+                     map[maxY-i][maxX-k] = mapblock2;
+                	}
+             }
+             
+             // 머쓱타드 땀
+             Block mapblock3 = new Block(0,0,Color.decode("0XFFFAFA"),Color.decode("0XFFFAFA"));
+     	    mapblock3.setFixGridXY(maxX-10, maxY-10);
+     	    mapblock3.setCustomBlock(true);
+     	    blockList.add(mapblock3);
+             map[maxY-10][maxX-10] = mapblock3;
+             
+             Block mapblock4 = new Block(0,0,Color.decode("0XFFFAFA"),Color.decode("0XFFFAFA"));
+     	    mapblock4.setFixGridXY(maxX-9, maxY-11);
+     	    mapblock4.setCustomBlock(true);
+     	    blockList.add(mapblock4);
+             map[maxY-11][maxX-9] = mapblock4;
+             
+             Block mapblock5 = new Block(0,0,Color.decode("0XFFFAFA"),Color.decode("0XFFFAFA"));
+     	    mapblock5.setFixGridXY(maxX-10, maxY-9);
+     	    mapblock5.setCustomBlock(true);
+     	    blockList.add(mapblock5);
+             map[maxY-9][maxX-10] = mapblock5;
+             
+             Block mapblock6 = new Block(0,0,Color.decode("0XFFFAFA"),Color.decode("0XFFFAFA"));
+     	    mapblock6.setFixGridXY(maxX-9, maxY-10);
+     	    mapblock6.setCustomBlock(true);
+     	    blockList.add(mapblock6);
+             map[maxY-10][maxX-9] = mapblock6;
+     		
+     
+     		}
+     		
+			
+			break;
+			
+		case 4:
+			
+			break;
+		case 5:
+			break;
+			
+			
+		case 6: // final 맵
+			
+			
+			break;
+		}
+	}
+	
 
 }
