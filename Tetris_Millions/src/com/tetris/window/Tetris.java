@@ -45,11 +45,10 @@ public class Tetris extends JFrame implements ActionListener{
 		
 		mnGame.add(itemServerStart); 
 		mnGame.add(itemClientStart);
-		
 		stGame.add(itemKeySet);				//millions
 		
-		mnBar.add(mnGame);
-		mnBar.add(stGame);					//millions
+//		mnBar.add(mnGame); min 
+//		mnBar.add(stGame); min					//millions
 		
 		
 		this.setJMenuBar(mnBar); // 메뉴세팅

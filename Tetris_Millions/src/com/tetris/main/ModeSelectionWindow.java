@@ -29,7 +29,6 @@ public class ModeSelectionWindow extends JFrame implements ActionListener{
 		
 		WindowSetting();
 		CreateButton();
-		
 	}
 
 	// 버튼 클릭시 발동
