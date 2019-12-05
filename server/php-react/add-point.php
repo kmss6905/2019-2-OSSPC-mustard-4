@@ -106,12 +106,11 @@ function get_ranking($conn ,$score, $mode, $time){
                     }
                     return $ab > $bd ? -1 : 1;
                 });
-
                 $arrlength = count($rankingArray); // array 의 사이즈
 
                 $rank = 0;
                 for ($x = 0; $x < $arrlength; $x++) {
-                    if ($rankingArray[$x] > $time) {
+                    if (strtotime($rankingArray[$x]) < strtotime($time)) {
                         $rank++;
                     } else {
                         $rank++;
@@ -231,7 +230,7 @@ switch ($mode){
         if($result = mysqli_query($conn, $map_select_sql_)){
             if($num = mysqli_num_rows($result) != 0){ // 기록이 있다면
                 $row = mysqli_fetch_assoc($result);
-                if(strtotime($row['time']) >= strtotime($time)){ // 기록 갱신 하지 못하는 경우
+                if(strtotime($row['time']) <= strtotime($time)){ // 기록 갱신 하지 못하는 경우
                     $json_object = array(
                         "mode" => $mode,
                         "ranking" => get_ranking($conn, $score, $mode, $time),
