@@ -83,12 +83,15 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 	private static final int MESSAGE_WIDTH = BLOCK_SIZE * 7;
 	private static final int MESSAGE_HEIGHT = BLOCK_SIZE * 6;
 	public static final int PANEL_WIDTH = 2 * (maxX * BLOCK_SIZE + MESSAGE_WIDTH + BOARD_X);
-	public static final int PANEL_HEIGHT = maxY * BLOCK_SIZE + MESSAGE_HEIGHT + BOARD_Y;
+	public static final int PANEL_HEIGHT = maxY * BLOCK_SIZE + MESSAGE_HEIGHT + BOARD_Y - 100; // minshik -100 해서 크기 줄임
 
 	private SystemMessageArea systemMsg = new SystemMessageArea(BLOCK_SIZE * 1, BOARD_Y + BLOCK_SIZE + BLOCK_SIZE * 7,
 			BLOCK_SIZE * 5, BLOCK_SIZE * 12);
 	private MessageArea messageArea = new MessageArea(this, 0, PANEL_HEIGHT - MESSAGE_HEIGHT,
 			PANEL_WIDTH - BLOCK_SIZE * 7, MESSAGE_HEIGHT);
+	
+	
+	
 	private JButton btnStart = new JButton("시작하기");
 	private JButton btnExit = new JButton("나가기");
 	private JButton btnSound1 = new JButton("BGM1");
@@ -116,7 +119,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 	private Block[][] map;
 	private TetrisController controller;
 	private TetrisController controllerGhost;
-	public static String timerBuffer; // hwaaad
+	public static String timerBuffer = "00:00"; // hwaaad , minshik
 	public static int oldTime; // hwaaad
 	public static int sec; // hwaaad
 	public int new_sec;
@@ -162,6 +165,13 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		this.setFocusable(true);
 		btnStart.setBounds(PANEL_WIDTH - BLOCK_SIZE * 7, PANEL_HEIGHT - messageArea.getHeight(), BLOCK_SIZE * 7,
 				messageArea.getHeight() / 2);
+		
+//		btnStart.setBounds(PANEL_WIDTH - BLOCK_SIZE * 7, PANEL_HEIGHT - messageArea.getHeight() * 2, BLOCK_SIZE * 7,
+//				messageArea.getHeight() / 2);  // 새로운 버튼 위치 minshik
+		
+	
+		
+		
 		btnStart.setFocusable(false);
 		btnStart.setEnabled(false);
 		btnStart.addActionListener(this);
@@ -180,6 +190,10 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 
 		btnExit.setBounds(PANEL_WIDTH - BLOCK_SIZE * 7, PANEL_HEIGHT - messageArea.getHeight() / 2, BLOCK_SIZE * 7,
 				messageArea.getHeight() / 2);
+		
+//		btnExit.setBounds(PANEL_WIDTH - BLOCK_SIZE * 7, PANEL_HEIGHT - messageArea.getHeight(), BLOCK_SIZE * 7,
+//				messageArea.getHeight() / 2); // 새로운 나가기 버튼 위치 minshik 
+		
 		btnExit.setFocusable(false);
 		btnExit.addActionListener(this);
 
@@ -308,8 +322,8 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		comboSpeed.setBounds(PANEL_WIDTH - BLOCK_SIZE * 13, 5, 45, 20); // 속도 숫자 표시 왼쪽으로 이동.(millions)
 		this.add(comboSpeed);
 
-		this.add(systemMsg);
-		this.add(messageArea);
+//		this.add(systemMsg); minshik 가림
+//		this.add(messageArea); minshik 가림
 		this.add(btnStart);
 		this.add(btnExit);
 		this.add(btnSound1);
@@ -693,10 +707,17 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		g.setColor(Color.black);
 		
 		// IP 출력
-		g.drawString("ip : " + ip + "     port : " + port, 20, 20);
+//		g.drawString("ip : " + ip + "     port : " + port, 20, 20);
 
 		// NickName 출력
-		g.drawString("닉네임 : " + nickName, 20, 40);
+//		g.drawString("닉네임 : " + nickName, 20, 40); minshik
+		
+		// 로그인 되어있으면 minshik 
+		if(TetrisMain.isLogin) { 
+			g.drawString("아이디 : " + TetrisMain.userId + " 님 안녕하세요", 20, 20);
+		}else { //안되어 있으면
+			g.drawString("로그인  후 이용하면 기록을 등록하고 랭킹을 확인할 수 있어요!", 20, 20);
+		}
 
 		// 속도
 		Font font = g.getFont();
@@ -748,7 +769,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		g.drawString("L E V E L", BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 130, BOARD_Y + 110);
 		g.drawString(" " + gameSpeed, BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 160, BOARD_Y + 140);
 		
-		secToMMSS(  ((int) System.currentTimeMillis() / 1000) - oldTime  );
+//		secToMMSS(  ((int) System.currentTimeMillis() / 1000) - oldTime  ); minshik 주석처리함 시작버튼 누르면 그떄부터 카운트 하도록함
 		g.setColor(Color.black);
 		g.setFont(new Font(font.getFontName(), font.getStyle(), 20));
 		g.drawString("T I M E", BOARD_X + BLOCK_SIZE + (maxX + 1) * BLOCK_SIZE + 1 + 140, BOARD_Y + 170);
@@ -1048,10 +1069,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 			
 		case 3: //맵모드
 			
-				// 맵모드 종료조건
-			
-			
-			
+
 			  int CustomBlockNum = 0;
 		      for(Block block : blockList) {
 		         if(block.isCustomBlock() == true) {
@@ -1062,6 +1080,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		      // 만약 커스텀 블럭을 모두 부셨다면 
 		      if(CustomBlockNum == 0) {
 		    	  
+					// 맵모드 종료조건
 		    	  if(TetrisMain.mapLevel == 6) { // 만약 해당 맵이 파이널 맵이였다면? minshik
 		    		  this.gameEndCallBack(); // 게임을 종료한다.
 		    	  }
@@ -1364,7 +1383,13 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		stopwatch(0);
 		comboSpeed.setEnabled(true); // combobox 잠금 hwadong
 		System.out.println("\n\n 게임종료시의 결과  : \n 사용자아이디 : " + TetrisMain.userId + "\n 게임모드  : " + TetrisMain.GameMode + "\n 스코어 : " + myScore + "\n 경과시간 : " + timerBuffer);
-		getResult(TetrisMain.userId, TetrisMain.GameMode, myScore, timerBuffer);
+		
+		
+		if(TetrisMain.isLogin) { // 로그인 되어 있을 경우에 서버로 전송 minshik 
+			getResult(TetrisMain.userId, TetrisMain.GameMode, myScore, timerBuffer);
+		}else{ // 로그인 하지 않았을 경우
+			new GameResultInfoWindow(myScore, TetrisMain.GameMode, timerBuffer);
+		}
 	}
 
 	/**
@@ -1612,6 +1637,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 	// 게임 뮤직 키고 끄기 millions
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnStart) { //게임 시작버튼 누르면 , 민식
+			secToMMSS(  ((int) System.currentTimeMillis() / 1000) - oldTime  );
 			TetrisMain.mapLevel = 1; // 맵모드 레벨 1부터 만듬, 민식
 
 			if (client != null) {

@@ -127,6 +127,7 @@ public class TetrisOpening extends JFrame {
 	   add(exitButton); 
 	   
 	   
+	   // 그냥 시작하기 버튼
 	   startButton.setBounds(260, 200, 400, 50); 
 	   startButton.setBorderPainted(false); 
 	   startButton.setContentAreaFilled(false);
@@ -149,13 +150,11 @@ public class TetrisOpening extends JFrame {
 		   public void mousePressed(MouseEvent e) { 
 			   startButton.setVisible(false);
 			   quitButton.setVisible(false);
-			   //background 占쏙옙占쌩깍옙
 			   isMainScreen = true;
 			   
 			  
 			   
 			   new ModeSelectionWindow(); 
-			   
 		   }
 	   });
 	   
