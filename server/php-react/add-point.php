@@ -1,5 +1,8 @@
 <?php
 /**
+ * @author minshik_kim
+ * @TODO 유저로 부터 게임종료시의 점수정보, 아이디, 플레이한 게임모드 정보를 받아
+ *
  * kmss6905가 일반모드 게임플레이를 시작함
 게임플레이를 시작한후 가령 150을 딴후 게임이 종료됨
 종료됨가 동시에 서버로 해당 150점로 보냄
@@ -18,46 +21,21 @@ response {"ranking" : "23", "info" : "new" }
  */
 $conn = mysqli_connect("localhost", "min", "alstlrdl1!", "react_php_crud");
 if(!$conn){echo "실패";};
-//
+
 $user_id = (String)$_POST["user_id"];
 $score = (int)$_POST["score"];
 $mode = (int)$_POST["mode"];
-
-//if($user_id != null && $score != null && $mode != null){
-//    echo json_encode($json_object = array(
-//        "info" => "low",
-//        "mode" => 1,
-//        "ranking" => 2
-//    ), JSON_UNESCAPED_UNICODE + JSON_PRETTY_PRINT);
-//    exit;
-//}else{
-//    echo json_encode($json_object = array(
-//        "info" => "no",
-//        "mode" => 1,
-//        "ranking" => 2
-//    ), JSON_UNESCAPED_UNICODE + JSON_PRETTY_PRINT);
-//    exit;
-//}
+$time = (String)$_POST["time"];
 
 
-////echo $user_id_b.$score_b.$mode_b;
-//
-//$user_id = (String)$user_id_b; // 아이디
-//$score = (int)$score_b; // 스코어
-//$mode = (int)$mode_b; // 모드
-//
-//
-//$user_id = "admin";
-//$score = 1000;
-//$mode = 1;
 
-//
 $general_select_sql_ = "select * from react_php_crud.nomal where user_id='$user_id'";
 $time_select_sql_ = "select * from react_php_crud.time where user_id='$user_id'";
+$map_select_sql_ = "select * from react_php_crud.map where user_id='$user_id'";
 
 
 
-function get_ranking($conn ,$score, $mode){
+function get_ranking($conn ,$score, $mode, $time){
     $rankingArray = array();
     switch ($mode){
         case 1: // 일반모드
@@ -114,16 +92,22 @@ function get_ranking($conn ,$score, $mode){
             }
             break;
         case 3: // 맵모드
-            $sql3 = "select * from react_php_crud.nomal";
+            $sql3 = "select * from react_php_crud.map order by time asc";
             if($result3 = mysqli_query($conn, $sql3)) {
-
                 while ($row = mysqli_fetch_assoc($result3)) {
-                    array_push($rankingArray, $row['score']);
+                    array_push($rankingArray, $row['time']);
                 }
-                array_push($rankingArray, $score); // 마지막점수 넣고
-                rsort($rankingArray);
+                array_push($rankingArray, $time); // 클라이언트로 부터 받은 경과시간 정보를 넣음
+                usort($rankingArray, function($a,$b){ // 가장 빠른 경과 순으로 오름차순 정렬
+                    $ab = strtotime($a);
+                    $bd = strtotime($b);
+                    if($ab == $bd) {
+                        return 0;
+                    }
+                    return $ab > $bd ? -1 : 1;
+                });
 
-                $arrlength = count($rankingArray);
+                $arrlength = count($rankingArray); // array 의 사이즈
                 $rank = 0;
                 for ($x = 0; $x < $arrlength; $x++) {
                     if ($rankingArray[$x] > $score) {
@@ -156,7 +140,7 @@ switch ($mode){
 //                echo $row['score'];
 
                     if($row['score'] >= $score){ // 기록 갱신 하지 못하는 경우
-                        $ranking = get_ranking($conn, $score, $mode);
+                        $ranking = get_ranking($conn, $score, $mode,$time);
                         $json_object = array(
                             "mode" => (String)$mode,
                             "ranking" => $ranking,
@@ -165,7 +149,7 @@ switch ($mode){
                         echo json_encode($json_object, JSON_UNESCAPED_UNICODE + JSON_PRETTY_PRINT);
                         exit;
                     } else { // 기록갱신하는 경우
-                        $ranking = get_ranking($conn, $score, $mode);
+                        $ranking = get_ranking($conn, $score, $mode,$time);
                         $sql = "update react_php_crud.nomal set score = '$score' where user_id = '$user_id'";//기록갱신
                         if($result = mysqli_query($conn, $sql)){ // 갱신)
                             $json_object = array(
@@ -181,7 +165,7 @@ switch ($mode){
                     }
 
             }else{ // 기록이 없다면 기록을 추가한다.
-                $ranking = get_ranking($conn, $score, $mode);
+                $ranking = get_ranking($conn, $score, $mode,$time);
                 $sql = "insert into react_php_crud.nomal(user_id, score) values ('$user_id', '$score')";
                 if($result = mysqli_query($conn, $sql)){ // 삽입성공
                     $json_object = array(
@@ -203,19 +187,19 @@ switch ($mode){
                 if($row['score'] >= $score){ // 기록 갱신 하지 못하는 경우
                     $json_object = array(
                         "mode" => $mode,
-                        "ranking" => get_ranking($conn, $score, $mode),
+                        "ranking" => get_ranking($conn, $score, $mode,$time),
                         "info" => "low"
                     );
                 } else { // 기록갱신하는 경우
                     $json_object = array(
                         "mode" => $mode,
-                        "ranking" => get_ranking($conn, $score, $mode),
+                        "ranking" => get_ranking($conn, $score, $mode,$time),
                         "info" => "high"
                     );
                 }
 
             }else{ // 기록이 없다면 기록을 추가한다.
-                $ranking = get_ranking($conn, $score, $mode);
+                $ranking = get_ranking($conn, $score, $mode,$time);
                 $sql = "insert into react_php_crud.time(user_id, score) values ('$user_id', '$score')";
                 if($result = mysqli_query($conn, $sql)){ // 삽입성공
                     $json_object = array(
@@ -229,6 +213,48 @@ switch ($mode){
         }
         break;
     case 3: // 맵모드
+        if($result = mysqli_query($conn, $map_select_sql_)){
+            if($num = mysqli_num_rows($result) != 0){ // 기록이 있다면
+                $row = mysqli_fetch_assoc($result);
+                if(strtotime($row['time']) <= strtotime($time)){ // 기록 갱신 하지 못하는 경우
+                    $json_object = array(
+                        "mode" => $mode,
+                        "ranking" => get_ranking($conn, $score, $mode, $time),
+                        "info" => "low"
+                    );
+
+                    echo json_encode($json_object, JSON_UNESCAPED_UNICODE + JSON_PRETTY_PRINT);
+                    exit;
+                } else { // 기록갱신하는 경우
+                    $ranking = get_ranking($conn, $score, $mode,$time);
+                    $sql = "update react_php_crud.map set time = '$time' where user_id = '$user_id'";//기록갱신
+                    if($result = mysqli_query($conn, $sql)){
+                        $json_object = array(
+                            "mode" => (String)$mode,
+                            "ranking" => $ranking,
+                            "info" => "high"
+                        );
+
+                        echo json_encode($json_object, JSON_UNESCAPED_UNICODE + JSON_PRETTY_PRINT);
+                        exit;
+                    }
+                }
+
+            }else{ // 기록이 없다면 기록을 추가한다.
+                $ranking = get_ranking($conn, $score, $mode, $time);
+                $sql = "insert into react_php_crud.map(user_id, time) values ('$user_id', '$time')";
+                if($result = mysqli_query($conn, $sql)){ // 삽입성공
+                    $json_object = array(
+                        "mode" => $mode,
+                        "ranking" => $ranking,
+                        "info" => "new"
+                    );
+                }
+                echo json_encode($json_object, JSON_UNESCAPED_UNICODE + JSON_PRETTY_PRINT);
+                exit;
+            }
+
+        }
         break;
 }
 

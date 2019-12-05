@@ -34,6 +34,21 @@ function GetTimeTopUserInfo($what){
     }
 }
 
+function GetMapNum(){
+    $sqlGeneralNum = "select * from react_php_crud.map";
+    $result = mysqli_query($GLOBALS['conn'], $sqlGeneralNum);
+    $num = mysqli_num_rows($result);
+    return $num;
+}
+
+function GetMapModeTopUserInfo($what){
+    $sql = "select * from react_php_crud.map where time = (select min(time) from react_php_crud.map)";
+    $result = mysqli_query($GLOBALS['conn'], $sql);
+    while($row = mysqli_fetch_assoc($result)){
+        echo $row[$what];
+    }
+}
+
 
 
 
@@ -160,11 +175,11 @@ $sqlTimeNum = "select * from react_php_crud.time";
                 <h2>맵모드</h2>
                 <div class="card border-info">
                     <div class="container" >
-                        기록 등록 유저수 <span class="badge badge-info">14</span>
+                        기록 등록 유저수 <span class="badge badge-info"><?php echo GetMapNum() ?></span>
                         <div></div>
-                        현재 1위 <span class="badge badge-info">helloworld</span>
+                        현재 1위 <span class="badge badge-info"><?php GetMapModeTopUserInfo('user_id'); ?></span>
                         <div></div>
-                        스코어 <span class="badge badge-info">4200</span>
+                        경과시간 <span class="badge badge-info"><?php GetMapModeTopUserInfo('time'); ?></span>
                     </div>
                 </div>
                 <p><a class="btn btn-secondary" href="./map.php" role="button">랭킹 보기 &raquo;</a></p>
