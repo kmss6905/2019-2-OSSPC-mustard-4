@@ -190,12 +190,23 @@ switch ($mode){
                         "ranking" => get_ranking($conn, $score, $mode,$time),
                         "info" => "low"
                     );
+                    echo json_encode($json_object, JSON_UNESCAPED_UNICODE + JSON_PRETTY_PRINT);
+                    exit;
+
                 } else { // 기록갱신하는 경우
-                    $json_object = array(
-                        "mode" => $mode,
-                        "ranking" => get_ranking($conn, $score, $mode,$time),
-                        "info" => "high"
-                    );
+
+                    $ranking = get_ranking($conn, $score, $mode,$time);
+                    $sql = "update react_php_crud.time set score = '$score' where user_id = '$user_id'";//기록갱신
+                    if($result = mysqli_query($conn, $sql)){ // 갱신)
+                        $json_object = array(
+                            "mode" => (String)$mode,
+                            "ranking" => $ranking,
+                            "info" => "high"
+                        );
+
+                        echo json_encode($json_object, JSON_UNESCAPED_UNICODE + JSON_PRETTY_PRINT);
+                        exit;
+                    }
                 }
 
             }else{ // 기록이 없다면 기록을 추가한다.
@@ -207,6 +218,9 @@ switch ($mode){
                         "ranking" => $ranking,
                         "info" => "new"
                     );
+
+                    echo json_encode($json_object, JSON_UNESCAPED_UNICODE + JSON_PRETTY_PRINT);
+                    exit;
                 }
             }
 
@@ -216,7 +230,7 @@ switch ($mode){
         if($result = mysqli_query($conn, $map_select_sql_)){
             if($num = mysqli_num_rows($result) != 0){ // 기록이 있다면
                 $row = mysqli_fetch_assoc($result);
-                if(strtotime($row['time']) <= strtotime($time)){ // 기록 갱신 하지 못하는 경우
+                if(strtotime($row['time']) >= strtotime($time)){ // 기록 갱신 하지 못하는 경우
                     $json_object = array(
                         "mode" => $mode,
                         "ranking" => get_ranking($conn, $score, $mode, $time),
