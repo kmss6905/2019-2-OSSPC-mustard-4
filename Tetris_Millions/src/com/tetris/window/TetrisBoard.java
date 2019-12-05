@@ -585,6 +585,73 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 	    mapblock6.setFixGridXY(maxX-9, maxY-10);
 	    blockList.add(mapblock6);
         map[maxY-10][maxX-9] = mapblock6;
+        
+        
+        // 정한교 코끼리 맵 추가  
+        
+        // 코끼리 전체 개형
+      for( int i=1; i<12 ; i++){
+          for( int k=1; k<11 ; k++){
+              if(i==1 && (k==1 || k==2 || k==3 || k==4 || k==10))
+                  continue;
+              if(i==2 && (k==1 || k==2 || k==3 || k==4 || k==7 || k==10))
+                  continue;
+              if(i==3 && (k==1 || k==2 || k==3 || k==4 || k==7 || k==10))
+                  continue;
+              if(i==4 && (k!=5 && k!=6))
+                  continue;
+              if(i==5 && (k==1 || k==2 || k==9 || k==10))
+                  continue;    
+              if(i==6 && (k!=4 && k!=5 && k!=6 && k!=7))
+                  continue;    
+              if(i==7 && (k==1 || k==10))
+                  continue;
+              if(i==8 && ( k==3 || k==8 ))
+                  continue;
+              if(i==9 && ( k==3 || k==8 ))
+                  continue;
+              if(i==10 && (k==3 || k==8 ))
+                  continue;
+              if(i==11 && (k!=2 && k!=3 && k!=8 && k!=9 ))
+                  continue;                    
+              Block mapblock = new Block(0,0,Color.decode("0X696969"),Color.decode("0X696969"));
+            mapblock.setFixGridXY(maxX-k, maxY-i);
+            blockList.add(mapblock);
+             map[maxY-i][maxX-k] = mapblock;
+            }
+      }    
+      
+      // 코끼리  상아
+      for(int i=5 ; i<8 ; i++){
+          for(int k=1; k<10; k++){
+              if(i==5 && (k!=3 && k!=4 && k!=7 && k!=8))
+                  continue;
+              if(i==6 && (k!=4 && k!=7))
+                  continue;
+              if(i==7 && (k!=4 && k!=7))
+                  continue;
+              Block mapblock7 = new Block(0,0,Color.BLUE,Color.BLUE);
+            mapblock7.setFixGridXY(maxX-k, maxY-i);
+            blockList.add(mapblock7);
+             map[maxY-i][maxX-k] = mapblock7;
+             }
+         }
+      
+      // 코기리 눈
+      Block mapblock8 = new Block(0,0,Color.BLACK,Color.BLACK);
+      mapblock8.setFixGridXY(maxX-4, maxY-9);
+      blockList.add(mapblock8);
+       map[maxY-9][maxX-4] = mapblock8;
+      
+      Block mapblock9 = new Block(0,0,Color.BLACK,Color.BLACK);
+      mapblock9.setFixGridXY(maxX-7, maxY-9);
+      blockList.add(mapblock9);
+       map[maxY-9][maxX-7] = mapblock9;        
+             
+        
+        
+        
+        
 		
 */
 		
@@ -1886,7 +1953,6 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 	
 	
 	/**
-	 * 
 	 * @author minshik_kim
 	 * @param userId 사용자아이디
 	 * @param GameMode 게임모드
@@ -1896,23 +1962,18 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 	public void getResult(String userId, int GameMode, int Score, String timebuffer) {
 		Call<GameResultRepo> call = retrofitApi.add_point(userId, GameMode, Score, timebuffer);
 		call.enqueue(new Callback<GameResultRepo>() {
-			
 			@Override
 			public void onResponse(Call<GameResultRepo> arg0, Response<GameResultRepo> response) {
 				if(!response.isSuccessful()) {  
 					System.out.println(getClass().getName() + " / " + response.message());
 					return;
 				}
-				
 				// 서버로 부터 온 데이터들이 gameResultRepo에 담김
 				GameResultRepo gameResultRepo = response.body(); //repo 가져오는 건 모드 스트링임
 				System.out.println(gameResultRepo.toString());
-							
 				// 게임 결과창을 띄어줌
-				new GameResultInfoWindow(myScore, Integer.valueOf(gameResultRepo.getMode()), Integer.valueOf(gameResultRepo.getRanking()), gameResultRepo.getInfo());
-				
+				new GameResultInfoWindow(myScore, Integer.valueOf(gameResultRepo.getMode()), Integer.valueOf(gameResultRepo.getRanking()), gameResultRepo.getInfo());	
 			}
-			
 			@Override
 			public void onFailure(Call<GameResultRepo> arg0, Throwable e) {
 				System.out.println(getClass().getName()+ " / " + e.getMessage());
