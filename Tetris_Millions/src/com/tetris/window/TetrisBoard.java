@@ -414,259 +414,39 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		
 		
 		//minshik 1.맵 모드 들어갈 경우 초반에 세팅되는 첫번 째 맵
+		//첫번째 맵 수정 : Hi! - hwaaad
 		if(TetrisMain.GameMode == 3) {
-			Block mapblock = new Block(0, 0, Color.yellow, Color.yellow);
-			mapblock.setFixGridXY(maxX-1,maxY-1);
-			mapblock.setCustomBlock(true);
-			blockList.add(mapblock);
-			map[maxY-1][maxX-1] = mapblock;
-		}
-		
-				
-		/*
-		// 정한교 체리 맵 추가 
-		{
-		for( int i=1; i<6; i ++) {
-			for( int k=1; k<11; k++) {
-				
-				if (i==1 && (k==1 || k==4 || k==5 || k==6 || k==10))
-					continue;
-				if (i==2 && k==5)
-					continue;
-				if (i==3 && k==5)
-					continue;
-				if (i==4 && (k==1 || k==4 || k==5))
-					continue;
-				if (i == 5 && (k==1 || k==2 || k==3 || k==4 || k==5 || k==6 || k==10))
-				    continue;
-				
-				Block mapblock = new Block(0,0,Color.RED,Color.RED);
-				mapblock.setFixGridXY(maxX-k, maxY-i);
-				blockList.add(mapblock);
-			    map[maxY-i][maxX-k] = mapblock;
-			}
-		}
-		
-		// maxX-3, maxX-5 초록블록으로 대체 
-				Block mapblock1 = new Block(0,0,Color.GREEN,Color.GREEN);
-				mapblock1.setFixGridXY(maxX-3, maxY-5);
-				blockList.add(mapblock1);
-			    map[maxY-5][maxX-3] = mapblock1;
-			    
-	    // 초록색 가지 부분
-		for( int i=6; i<13; i ++) {
-			for( int k=1; k<11; k++) {
-				
-				if (i==6 && (k!=3 && k!=8))
-					continue;
-				if (i==7 &&  (k!=3 && k!=4 && k!=7 && k!=8))
-					continue;
-				if (i==8 && (k!=4 && k!=6 && k!=7))
-					continue;
-				if (i==9 && (k!=4 && k!=6))
-					continue;
-				if (i==10 &&  (k!=4 && k!=5 && k!=6))
-					continue;
-				if (i==11 && k!=4)
-					continue;
-				if (i==12 && (k!=3 && k!=4 ))
-					continue;
-				Block mapblock = new Block(0,0,Color.GREEN,Color.GREEN);
-				mapblock.setFixGridXY(maxX-k, maxY-i);
-				blockList.add(mapblock);
-			    map[maxY-i][maxX-k] = mapblock;
-			}
-		}
-	    
-		//체리 위에 오렌지색 줄기
-		for( int k=1; k<11; k++) {
-			int i = 13;
-			if (k==7 || k==8 || k==9 || k==10)
-				continue;
-			Block mapblock = new Block(0,0,Color.orange,Color.orange);
-			mapblock.setFixGridXY(maxX-k, maxY-i);
-			blockList.add(mapblock);
-		    map[maxY-i][maxX-k] = mapblock;
-		}
-		}
-		*/
-		
-		
-		/*
-		// 정한교 머쓱타드 맵 추가 
-		
-		// 머쓱타드 몸통
-		for( int i=1; i<12; i ++) {
-			for( int k=1; k<11; k++) {
-				
-				if (i==1 && (k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 ))
-					continue;
-				if (i==2 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8 ))
-					continue;
-				if (i==3 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8 && k!=9))
-					continue;
-				if (i==4 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8 && k!=9))
-					continue;
-				if (i==5 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8 && k!=9))
-					continue;
-				if (i==6 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8 && k!=9))
-					continue;
-				if (i==7 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8 && k!=9))
-					continue;
-				if (i==8 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8))
-					continue;
-				if (i==9 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 && k!=8))
-					continue;
-				if (i==10 && (k!=1 && k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7))
-					continue;
-				if (i==11 && (k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7))
-					continue;
-				Block mapblock = new Block(0,0,Color.decode("0XFFD700"),Color.decode("0XFFD700"));
-				mapblock.setFixGridXY(maxX-k, maxY-i);
-				blockList.add(mapblock);
-			    map[maxY-i][maxX-k] = mapblock;
+			//Block mapblock = new Block(0, 0, Color.yellow, Color.yellow);
+			//mapblock.setFixGridXY(maxX-1,maxY-1);
+			//mapblock.setCustomBlock(true);
+			//blockList.add(mapblock);
+			//map[maxY-1][maxX-1] = mapblock;
+			
+			//Block mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
+			//mapblock.setFixGridXY(1,20);
+			//mapblock.setCustomBlock(true);
+			//blockList.add(mapblock);
+			//map[20][1] = mapblock;
 
+			char rnd = 'A';
+			for(int i=11; i<21; i++) {
+				for(int j=0; j<8; j++) {
+					if(j%2 == 0)
+						rnd = (char) ('A' + j / 2);
+					String color_value = "";
+					color_value = "0x" + rnd + rnd + "0033";
+					Block mapblock = new Block(0, 0, Color.decode(color_value), Color.decode(color_value));
+					mapblock.setFixGridXY(j,i);
+					mapblock.setCustomBlock(true);
+					blockList.add(mapblock);
+					map[i][j] = mapblock;
+				}
 			}
+			
 		}
 		
-		// 머쓱타드 모자
-		
-		for( int i=12; i<14; i ++) {
-			for( int k=2; k<8; k++) {
 				
-				Block mapblock = new Block(0,0,Color.decode("0XF5F5DC"),Color.decode("0XF5F5DC"));
-				mapblock.setFixGridXY(maxX-k, maxY-i);
-				blockList.add(mapblock);
-			    map[maxY-i][maxX-k] = mapblock;
-			}
-		}
-		
-		// 머쓱타드 입
-		{
-		for (int k=4; k<8 ; k++) {
-			int i=5;
-			Block mapblock = new Block(0,0,Color.decode("0X696969"),Color.decode("0X696969"));
-		    mapblock.setFixGridXY(maxX-k, maxY-i);
-		    blockList.add(mapblock);
-	        map[maxY-i][maxX-k] = mapblock;
-		}
-		
-		
-		Block mapblock = new Block(0,0,Color.decode("0X696969"),Color.decode("0X696969"));
-	    mapblock.setFixGridXY(maxX-8, maxY-6);
-	    blockList.add(mapblock);
-        map[maxY-6][maxX-8] = mapblock;
-   
-		
-        Block mapblock1 = new Block(0,0,Color.decode("0X696969"),Color.decode("0X696969"));
-	    mapblock1.setFixGridXY(maxX-3, maxY-6);
-	    blockList.add(mapblock1);
-        map[maxY-6][maxX-3] = mapblock1;
-     
-		
-        // 머쓱타드 눈
-        for (int i=8; i<10; i++) {
-        	for(int k=1;k<10;k++) {
-            	
-            	if(i==8 && (k!=2 && k!=4 && k!=6 && k!=8 ))
-            		continue;
-            	if(i==9 && (k!=3 && k!=7))	
-            		continue;
-                Block mapblock2 = new Block(0,0,Color.decode("0X696969"),Color.decode("0X696969"));
-    	        mapblock2.setFixGridXY(maxX-k, maxY-i);
-    	        blockList.add(mapblock2);
-                map[maxY-i][maxX-k] = mapblock2;
-           	}
-        }
-        
-        // 머쓱타드 땀
-        Block mapblock3 = new Block(0,0,Color.decode("0XFFFAFA"),Color.decode("0XFFFAFA"));
-	    mapblock3.setFixGridXY(maxX-10, maxY-10);
-	    blockList.add(mapblock3);
-        map[maxY-10][maxX-10] = mapblock3;
-        
-        Block mapblock4 = new Block(0,0,Color.decode("0XFFFAFA"),Color.decode("0XFFFAFA"));
-	    mapblock4.setFixGridXY(maxX-9, maxY-11);
-	    blockList.add(mapblock4);
-        map[maxY-11][maxX-9] = mapblock4;
-        
-        Block mapblock5 = new Block(0,0,Color.decode("0XFFFAFA"),Color.decode("0XFFFAFA"));
-	    mapblock5.setFixGridXY(maxX-10, maxY-9);
-	    blockList.add(mapblock5);
-        map[maxY-9][maxX-10] = mapblock5;
-        
-        Block mapblock6 = new Block(0,0,Color.decode("0XFFFAFA"),Color.decode("0XFFFAFA"));
-	    mapblock6.setFixGridXY(maxX-9, maxY-10);
-	    blockList.add(mapblock6);
-        map[maxY-10][maxX-9] = mapblock6;
-        
-        
-        // 정한교 코끼리 맵 추가  
-        
-        // 코끼리 전체 개형
-      for( int i=1; i<12 ; i++){
-          for( int k=1; k<11 ; k++){
-              if(i==1 && (k==1 || k==2 || k==3 || k==4 || k==10))
-                  continue;
-              if(i==2 && (k==1 || k==2 || k==3 || k==4 || k==7 || k==10))
-                  continue;
-              if(i==3 && (k==1 || k==2 || k==3 || k==4 || k==7 || k==10))
-                  continue;
-              if(i==4 && (k!=5 && k!=6))
-                  continue;
-              if(i==5 && (k==1 || k==2 || k==9 || k==10))
-                  continue;    
-              if(i==6 && (k!=4 && k!=5 && k!=6 && k!=7))
-                  continue;    
-              if(i==7 && (k==1 || k==10))
-                  continue;
-              if(i==8 && ( k==3 || k==8 ))
-                  continue;
-              if(i==9 && ( k==3 || k==8 ))
-                  continue;
-              if(i==10 && (k==3 || k==8 ))
-                  continue;
-              if(i==11 && (k!=2 && k!=3 && k!=8 && k!=9 ))
-                  continue;                    
-              Block mapblock = new Block(0,0,Color.decode("0X696969"),Color.decode("0X696969"));
-            mapblock.setFixGridXY(maxX-k, maxY-i);
-            blockList.add(mapblock);
-             map[maxY-i][maxX-k] = mapblock;
-            }
-      }    
-      
-      // 코끼리  상아
-      for(int i=5 ; i<8 ; i++){
-          for(int k=1; k<10; k++){
-              if(i==5 && (k!=3 && k!=4 && k!=7 && k!=8))
-                  continue;
-              if(i==6 && (k!=4 && k!=7))
-                  continue;
-              if(i==7 && (k!=4 && k!=7))
-                  continue;
-              Block mapblock7 = new Block(0,0,Color.BLUE,Color.BLUE);
-            mapblock7.setFixGridXY(maxX-k, maxY-i);
-            blockList.add(mapblock7);
-             map[maxY-i][maxX-k] = mapblock7;
-             }
-         }
-      
-      // 코기리 눈
-      Block mapblock8 = new Block(0,0,Color.BLACK,Color.BLACK);
-      mapblock8.setFixGridXY(maxX-4, maxY-9);
-      blockList.add(mapblock8);
-       map[maxY-9][maxX-4] = mapblock8;
-      
-      Block mapblock9 = new Block(0,0,Color.BLACK,Color.BLACK);
-      mapblock9.setFixGridXY(maxX-7, maxY-9);
-      blockList.add(mapblock9);
-      
-       map[maxY-9][maxX-7] = mapblock9;        
-             
-        
-*/
-		
-
+	
 		// 도형셋팅
 		shap = getRandomTetrisBlock();
 		ghost = getBlockClone(shap, true);
@@ -989,7 +769,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 					addBlockLine(1);
 				}
 			}
-			// 시간별 난이도 조절
+			// 시간별 난이도 조절 hwaaad
 			
 			sec = secToMMSS(  ((int) System.currentTimeMillis() / 1000) - oldTime  );
 			new_sec = (int)System.currentTimeMillis();
@@ -1081,7 +861,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		      if(CustomBlockNum == 0) {
 		    	  
 					// 맵모드 종료조건
-		    	  if(TetrisMain.mapLevel == 6) { // 만약 해당 맵이 파이널 맵이였다면? minshik
+		    	  if(TetrisMain.mapLevel > 6) { // 만약 해당 맵이 파이널 맵이였다면? minshik
 		    		  this.gameEndCallBack(); // 게임을 종료한다.
 		    	  }
 		    	  
@@ -1841,7 +1621,151 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 	 */
 	public void mapSetting(int mapLevel, ArrayList<Block> blockList, Block[][] map) {
 		switch (mapLevel) {
-		case 2: // 레벨 2 : 체리
+		
+		case 2:
+		{
+			int cp1 = 9;
+			int cp2 = 0;
+			char rnd = '0';
+			for(int i=11; i<21; i++) {
+				for(int j=0; j<10; j++) {
+					if(j == cp1 || j == cp2)
+						continue;
+					
+					rnd = (char) ('0' + j);
+					String color_value = "";
+					color_value = "0x" + rnd + rnd + "0066";
+					Block mapblock = new Block(0, 0, Color.decode(color_value), Color.decode(color_value));
+					mapblock.setFixGridXY(j,i);
+					mapblock.setCustomBlock(true);
+					blockList.add(mapblock);
+					map[i][j] = mapblock;
+				}
+				cp1--;
+				cp2++;
+			}
+
+		}
+			break;
+		case 3:
+		{
+			
+			Block mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
+			mapblock.setFixGridXY(1,20);
+			mapblock.setCustomBlock(true);
+			blockList.add(mapblock);
+			map[20][1] = mapblock;
+			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
+			mapblock.setFixGridXY(1,19);
+			mapblock.setCustomBlock(true);
+			blockList.add(mapblock);
+			map[19][1] = mapblock;
+			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
+			mapblock.setFixGridXY(1,18);
+			mapblock.setCustomBlock(true);
+			blockList.add(mapblock);
+			map[18][1] = mapblock;
+			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
+			mapblock.setFixGridXY(1,17);
+			mapblock.setCustomBlock(true);
+			blockList.add(mapblock);
+			map[17][1] = mapblock;
+			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
+			mapblock.setFixGridXY(1,16);
+			mapblock.setCustomBlock(true);
+			blockList.add(mapblock);
+			map[16][1] = mapblock;
+			
+			
+			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
+			mapblock.setFixGridXY(2,18);
+			mapblock.setCustomBlock(true);
+			blockList.add(mapblock);
+			map[18][2] = mapblock;
+		
+			
+			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
+			mapblock.setFixGridXY(3,20);
+			mapblock.setCustomBlock(true);
+			blockList.add(mapblock);
+			map[20][3] = mapblock;
+			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
+			mapblock.setFixGridXY(3,19);
+			mapblock.setCustomBlock(true);
+			blockList.add(mapblock);
+			map[19][3] = mapblock;
+			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
+			mapblock.setFixGridXY(3,18);
+			mapblock.setCustomBlock(true);
+			blockList.add(mapblock);
+			map[18][3] = mapblock;
+			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
+			mapblock.setFixGridXY(3,17);
+			mapblock.setCustomBlock(true);
+			blockList.add(mapblock);
+			map[17][3] = mapblock;
+			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
+			mapblock.setFixGridXY(3,16);
+			mapblock.setCustomBlock(true);
+			blockList.add(mapblock);
+			map[16][3] = mapblock;
+			
+			
+			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
+			mapblock.setFixGridXY(5,20);
+			mapblock.setCustomBlock(true);
+			blockList.add(mapblock);
+			map[20][5] = mapblock;
+			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
+			mapblock.setFixGridXY(5,19);
+			mapblock.setCustomBlock(true);
+			blockList.add(mapblock);
+			map[19][5] = mapblock;
+			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
+			mapblock.setFixGridXY(5,18);
+			mapblock.setCustomBlock(true);
+			blockList.add(mapblock);
+			map[18][5] = mapblock;
+			
+			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
+			mapblock.setFixGridXY(5,16);
+			mapblock.setCustomBlock(true);
+			blockList.add(mapblock);
+			map[16][5] = mapblock;
+			
+			
+			
+			mapblock = new Block(0, 0, Color.decode("0xFF3333"), Color.decode("0xFF3333"));
+			mapblock.setFixGridXY(7,20);
+			mapblock.setCustomBlock(true);
+			blockList.add(mapblock);
+			map[20][7] = mapblock;
+			
+			
+			mapblock = new Block(0, 0, Color.decode("0xFF3333"), Color.decode("0xFF3333"));
+			mapblock.setFixGridXY(7,18);
+			mapblock.setCustomBlock(true);
+			blockList.add(mapblock);
+			map[18][7] = mapblock;
+			mapblock = new Block(0, 0, Color.decode("0xFF3333"), Color.decode("0xFF3333"));
+			mapblock.setFixGridXY(7,17);
+			mapblock.setCustomBlock(true);
+			blockList.add(mapblock);
+			map[17][7] = mapblock;
+			mapblock = new Block(0, 0, Color.decode("0xFF3333"), Color.decode("0xFF3333"));
+			mapblock.setFixGridXY(7,16);
+			mapblock.setCustomBlock(true);
+			blockList.add(mapblock);
+			map[16][7] = mapblock;
+			mapblock = new Block(0, 0, Color.decode("0xFF3333"), Color.decode("0xFF3333"));
+			mapblock.setFixGridXY(7,15);
+			mapblock.setCustomBlock(true);
+			blockList.add(mapblock);
+			map[15][7] = mapblock;
+		}
+			break;
+			
+		case 4: // 레벨 4 : 체리
 		{
      		for( int i=1; i<6; i ++) {
      			for( int k=1; k<11; k++) {
@@ -1909,17 +1833,17 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
      			blockList.add(mapblock);
      		    map[maxY-i][maxX-k] = mapblock;
      		}
-     		}
+     	}
      		
-     		int num2 = 0;
-     		for(Block block : blockList) {
-     			if(block.isCustomBlock()) {
-     				num2++;
-     			}
+     	int num2 = 0;
+     	for(Block block : blockList) {
+     		if(block.isCustomBlock()) {
+     			num2++;
      		}
-			break;
+     	}
+		break;
 
-		case 3: // 머쓱타드 레벨  3 : 머쓱타드 
+		case 5: // 머쓱타드 레벨  5 : 머쓱타드 
 			// 정한교 머쓱타드 맵 추가 
      		
      		// 머쓱타드 몸통
@@ -2043,15 +1967,72 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 			
 			break;
 			
-		case 4:
-			
-			break;
-		case 5:
-			break;
-			
+		
 			
 		case 6: // final 맵
-			
+		{
+			// 정한교 코끼리 맵 추가  
+	        
+	        // 코끼리 전체 개형
+	      for( int i=1; i<12 ; i++){
+	          for( int k=1; k<11 ; k++){
+	              if(i==1 && (k==1 || k==2 || k==3 || k==4 || k==10))
+	                  continue;
+	              if(i==2 && (k==1 || k==2 || k==3 || k==4 || k==7 || k==10))
+	                  continue;
+	              if(i==3 && (k==1 || k==2 || k==3 || k==4 || k==7 || k==10))
+	                  continue;
+	              if(i==4 && (k!=5 && k!=6))
+	                  continue;
+	              if(i==5 && (k==1 || k==2 || k==9 || k==10))
+	                  continue;    
+	              if(i==6 && (k!=4 && k!=5 && k!=6 && k!=7))
+	                  continue;    
+	              if(i==7 && (k==1 || k==10))
+	                  continue;
+	              if(i==8 && ( k==3 || k==8 ))
+	                  continue;
+	              if(i==9 && ( k==3 || k==8 ))
+	                  continue;
+	              if(i==10 && (k==3 || k==8 ))
+	                  continue;
+	              if(i==11 && (k!=2 && k!=3 && k!=8 && k!=9 ))
+	                  continue;                    
+	              Block mapblock = new Block(0,0,Color.decode("0X696969"),Color.decode("0X696969"));
+	            mapblock.setFixGridXY(maxX-k, maxY-i);
+	            blockList.add(mapblock);
+	             map[maxY-i][maxX-k] = mapblock;
+	            }
+	      }    
+	      
+	      // 코끼리  상아
+	      for(int i=5 ; i<8 ; i++){
+	          for(int k=1; k<10; k++){
+	              if(i==5 && (k!=3 && k!=4 && k!=7 && k!=8))
+	                  continue;
+	              if(i==6 && (k!=4 && k!=7))
+	                  continue;
+	              if(i==7 && (k!=4 && k!=7))
+	                  continue;
+	              Block mapblock7 = new Block(0,0,Color.BLUE,Color.BLUE);
+	            mapblock7.setFixGridXY(maxX-k, maxY-i);
+	            blockList.add(mapblock7);
+	             map[maxY-i][maxX-k] = mapblock7;
+	             }
+	         }
+	      
+	      // 코기리 눈
+	      Block mapblock8 = new Block(0,0,Color.BLACK,Color.BLACK);
+	      mapblock8.setFixGridXY(maxX-4, maxY-9);
+	      blockList.add(mapblock8);
+	       map[maxY-9][maxX-4] = mapblock8;
+	      
+	      Block mapblock9 = new Block(0,0,Color.BLACK,Color.BLACK);
+	      mapblock9.setFixGridXY(maxX-7, maxY-9);
+	      blockList.add(mapblock9);
+	       map[maxY-9][maxX-7] = mapblock9;        
+	             
+		}
 			
 			break;
 		}
