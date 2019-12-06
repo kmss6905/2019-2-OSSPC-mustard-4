@@ -1606,7 +1606,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 				System.out.println(gameResultRepo.toString());
 				
 				// 게임 결과창을 띄어줌
-				new GameResultInfoWindow(myScore, Integer.valueOf(gameResultRepo.getMode()), Integer.valueOf(gameResultRepo.getRanking()), gameResultRepo.getInfo());	
+				new GameResultInfoWindow(myScore, Integer.valueOf(gameResultRepo.getMode()), Integer.valueOf(gameResultRepo.getRanking()), gameResultRepo.getInfo(), timebuffer);	
 			}
 			@Override
 			public void onFailure(Call<GameResultRepo> arg0, Throwable e) {
