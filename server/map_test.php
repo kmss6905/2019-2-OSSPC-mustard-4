@@ -4,7 +4,18 @@ $conn = mysqli_connect("localhost", "min", "alstlrdl1!", "react_php_crud");
 if($conn){}else{exit();} // db 접속실패시 접속 끊음
 
 
-$time = "4l:30";
+$time = "00:11:30";
+$time2 = "10:22:40";
+
+if(strtotime($time) < strtotime($time2)){
+    echo 'true';
+}else{
+    echo 'false';
+}
+
+
+
+
 
 $rankingArray = array();
 $sql3 = "select * from react_php_crud.map order by time asc";
@@ -13,31 +24,47 @@ if($result3 = mysqli_query($conn, $sql3)) {
         array_push($rankingArray, $row['time']);
     }
     array_push($rankingArray, $time); // 클라이언트로 부터 받은 경과시간 정보를 넣음
-    usort($rankingArray, function($a,$b){ // 가장 빠른 경과 순으로 오름차순 정렬
-        $ab = strtotime($a);
-        $bd = strtotime($b);
-        if($ab == $bd) {
-            return 0;
-        }
-        return $ab > $bd ? -1 : 1;
+
+//    print_r($rankingArray)
+
+
+
+    usort($rankingArray, function($a,$b){
+        echo strtotime($a) - strtotime($b);
+        return strtotime($a) - strtotime($b); // if not worked. return strtotime($a[0]) - strtotime($b[0]);
     });
 
-    $arrlength = count($rankingArray); // array 의 사이즈
-    $rank = 0;
-    for ($x = 0; $x < $arrlength; $x++) {
-        if ($rankingArray[$x] > $score) {
-            $rank++;
-        } else {
-            $rank++;
-            break;
-        }
-    }
-//                        echo "랭킹은 : ".$rank."위";
+    print_r($rankingArray);
+
+//    usort($rankingArray, function($a,$b){ // 가장 빠른 경과 순으로 오름차순 정렬
+//        $ab = strtotime($a);
+//        $bd = strtotime($b);
+//        if($ab == $bd) {
+//            return 0;
+//        }
+//        return $ab > $bd ? -1 : 1;
+//    });
+
+
+
+
+//
+//    $arrlength = count($rankingArray); // array 의 사이즈
+//    $rank = 0;
+//    for ($x = 0; $x < $arrlength; $x++) {
+//        if (strtotime($rankingArray[$x]) <= strtotime($time)) {
+//            $rank++;
+//        } else {
+//            $rank++;
+//            break;
+//        }
+//    }
+////                        echo "랭킹은 : ".$rank."위";
 //        echo json_encode($json_object = array(
 //            "ranking" => (String)$rank,
 //            "info" => "row"
 //        ), JSON_PRETTY_PRINT + JSON_UNESCAPED_UNICODE);
-    echo (String)$rank;
+//    echo (String)$rank;
 }
 
 
@@ -47,33 +74,33 @@ if($result3 = mysqli_query($conn, $sql3)) {
 
 
 
-if(strtotime("50:40") >= strtotime("50:39"))
-    echo 'true';
-else
-    echo 'false';
-
-
-
-$arr = array();
-$sql = "select * from react_php_crud.map order by time asc";
-if($result = mysqli_query($conn, $sql)){
-    while ($row = mysqli_fetch_assoc($result)){
-        echo $row['time'].'</br>';
-        array_push($arr, $row['time']);
-        print_r($arr);
-    }
-}
-
-usort($arr, function($a,$b){
-    $ab = strtotime($a);
-    $bd = strtotime($b);
-    if($ab == $bd) {
-        return 0;
-    }
-    return $ab > $bd ? -1 : 1;
-});
-
-print_r($arr);
+//if(strtotime("00:50:40") >= strtotime("00:50:39"))
+//    echo 'true';
+// else
+//    echo 'false';
+//
+//
+//
+//$arr = array();
+//$sql = "select * from react_php_crud.map order by time asc";
+//if($result = mysqli_query($conn, $sql)){
+//    while ($row = mysqli_fetch_assoc($result)){
+////        echo $row['time'].'</br>';
+//        array_push($arr, $row['time']);
+//    }
+//}
+//
+////print_r($arr);
+//
+//usort($arr, function($a,$b){
+//    $ab = strtotime($a);
+//    $bd = strtotime($b);
+//    if($ab == $bd) {
+//        return 0;
+//    }
+//    return $ab < $bd ? -1 : 1;
+//});
+//print_r($arr);
 
 /**
  *  * kmss6905가 맵 게임플레이를 시작함
@@ -96,11 +123,3 @@ print_r($arr);
 response {"ranking" : "23", "info" : "new" }
  *
  */
-
-
-
-
-
-
-
-
