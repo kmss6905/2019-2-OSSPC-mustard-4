@@ -1442,7 +1442,9 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 			if (client != null) {
 				if (tetris.isNetwork()) {
 					client.closeNetwork(tetris.isServer());
+
 					System.exit(0); // prevention of networking error - hwaaad
+
 				}
 			} else {
 				System.exit(0);
