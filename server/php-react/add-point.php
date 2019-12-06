@@ -98,22 +98,18 @@ function get_ranking($conn ,$score, $mode, $time){
                     array_push($rankingArray, $row['time']);
                 }
                 array_push($rankingArray, $time); // 클라이언트로 부터 받은 경과시간 정보를 넣음
-                usort($rankingArray, function($a,$b){ // 가장 빠른 경과 순으로 오름차순 정렬
-                    $ab = strtotime($a);
-                    $bd = strtotime($b);
-                    if($ab == $bd) {
-                        return 0;
-                    }
-                    return $ab > $bd ? -1 : 1;
+                usort($rankingArray, function($a,$b){
+                    return strtotime($a) - strtotime($b); // if not worked. return strtotime($a[0]) - strtotime($b[0]);
                 });
-                $arrlength = count($rankingArray); // array 의 사이즈
 
-                $rank = 0;
+
+                $arrlength = count($rankingArray); // array 의 사이즈
+                $rank = 1;
                 for ($x = 0; $x < $arrlength; $x++) {
                     if (strtotime($rankingArray[$x]) < strtotime($time)) {
                         $rank++;
                     } else {
-                        $rank++;
+//                        $rank++;
                         break;
                     }
                 }
@@ -183,11 +179,10 @@ switch ($mode){
         if($result = mysqli_query($conn, $time_select_sql_)){
             if($num = mysqli_num_rows($result) != 0){ // 기록이 있다면
                 $row = mysqli_fetch_assoc($result);
-
                 if($row['score'] >= $score){ // 기록 갱신 하지 못하는 경우
                     $json_object = array(
                         "mode" => $mode,
-                        "ranking" => get_ranking($conn, $score, $mode,$time),
+                        "ranking" => get_ranking($conn, $score, $mode, $time),
                         "info" => "low"
                     );
                     echo json_encode($json_object, JSON_UNESCAPED_UNICODE + JSON_PRETTY_PRINT);
