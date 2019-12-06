@@ -321,7 +321,9 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 
 		comboSpeed.setBounds(PANEL_WIDTH - BLOCK_SIZE * 13, 5, 45, 20); // 속도 숫자 표시 왼쪽으로 이동.(millions)
 		this.add(comboSpeed);
-
+		if (TetrisMain.GameMode == 3)
+			comboSpeed.setEnabled(false);
+		// when you playing mapmode of tetris, you can't choose starting gamespeed
 //		this.add(systemMsg); minshik 가림
 //		this.add(messageArea); minshik 가림
 		this.add(btnStart);
@@ -902,13 +904,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 	      
 		
 		
-		// hwadong
-		if (((int)myScore / 500 >= (gameSpeed - initSpeed + 1)) && gameSpeed < 20) {
-			++gameSpeed;
-			changeSpeed(gameSpeed);
-			System.out.println("myScore : " + myScore + "/ gameSpeed : " + gameSpeed);
-			this.repaint();
-		}
+		
 		
 		
 		
@@ -1102,6 +1098,13 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 				
 				pk += 1;
 			}
+			// hwadong
+			if (((int)myScore / 500 >= (gameSpeed - initSpeed+1)) && gameSpeed < 20) {
+				++gameSpeed;
+				changeSpeed(gameSpeed);
+				System.out.println("myScore : " + myScore + "/ gameSpeed : " + gameSpeed);
+			}
+			this.repaint();
 
 		}
 		return isCombo;
@@ -1144,6 +1147,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 
 		this.dropBoard(lineNumber, 1);
 		//this.myScore+= 50; // hwaaad
+		
 	}
 
 	/**
@@ -1420,13 +1424,15 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		if (e.getSource() == btnStart) { //게임 시작버튼 누르면 , 민식
 			secToMMSS(  ((int) System.currentTimeMillis() / 1000) - oldTime  );
 			TetrisMain.mapLevel = 1; // 맵모드 레벨 1부터 만듬, 민식
-
-			if (client != null) {
-				client.gameStart((int) comboSpeed.getSelectedItem());
-			} else {
-				this.gameStart((int) comboSpeed.getSelectedItem());
+			if(TetrisMain.GameMode != 3) {
+				if (client != null) {
+					client.gameStart((int) comboSpeed.getSelectedItem());
+				} else {
+					this.gameStart((int) comboSpeed.getSelectedItem());
+				}
+			}else {
+				this.gameStart(1); // when you restart map-mode, gameSpeed will be reset 
 			}
-			
 		} else if (e.getSource() == btnExit) {
 
 			if (GameMusic != null && GameMusic.isAlive()) {
@@ -1436,7 +1442,9 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 			if (client != null) {
 				if (tetris.isNetwork()) {
 					client.closeNetwork(tetris.isServer());
-					System.exit(0);
+
+					System.exit(0); // prevention of networking error - hwaaad
+
 				}
 			} else {
 				System.exit(0);
