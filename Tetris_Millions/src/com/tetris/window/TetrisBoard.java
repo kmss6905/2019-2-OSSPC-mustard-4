@@ -268,7 +268,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 				TetrisBoard.this.repaint();
 			}
 		});
-
+		
 		checkBGM.setBounds(PANEL_WIDTH - BLOCK_SIZE * 7 + 35, 25, 95, 20); // 배경음악 checkbox 위치 및 디자인(millions)
 		checkBGM.setBackground(Color.white);
 		checkBGM.setForeground(Color.black);
@@ -1775,7 +1775,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		}
 			break;
 			
-		case 4: // 레벨 4 : 체리
+		case 5: // 레벨 4 : 체리
 		{
      		for( int i=1; i<6; i ++) {
      			for( int k=1; k<11; k++) {
@@ -1853,7 +1853,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
      	}
 		break;
 
-		case 5: // 머쓱타드 레벨  5 : 머쓱타드 
+		case 6: // 머쓱타드 레벨  5 : 머쓱타드 
 			// 정한교 머쓱타드 맵 추가 
      		
      		// 머쓱타드 몸통
@@ -1979,7 +1979,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 			
 		
 			
-		case 6: // final 맵
+		case 4: // final 맵
 		{
 			// 정한교 코끼리 맵 추가  
 	        
