@@ -1253,6 +1253,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 	 * @param removeMaxLine 한번에 지운 줄수
 	 */
 	public void getFixBlockCallBack(ArrayList<Block> blockList, int removeCombo, int removeMaxLine) {
+		/*
 		if (removeCombo < 3) {
 			if (removeMaxLine == 3)
 				client.addBlock(1);
@@ -1272,7 +1273,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 				client.addBlock(5);
 			else
 				client.addBlock(2);
-		}
+		}*/
 	}
 
 	/**
@@ -1435,6 +1436,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 			if (client != null) {
 				if (tetris.isNetwork()) {
 					client.closeNetwork(tetris.isServer());
+					System.exit(0);
 				}
 			} else {
 				System.exit(0);
