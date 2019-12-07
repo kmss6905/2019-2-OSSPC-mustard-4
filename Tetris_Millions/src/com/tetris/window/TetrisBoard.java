@@ -1162,15 +1162,22 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		}
 		GameEndSound = new Music("GameOver.mp3", false);
 		GameEndSound.start();
-//		ImageIcon popupicon = new ImageIcon(TetrisMain.class.getResource("../../../Images/GAMEOVER.PNG"));
-//		JOptionPane.showMessageDialog(null, null, "The End", JOptionPane.ERROR_MESSAGE, popupicon);
+
 		stopwatch(0);
 		comboSpeed.setEnabled(true); // combobox 잠금 hwadong
 		System.out.println("\n\n 게임종료시의 결과  : \n 사용자아이디 : " + TetrisMain.userId + "\n 게임모드  : " + TetrisMain.GameMode + "\n 스코어 : " + myScore + "\n 경과시간 : " + timerBuffer);
 		
 		
 		if(TetrisMain.isLogin) { // 로그인 되어 있을 경우에 서버로 전송 minshik 
-			getResult(TetrisMain.userId, TetrisMain.GameMode, myScore, timerBuffer);
+			if(TetrisMain.GameMode != 3) { // 맵모드가 아닐 경우에만 서버로 보냄 minshik
+				getResult(TetrisMain.userId, TetrisMain.GameMode, myScore, timerBuffer);
+				return;
+			}
+			
+			ImageIcon popupicon = new ImageIcon(TetrisMain.class.getResource("../../../Images/GAMEOVER.PNG"));
+			JOptionPane.showMessageDialog(null, null, "The End", JOptionPane.ERROR_MESSAGE, popupicon);
+			
+			
 		}else{ // 로그인 하지 않았을 경우
 			new GameResultInfoWindow(myScore, TetrisMain.GameMode, timerBuffer);
 		}
