@@ -429,7 +429,6 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 			//mapblock.setCustomBlock(true);
 			//blockList.add(mapblock);
 			//map[20][1] = mapblock;
-
 			char rnd = 'A';
 			for(int i=11; i<21; i++) {
 				for(int j=0; j<8; j++) {
@@ -747,8 +746,11 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 				countDown--;
 				if (countDown == 0) {
 
-					if (controller != null && !controller.moveDown())
+					if (controller != null && !controller.moveDown()) {
 						this.fixingTetrisBlock();
+						continue;
+					}
+					
 				}
 				this.repaint();
 
@@ -759,7 +761,8 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 				// countMove = (21 - (int) comboSpeed.getSelectedItem()) * 5;
 				countMove = (21 - (int) gameSpeed) * 5;
 				if (controller != null && !controller.moveDown())
-					countDown = down;
+					this.fixingTetrisBlock(); // 속도가 올라갈떄 바닥에 닿았음애도 불구하고 블럭이 나오지 않는 버그 수정 - hwaaad
+					//countDown = down; 로그를 찍어보니까 여기서 꼬이게 된다. -> 그냥 바닥에 닿는걸로 인지하고 그 자리에 고정을 시켜버리는 방법으로 해결
 				else
 					this.showGhost();
 			}
@@ -771,6 +774,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 					addBlockLine(1);
 				}
 			}
+			
 			// 시간별 난이도 조절 hwaaad
 			
 			sec = secToMMSS(  ((int) System.currentTimeMillis() / 1000) - oldTime  );
@@ -1664,125 +1668,58 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 
 		}
 			break;
-		case 3:
+		case 3: // 3단계 Hi - hwadong
 		{
-			
 			Block mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
-			mapblock.setFixGridXY(1,20);
-			mapblock.setCustomBlock(true);
-			blockList.add(mapblock);
-			map[20][1] = mapblock;
-			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
-			mapblock.setFixGridXY(1,19);
-			mapblock.setCustomBlock(true);
-			blockList.add(mapblock);
-			map[19][1] = mapblock;
-			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
-			mapblock.setFixGridXY(1,18);
-			mapblock.setCustomBlock(true);
-			blockList.add(mapblock);
-			map[18][1] = mapblock;
-			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
-			mapblock.setFixGridXY(1,17);
-			mapblock.setCustomBlock(true);
-			blockList.add(mapblock);
-			map[17][1] = mapblock;
-			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
-			mapblock.setFixGridXY(1,16);
-			mapblock.setCustomBlock(true);
-			blockList.add(mapblock);
-			map[16][1] = mapblock;
 			
-			
-			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
+			for(int i = 16; i <= 20; i++) {
+				mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
+				mapblock.setFixGridXY(1,i);
+				mapblock.setCustomBlock(true);
+				blockList.add(mapblock);
+				map[i][1] = mapblock;
+				mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
+				mapblock.setFixGridXY(3,i);
+				mapblock.setCustomBlock(true);
+				blockList.add(mapblock);
+				map[i][3] = mapblock;
+			}
+			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));	
 			mapblock.setFixGridXY(2,18);
 			mapblock.setCustomBlock(true);
 			blockList.add(mapblock);
 			map[18][2] = mapblock;
 		
-			
-			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
-			mapblock.setFixGridXY(3,20);
-			mapblock.setCustomBlock(true);
-			blockList.add(mapblock);
-			map[20][3] = mapblock;
-			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
-			mapblock.setFixGridXY(3,19);
-			mapblock.setCustomBlock(true);
-			blockList.add(mapblock);
-			map[19][3] = mapblock;
-			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
-			mapblock.setFixGridXY(3,18);
-			mapblock.setCustomBlock(true);
-			blockList.add(mapblock);
-			map[18][3] = mapblock;
-			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
-			mapblock.setFixGridXY(3,17);
-			mapblock.setCustomBlock(true);
-			blockList.add(mapblock);
-			map[17][3] = mapblock;
-			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
-			mapblock.setFixGridXY(3,16);
-			mapblock.setCustomBlock(true);
-			blockList.add(mapblock);
-			map[16][3] = mapblock;
-			
-			
-			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
-			mapblock.setFixGridXY(5,20);
-			mapblock.setCustomBlock(true);
-			blockList.add(mapblock);
-			map[20][5] = mapblock;
-			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
-			mapblock.setFixGridXY(5,19);
-			mapblock.setCustomBlock(true);
-			blockList.add(mapblock);
-			map[19][5] = mapblock;
-			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
-			mapblock.setFixGridXY(5,18);
-			mapblock.setCustomBlock(true);
-			blockList.add(mapblock);
-			map[18][5] = mapblock;
-			
-			mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
-			mapblock.setFixGridXY(5,16);
-			mapblock.setCustomBlock(true);
-			blockList.add(mapblock);
-			map[16][5] = mapblock;
-			
-			
-			
-			mapblock = new Block(0, 0, Color.decode("0xFF3333"), Color.decode("0xFF3333"));
-			mapblock.setFixGridXY(7,20);
-			mapblock.setCustomBlock(true);
-			blockList.add(mapblock);
-			map[20][7] = mapblock;
-			
-			
-			mapblock = new Block(0, 0, Color.decode("0xFF3333"), Color.decode("0xFF3333"));
-			mapblock.setFixGridXY(7,18);
-			mapblock.setCustomBlock(true);
-			blockList.add(mapblock);
-			map[18][7] = mapblock;
-			mapblock = new Block(0, 0, Color.decode("0xFF3333"), Color.decode("0xFF3333"));
-			mapblock.setFixGridXY(7,17);
-			mapblock.setCustomBlock(true);
-			blockList.add(mapblock);
-			map[17][7] = mapblock;
-			mapblock = new Block(0, 0, Color.decode("0xFF3333"), Color.decode("0xFF3333"));
-			mapblock.setFixGridXY(7,16);
-			mapblock.setCustomBlock(true);
-			blockList.add(mapblock);
-			map[16][7] = mapblock;
-			mapblock = new Block(0, 0, Color.decode("0xFF3333"), Color.decode("0xFF3333"));
-			mapblock.setFixGridXY(7,15);
-			mapblock.setCustomBlock(true);
-			blockList.add(mapblock);
-			map[15][7] = mapblock;
+			for(int i = 15; i<= 20; i++) {
+				if(i == 15 || i == 17) {
+					mapblock = new Block(0, 0, Color.decode("0xFF3333"), Color.decode("0xFF3333"));
+					mapblock.setFixGridXY(7,i);
+					mapblock.setCustomBlock(true);
+					blockList.add(mapblock);
+					map[i][7] = mapblock;				
+				}else if(i == 19) {
+					mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
+					mapblock.setFixGridXY(5,i);
+					mapblock.setCustomBlock(true);
+					blockList.add(mapblock);
+					map[i][5] = mapblock;
+				}else {
+					mapblock = new Block(0, 0, Color.decode("0x66CCCC"), Color.decode("0x66CCCC"));
+					mapblock.setFixGridXY(5,i);
+					mapblock.setCustomBlock(true);
+					blockList.add(mapblock);
+					map[i][5] = mapblock;
+					mapblock = new Block(0, 0, Color.decode("0xFF3333"), Color.decode("0xFF3333"));
+					mapblock.setFixGridXY(7,i);
+					mapblock.setCustomBlock(true);
+					blockList.add(mapblock);
+					map[i][7] = mapblock;
+				}
+			}
 		}
 			break;
 			
-		case 5: // 레벨 4 : 체리
+		case 5: // 레벨 5 : 체리
 		{
      		for( int i=1; i<6; i ++) {
      			for( int k=1; k<11; k++) {
@@ -1860,11 +1797,12 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
      	}
 		break;
 
-		case 6: // 머쓱타드 레벨  5 : 머쓱타드 
+		case 6:
+		{	// 머쓱타드 레벨  6 : 머쓱타드 
 			// 정한교 머쓱타드 맵 추가 
      		
      		// 머쓱타드 몸통
-     		for( int i=1; i<12; i ++) {
+			for( int i=1; i<12; i ++) {
      			for( int k=1; k<11; k++) {
      				
      				if (i==1 && (k!=2 && k!=3 && k!=4 && k!=5 && k!=6 && k!=7 ))
@@ -1980,13 +1918,14 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
      		
      
      		}
-     		
-			
-			break;
-			
 		
 			
-		case 4: // final 맵
+		}
+     			
+			break;
+			
+			
+		case 4: // 4단계 맵
 		{
 			// 정한교 코끼리 맵 추가  
 	        
