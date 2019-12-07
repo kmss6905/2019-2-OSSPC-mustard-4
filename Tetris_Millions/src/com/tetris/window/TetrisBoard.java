@@ -323,7 +323,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		this.add(comboSpeed);
 		if (TetrisMain.GameMode == 3 || TetrisMain.GameMode == 2)
 			comboSpeed.setEnabled(false);
-		// when you playing mapmode of tetris, you can't choose starting gamespeed
+		// when you playing mapmode, timemode of tetris, you can't choose starting gamespeed hwadong
 //		this.add(systemMsg); minshik 가림
 //		this.add(messageArea); minshik 가림
 		this.add(btnStart);
@@ -1431,14 +1431,14 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		if (e.getSource() == btnStart) { //게임 시작버튼 누르면 , 민식
 			secToMMSS(  ((int) System.currentTimeMillis() / 1000) - oldTime  );
 			TetrisMain.mapLevel = 1; // 맵모드 레벨 1부터 만듬, 민식
-			if(TetrisMain.GameMode != 3) {
+			if(TetrisMain.GameMode == 1) { // normal 모드일 떄만 lv 수정 가능하도록
 				if (client != null) {
 					client.gameStart((int) comboSpeed.getSelectedItem());
 				} else {
 					this.gameStart((int) comboSpeed.getSelectedItem());
 				}
 			}else {
-				this.gameStart(1); // when you restart map-mode, gameSpeed will be reset 
+				this.gameStart(1); // when you restart map-mode/time-mode, gameSpeed will be reset 
 			}
 		} else if (e.getSource() == btnExit) {
 
