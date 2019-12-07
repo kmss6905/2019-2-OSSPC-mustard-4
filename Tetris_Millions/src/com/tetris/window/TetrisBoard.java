@@ -321,7 +321,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 
 		comboSpeed.setBounds(PANEL_WIDTH - BLOCK_SIZE * 13, 5, 45, 20); // 속도 숫자 표시 왼쪽으로 이동.(millions)
 		this.add(comboSpeed);
-		if (TetrisMain.GameMode == 3)
+		if (TetrisMain.GameMode == 3 || TetrisMain.GameMode == 2)
 			comboSpeed.setEnabled(false);
 		// when you playing mapmode of tetris, you can't choose starting gamespeed
 //		this.add(systemMsg); minshik 가림
@@ -863,7 +863,7 @@ public class TetrisBoard extends JPanel implements Runnable, KeyListener, MouseL
 		      if(CustomBlockNum == 0) {
 		    	  
 					// 맵모드 종료조건
-		    	  if(TetrisMain.mapLevel > 6) { // 만약 해당 맵이 파이널 맵이였다면? minshik
+		    	  if(TetrisMain.mapLevel >= 6) { // 만약 해당 맵이 파이널 맵이였다면? minshik , 종료 조건 수정 hwadong
 		    		  this.gameEndCallBack(); // 게임을 종료한다.
 		    	  }
 		    	  
