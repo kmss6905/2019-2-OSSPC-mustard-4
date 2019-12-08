@@ -2,11 +2,11 @@
 
 <img width=300 src="https://user-images.githubusercontent.com/43781484/66769955-64f7c800-eef1-11e9-8003-1c7ccd7e50f6.jpg">
 
-##License
+## License
 	
 <a href="https://opensource.org/licenses/MIT">The MIT License </a>
 
-##Developers
+## Developers
 ±è¹Î½Ä(ÆÀÀå)<br>
 °æÁ¦ÈÆ<br>
 ·ùÈ­µ¿<br> 
@@ -14,27 +14,27 @@
 
 ## Description
 
- ### Three Game Modes
+ #### Three Game Modes
 	-nomal mode
 	-map mode : Move to the next step when removing all map blocks. Maps in 6 stages
 	-tima attack mode : We can play games for 2 minutes.
 
- ### If you play a game after logging in, you can register the Tetris record and check the ranking
-	- If you want to see the ranking of all users, visit website : <a href="http://15.164.218.103/home.php">Muxgtard Tetris</a>
+ #### If you play a game after logging in, you can register the Tetris record and check the ranking
+	##### If you want to see the ranking of all users, visit website : <a href="http://15.164.218.103/home.php">Muxgtard Tetris</a>
 
- ### blocks are added below for level 15 or higher.
+ #### blocks are added below for level 15 or higher.
 
- ### The higher the level, the faster the block falls.
+ #### The higher the level, the faster the block falls.
 
 
 
 ## Develope environment and IDE
-
+>
   OS
->	 Windows 10, Ubuntu (Linux)
+  Windows 10, Ubuntu (Linux)
+  
   IDE
->	 eclipse, phpStorm
-
+  eclipse, phpStorm
 
 ## What Improved?
 
