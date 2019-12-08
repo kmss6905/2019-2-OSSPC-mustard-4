@@ -53,7 +53,7 @@ Your branch is ahead of 'origin/master' by 1 commit.
 ![Ranking site](./IMAGES/home.png) ![Ranking site](./IMAGES/nomal.png) ![Ranking site](./IMAGES/map.png) ![Ranking site](./IMAGES/time.png) ![Ranking site](./IMAGES/search.png) 
 - MapMode( six map )
 
-![MapMode](./IMAGES/gamemode_map.PNG)
+![MapMode](./IMAGES/gamemode_map.png)
 
 
 
