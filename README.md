@@ -42,12 +42,15 @@ IDE
 	
 - Login & Register
 
-![Login & Register](./IMAGES/login.PNG)
+![Login & Register](./IMAGES/login.png)
+
+$ git commit -m 'readme.md ¼öÁ¤'
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
 
 - Ranking site
 
-![Ranking site](./IMAGES/home.PNG) ![Ranking site](./IMAGES/nomal.PNG) ![Ranking site](./IMAGES/map.PNG) ![Ranking site](./IMAGES/time.PNG) ![Ranking site](./IMAGES/search.PNG)
-
+![Ranking site](./IMAGES/home.png) ![Ranking site](./IMAGES/nomal.png) ![Ranking site](./IMAGES/map.png) ![Ranking site](./IMAGES/time.png) ![Ranking site](./IMAGES/search.png) 
 - MapMode( six map )
 
 ![MapMode](./IMAGES/gamemode_map.PNG)
@@ -60,7 +63,7 @@ IDE
 ![Change Home screen](./IMAGES/ui_homescreen.png)
 	
 : Add reverse mode setting
-![Add reverse mode setting](./IMAGES/add_settinh.png)
+![Add reverse mode setting](./IMAGES/add_setting.png)
 
 : How to play window
 ![How to play window](./IMAGES/how_to_play.png)
