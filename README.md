@@ -20,7 +20,9 @@
 	-tima attack mode : We can play games for 2 minutes.
 
  #### If you play a game after logging in, you can register the Tetris record and check the ranking
-	##### If you want to see the ranking of all users, visit website : <a href="http://15.164.218.103/home.php">Muxgtard Tetris</a>
+ 	If you want to see the ranking of all users, visit website :
+	Link: http://15.164.218.103/home.php
+
 
  #### blocks are added below for level 15 or higher.
 
