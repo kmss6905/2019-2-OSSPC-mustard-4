@@ -7,26 +7,26 @@
 <a href="https://opensource.org/licenses/MIT">The MIT License </a>
 
 ## Developers
-±è¹Î½Ä(ÆÀÀå)<br>
-°æÁ¦ÈÆ<br>
-·ùÈ­µ¿<br> 
-Á¤ÇÑ±³<br> 
++ ±è¹Î½Ä(ÆÀÀå)<br>
++ °æÁ¦ÈÆ<br>
++ ·ùÈ­µ¿<br> 
++ Á¤ÇÑ±³<br> 
 
 ## Description
 
- #### Three Game Modes
++ #### Three Game Modes
 	-nomal mode
 	-map mode : Move to the next step when removing all map blocks. Maps in 6 stages
 	-tima attack mode : We can play games for 2 minutes.
 
- #### If you play a game after logging in, you can register the Tetris record and check the ranking
++ #### If you play a game after logging in, you can register the Tetris record and check the ranking
  	If you want to see the ranking of all users, visit website :
 Link: [Google][googlelink]
 [googlelink]: http://15.164.218.103/home.php "Go google"
 
- #### blocks are added below for level 15 or higher.
++ #### blocks are added below for level 15 or higher.
 
- #### The higher the level, the faster the block falls.
++ #### The higher the level, the faster the block falls.
 
 
 
