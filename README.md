@@ -7,10 +7,10 @@
 <a href="https://opensource.org/licenses/MIT">The MIT License </a>
 
 ## Developers
-+ ±è¹Î½Ä(ÆÀÀå)<br>
-+ °æÁ¦ÈÆ<br>
-+ ·ùÈ­µ¿<br> 
-+ Á¤ÇÑ±³<br> 
++ ê¹€ë¯¼ì‹(íŒ€ì¥)<br>
++ ê²½ì œí›ˆ<br>
++ ë¥˜í™”ë™<br> 
++ ì •í•œêµ<br> 
 
 ## Description
 
@@ -21,8 +21,7 @@
 
 + #### If you play a game after logging in, you can register the Tetris record and check the ranking
  	If you want to see the ranking of all users, visit website :
-Link: [Google][googlelink]
-[googlelink]: http://15.164.218.103/home.php "Go google"
+Link: http://15.164.218.103/home.php
 
 + #### blocks are added below for level 15 or higher.
 
