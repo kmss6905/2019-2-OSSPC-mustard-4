@@ -6,6 +6,10 @@
 	
 <a href="https://opensource.org/licenses/MIT">The MIT License </a>
 
+## Original Source
+
+Link: https://github.com/CSID-DGU/2019-1-OSSPC-Millions-3
+
 ## Developers
 + 김민식(팀장)<br>
 + 경제훈<br>
@@ -38,6 +42,12 @@ Link: http://15.164.218.103/home.php
   eclipse, phpStorm
 
 ## What Improved?
+
++ Game difficulty adjustment
++ Diversification of Game Modes
++ Rank system and search 
++ Gaem features added and improved
++ UI / Bug improvements
 
 ## Screenshot
 	
