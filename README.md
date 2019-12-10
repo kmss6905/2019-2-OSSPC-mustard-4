@@ -43,7 +43,7 @@ Link: http://15.164.218.103/home.php
 
 ## What Improved?
 
-+ Game difficulty adjustment
++ Game level adjustment
 + Diversification of Game Modes
 + Rank system and search 
 + Gaem features added and improved
